@@ -1,6 +1,171 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>计网模拟题</title>
+    <url>/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="2024-年全国硕士研究生入学统一考试模拟题01"><strong>2024 年全国硕士研究生入学统一考试模拟题01</strong></h2>
+<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
+<ul>
+<li>
+<ol start="33">
+<li>在OSI/RM中，不属于网络层相邻下层涉及的范畴是（  ）。</li>
+</ol>
+<p>A．物理地址</p>
+<p>B．封装成帧</p>
+<p>C．透明传输</p>
+<p>D．频分复用</p>
+</li>
+<li>
+<ol start="34">
+<li>假设某信道中的信号功率为0.6W，噪声功率为0.0193W，信道的频带宽度为160MHz，信道的长度为1km，信号在该信道的传播速率为200,000km/s，则该信道的时延带宽积是（  ）。</li>
+</ol>
+<p>A．500b</p>
+<p>B．512b</p>
+<p>C．1024b</p>
+<p>D．4000b</p>
+</li>
+<li>
+<ol start="35">
+<li>以下有关VLAN的叙述中，<strong>错误</strong>的有（ ）。</li>
+</ol>
+<p>I. VLAN是一种新型局域网</p>
+<p>II. VLAN使用的802.1Q帧的最大长度为1518B</p>
+<p>III. 连接在同一交换机上的多个站点可以属于不同的VLAN</p>
+<p>IV. 不同VLAN中的站点之间不能直接通信</p>
+<p>V. 属于同一VLAN的多个站点不能连接在不同的交换机上</p>
+<p>A．I、V</p>
+<p>B．II、IV</p>
+<p>C．I、II、V</p>
+<p>D．II、III、IV、V</p>
+</li>
+<li>
+<ol start="36">
+<li>若主机A的IP地址是192.168.0.129/25，则主机A所在网络中可分配给其他主机或路由器接口的最小地址是（  ）。</li>
+</ol>
+<p>A．192.168.0.127</p>
+<p>B．192.168.0.128</p>
+<p>C．192.168.0.129</p>
+<p>D．192.168.0.130</p>
+</li>
+<li>
+<ol start="37">
+<li>若将某个 “/17”地址块划分为9（不多也不少）个子块，则可能的最小子块中所包含的IP地址数量为（  ）。</li>
+</ol>
+<p>A．126</p>
+<p>B．128</p>
+<p>C．2046</p>
+<p>D．2048</p>
+</li>
+<li>
+<ol start="38">
+<li>以下有关SDN的叙述中，错误的是（  ）。</li>
+</ol>
+<p>A. 数据层面与控制层面是分离的，二者不在同一个设备中</p>
+<p>B. 各分组交换机的流表中的流表项，都是由SDN控制器进行计算、管理和安装的</p>
+<p>C. SDN控制器与网络控制应用程序的交互都要通过南向API接口</p>
+<p>D. OpenFlow协议是目前被广泛采用的SDN控制器通信层的协议</p>
+</li>
+<li>
+<ol start="39">
+<li>在TCP建立连接的过程中，TCP服务器收到SYN=1的TCP报文段并给TCP客户发送相应的SYN=1且ACK=1的TCP报文段后，TCP服务器的TCP状态转换为（  ）。</li>
+</ol>
+<p>A．SYN-RCVD</p>
+<p>B．TIME-WAIT</p>
+<p>C．ESTABLISHED</p>
+<p>D．CLOSED</p>
+</li>
+<li>
+<ol start="40">
+<li>假设主机H通过HTTP/1.1请求浏览某个Web服务器S上的Web页rfc.html，rfc.html引用了同目录下的3个JPEG小图像，一次请求-响应的时间为RTT，忽略其他各种时延，不考虑拥塞控制和流量控制，则从发送HTTP请求报文开始到收到全部内容为止，所耗费的时间是（  ）。</li>
+</ol>
+<p>A．2RTT</p>
+<p>B．2.5RTT</p>
+<p>C．4RTT</p>
+<p>D．4.5RTT</p>
+</li>
+</ul>
+<h3 id="二、综合应用题：第41-47-题，共70-分。">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
+<ul>
+<li>
+<ol start="47">
+<li>（9分）某网络拓扑如下图所示，现做如下假设：</li>
+</ol>
+<p>（1） 服务器Server1是本地域名服务器，其记录有Internet中Web服务器的域名和IP地址的对应关系。</p>
+<p>（2） 服务器Server2为主机H提供网络参数（IP地址、子网掩码、默认网关的IP地址、本地域名服务器的IP地址）。</p>
+<p>（3） S为二层交换机，其各接口的接口号已标注在接口旁边。</p>
+<p>（4） Server1、Server2、路由器R1和R2各自相关接口的IP地址和MAC地址已标注在它们各自的旁边； H的MAC地址已标注在其旁边。</p>
+<p>（5） 一开始H的ARP表和S的交换表均为空，并且后续各表获得的相关记录没有老化时间（即长期保存）。</p>
+<p>（6） H获取到IP地址、子网掩码以及默认网关的IP地址后，利用浏览器通过域名www.abc.com访问Web服务器，并且整个访问过程中没有传输差错，也未发生与Web访问无关的网络通信。</p>
+</li>
+</ul>
+<img src="https://p.sda1.dev/14/ca8243e36a1b972682be5ded7495f088/1.png" alt="1.png" style="zoom: 67%;">
+<p>请回答以下问题：</p>
+<p>（1） H使用什么协议从Server2获取到自己的IP地址？该IP地址所在范围是什么？H从Server2获取到的默认网关的IP地址是什么？</p>
+<p>（2） H向Server1请求Web服务器的域名www.abc.com所对应的IP地址时，发送给Server1的第一个以太网帧的数据载荷封装的是什么报文？该以太网帧的目的MAC地址是什么？</p>
+<p>（3） H访问Web服务器的过程中，除HTTP外还用到了哪个应用层协议？该应用层协议的熟知端口号是什么？从应用层到数据链路层，该应用层协议报文分别通过哪些协议进行逐层封装？</p>
+<p>（4） 若S的交换表结构为&lt;MAC地址，接口号&gt;，则H获取到自己的IP地址等网络参数时，S的交换表中的内容是什么？当H收到来自Web服务器的响应时，S的交换表中的内容是什么？</p>
+<p>（5） 为了使H能够与Web服务器通信，R1需要开启什么功能？H给Web服务器发送的IP数据报，从R1转发出来时，其源IP地址是什么？</p>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题01-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题01 答案</strong></h2>
+<ul>
+<li>
+<ol start="33">
+<li>D</li>
+</ol>
+</li>
+<li>
+<ol start="34">
+<li>D</li>
+</ol>
+<p>最大传输速率是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mo>∗</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mn>0.6</mn><mn>0.0193</mn></mfrac><mo stretchy="false">)</mo><mo>=</mo><mn>800</mn><mi>M</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">160*log_2(1+\frac{0.6}{0.0193})=800Mb/s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">160</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.0193</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.6</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">b</span><span class="mord">/</span><span class="mord mathnormal">s</span></span></span></span>。传播时延为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>200000</mn></mfrac><mi>s</mi></mrow><annotation encoding="application/x-tex">\frac{1}{200000}s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">s</span></span></span></span>，时延带宽积为<strong>单向传播时延<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>带宽</strong>。因此时延带宽积为:<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>800</mn><mi>M</mi><mo>∗</mo><mfrac><mn>1</mn><mn>200000</mn></mfrac><mo>=</mo><mn>4000</mn><mi>b</mi></mrow><annotation encoding="application/x-tex">800M * \frac{1}{200000}=4000b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">4000</span><span class="mord mathnormal">b</span></span></span></span>。</p>
+</li>
+<li>
+<ol start="35">
+<li>C</li>
+</ol>
+</li>
+<li>
+<ol start="36">
+<li>D</li>
+</ol>
+</li>
+<li>
+<ol start="37">
+<li>B</li>
+</ol>
+<p>满足网络号不是前缀就行。一种可能的划分方法是: 0, 10, 110, 1110, 11110,  111110, 1111110, 11111110, 11111111。网络号最长是8位。</p>
+</li>
+<li>
+<ol start="38">
+<li>C</li>
+</ol>
+</li>
+<li>
+<ol start="39">
+<li>A</li>
+</ol>
+<img src="https://p.sda1.dev/14/fbaab7001a2e3136b971b2f92fc8a113/18.jpg" style="zoom:80%;">
+</li>
+<li>
+<ol start="40">
+<li>A</li>
+</ol>
+</li>
+<li>
+<ol start="47">
+<li></li>
+</ol>
+<p>(1). H通过<strong>DHCP协议</strong>从Server2获取到自己的IP地址。该IP地址所在范围是</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>408真题</title>
     <url>/2023/11/27/408%E7%9C%9F%E9%A2%98/</url>
     <content><![CDATA[<h2 id="2023年">2023年</h2>
@@ -396,171 +561,6 @@
       </categories>
       <tags>
         <tag>408</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>计网模拟题</title>
-    <url>/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="2024-年全国硕士研究生入学统一考试模拟题01"><strong>2024 年全国硕士研究生入学统一考试模拟题01</strong></h2>
-<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
-<ul>
-<li>
-<ol start="33">
-<li>在OSI/RM中，不属于网络层相邻下层涉及的范畴是（  ）。</li>
-</ol>
-<p>A．物理地址</p>
-<p>B．封装成帧</p>
-<p>C．透明传输</p>
-<p>D．频分复用</p>
-</li>
-<li>
-<ol start="34">
-<li>假设某信道中的信号功率为0.6W，噪声功率为0.0193W，信道的频带宽度为160MHz，信道的长度为1km，信号在该信道的传播速率为200,000km/s，则该信道的时延带宽积是（  ）。</li>
-</ol>
-<p>A．500b</p>
-<p>B．512b</p>
-<p>C．1024b</p>
-<p>D．4000b</p>
-</li>
-<li>
-<ol start="35">
-<li>以下有关VLAN的叙述中，<strong>错误</strong>的有（ ）。</li>
-</ol>
-<p>I. VLAN是一种新型局域网</p>
-<p>II. VLAN使用的802.1Q帧的最大长度为1518B</p>
-<p>III. 连接在同一交换机上的多个站点可以属于不同的VLAN</p>
-<p>IV. 不同VLAN中的站点之间不能直接通信</p>
-<p>V. 属于同一VLAN的多个站点不能连接在不同的交换机上</p>
-<p>A．I、V</p>
-<p>B．II、IV</p>
-<p>C．I、II、V</p>
-<p>D．II、III、IV、V</p>
-</li>
-<li>
-<ol start="36">
-<li>若主机A的IP地址是192.168.0.129/25，则主机A所在网络中可分配给其他主机或路由器接口的最小地址是（  ）。</li>
-</ol>
-<p>A．192.168.0.127</p>
-<p>B．192.168.0.128</p>
-<p>C．192.168.0.129</p>
-<p>D．192.168.0.130</p>
-</li>
-<li>
-<ol start="37">
-<li>若将某个 “/17”地址块划分为9（不多也不少）个子块，则可能的最小子块中所包含的IP地址数量为（  ）。</li>
-</ol>
-<p>A．126</p>
-<p>B．128</p>
-<p>C．2046</p>
-<p>D．2048</p>
-</li>
-<li>
-<ol start="38">
-<li>以下有关SDN的叙述中，错误的是（  ）。</li>
-</ol>
-<p>A. 数据层面与控制层面是分离的，二者不在同一个设备中</p>
-<p>B. 各分组交换机的流表中的流表项，都是由SDN控制器进行计算、管理和安装的</p>
-<p>C. SDN控制器与网络控制应用程序的交互都要通过南向API接口</p>
-<p>D. OpenFlow协议是目前被广泛采用的SDN控制器通信层的协议</p>
-</li>
-<li>
-<ol start="39">
-<li>在TCP建立连接的过程中，TCP服务器收到SYN=1的TCP报文段并给TCP客户发送相应的SYN=1且ACK=1的TCP报文段后，TCP服务器的TCP状态转换为（  ）。</li>
-</ol>
-<p>A．SYN-RCVD</p>
-<p>B．TIME-WAIT</p>
-<p>C．ESTABLISHED</p>
-<p>D．CLOSED</p>
-</li>
-<li>
-<ol start="40">
-<li>假设主机H通过HTTP/1.1请求浏览某个Web服务器S上的Web页rfc.html，rfc.html引用了同目录下的3个JPEG小图像，一次请求-响应的时间为RTT，忽略其他各种时延，不考虑拥塞控制和流量控制，则从发送HTTP请求报文开始到收到全部内容为止，所耗费的时间是（  ）。</li>
-</ol>
-<p>A．2RTT</p>
-<p>B．2.5RTT</p>
-<p>C．4RTT</p>
-<p>D．4.5RTT</p>
-</li>
-</ul>
-<h3 id="二、综合应用题：第41-47-题，共70-分。">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
-<ul>
-<li>
-<ol start="47">
-<li>（9分）某网络拓扑如下图所示，现做如下假设：</li>
-</ol>
-<p>（1） 服务器Server1是本地域名服务器，其记录有Internet中Web服务器的域名和IP地址的对应关系。</p>
-<p>（2） 服务器Server2为主机H提供网络参数（IP地址、子网掩码、默认网关的IP地址、本地域名服务器的IP地址）。</p>
-<p>（3） S为二层交换机，其各接口的接口号已标注在接口旁边。</p>
-<p>（4） Server1、Server2、路由器R1和R2各自相关接口的IP地址和MAC地址已标注在它们各自的旁边； H的MAC地址已标注在其旁边。</p>
-<p>（5） 一开始H的ARP表和S的交换表均为空，并且后续各表获得的相关记录没有老化时间（即长期保存）。</p>
-<p>（6） H获取到IP地址、子网掩码以及默认网关的IP地址后，利用浏览器通过域名www.abc.com访问Web服务器，并且整个访问过程中没有传输差错，也未发生与Web访问无关的网络通信。</p>
-</li>
-</ul>
-<img src="https://p.sda1.dev/14/ca8243e36a1b972682be5ded7495f088/1.png" alt="1.png" style="zoom: 67%;">
-<p>请回答以下问题：</p>
-<p>（1） H使用什么协议从Server2获取到自己的IP地址？该IP地址所在范围是什么？H从Server2获取到的默认网关的IP地址是什么？</p>
-<p>（2） H向Server1请求Web服务器的域名www.abc.com所对应的IP地址时，发送给Server1的第一个以太网帧的数据载荷封装的是什么报文？该以太网帧的目的MAC地址是什么？</p>
-<p>（3） H访问Web服务器的过程中，除HTTP外还用到了哪个应用层协议？该应用层协议的熟知端口号是什么？从应用层到数据链路层，该应用层协议报文分别通过哪些协议进行逐层封装？</p>
-<p>（4） 若S的交换表结构为&lt;MAC地址，接口号&gt;，则H获取到自己的IP地址等网络参数时，S的交换表中的内容是什么？当H收到来自Web服务器的响应时，S的交换表中的内容是什么？</p>
-<p>（5） 为了使H能够与Web服务器通信，R1需要开启什么功能？H给Web服务器发送的IP数据报，从R1转发出来时，其源IP地址是什么？</p>
-<h2 id="2024-年全国硕士研究生入学统一考试模拟题01-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题01 答案</strong></h2>
-<ul>
-<li>
-<ol start="33">
-<li>D</li>
-</ol>
-</li>
-<li>
-<ol start="34">
-<li>D</li>
-</ol>
-<p>最大传输速率是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mo>∗</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mn>0.6</mn><mn>0.0193</mn></mfrac><mo stretchy="false">)</mo><mo>=</mo><mn>800</mn><mi>M</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">160*log_2(1+\frac{0.6}{0.0193})=800Mb/s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">160</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.0193</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.6</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">b</span><span class="mord">/</span><span class="mord mathnormal">s</span></span></span></span>。传播时延为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>200000</mn></mfrac><mi>s</mi></mrow><annotation encoding="application/x-tex">\frac{1}{200000}s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">s</span></span></span></span>，时延带宽积为<strong>单向传播时延<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>带宽</strong>。因此时延带宽积为:<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>800</mn><mi>M</mi><mo>∗</mo><mfrac><mn>1</mn><mn>200000</mn></mfrac><mo>=</mo><mn>4000</mn><mi>b</mi></mrow><annotation encoding="application/x-tex">800M * \frac{1}{200000}=4000b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">4000</span><span class="mord mathnormal">b</span></span></span></span>。</p>
-</li>
-<li>
-<ol start="35">
-<li>C</li>
-</ol>
-</li>
-<li>
-<ol start="36">
-<li>D</li>
-</ol>
-</li>
-<li>
-<ol start="37">
-<li>B</li>
-</ol>
-<p>满足网络号不是前缀就行。一种可能的划分方法是: 0, 10, 110, 1110, 11110,  111110, 1111110, 11111110, 11111111。网络号最长是8位。</p>
-</li>
-<li>
-<ol start="38">
-<li>C</li>
-</ol>
-</li>
-<li>
-<ol start="39">
-<li>A</li>
-</ol>
-<img src="https://p.sda1.dev/14/fbaab7001a2e3136b971b2f92fc8a113/18.jpg" style="zoom:80%;">
-</li>
-<li>
-<ol start="40">
-<li>A</li>
-</ol>
-</li>
-<li>
-<ol start="47">
-<li></li>
-</ol>
-<p>(1). H通过<strong>DHCP协议</strong>从Server2获取到自己的IP地址。该IP地址所在范围是</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>计网</tag>
       </tags>
   </entry>
   <entry>
