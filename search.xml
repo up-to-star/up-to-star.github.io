@@ -509,6 +509,10 @@
 <ol start="33">
 <li>D</li>
 </ol>
+<p>在OSI/RM中，网络层的相邻下层是数据链路层。</p>
+<p>选项A中的物理地址、也称为硬件地址、MAC地址，属于数据链路层范畴。</p>
+<p>选项B中的封装成帧、选项C中的透明传输都属于数据链路层范畴。另外，差错检测也属于数据链路层范畴。</p>
+<p>选项D中的<strong>频分复用，属于物理层范畴。</strong></p>
 </li>
 <li>
 <ol start="34">
@@ -520,6 +524,11 @@
 <ol start="35">
 <li>C</li>
 </ol>
+<p>I项的叙述错误。VLAN是在以太网交换机上实现的一种分割广播域的技术，而不是一种新型的局域网。</p>
+<p>II项的叙述错误。802.1Q帧对以太网V2的MAC帧格式进行了扩展：在源地址字段和类型字段之间插入了4字节的VLAN标签字段，则802.1Q帧的最大长度为1518B+4B=1522B。</p>
+<p>III项的叙述正确。在同一个交换机上可以划分不同的VLAN。</p>
+<p>IV项的叙述正确。不同VLAN中的站点之间不能直接通信，要实现它们之间的通信，需要使用三层交换机或路由器。</p>
+<p>V项的叙述错误。属于同一VLAN的多个站点，可以连接在不同的交换机上。只要将相关的交换机接口划分到同一VLAN即可。</p>
 </li>
 <li>
 <ol start="36">
@@ -536,6 +545,7 @@
 <ol start="38">
 <li>C</li>
 </ol>
+<img src="https://p.sda1.dev/14/ac356a62795b375f0ed50afb18fbd778/38.png" alt="38.png" style="zoom:67%;">
 </li>
 <li>
 <ol start="39">
@@ -547,14 +557,65 @@
 <ol start="40">
 <li>A</li>
 </ol>
+<img src="https://p.sda1.dev/14/04fde899361ea840aa8192436fef5fe0/40.png" alt="40.png" style="zoom: 50%;">
 </li>
 <li>
 <ol start="47">
 <li></li>
 </ol>
-<p>(1). H通过<strong>DHCP协议</strong>从Server2获取到自己的IP地址。该IP地址所在范围是</p>
+<p>(1). H通过<strong>DHCP协议</strong>从Server2获取到自己的IP地址。该IP地址所在范围是<strong>192.168.16.195-192.168.16.253</strong>。H从Server2获取的默认网关的IP地址是<strong>192.168.16.254</strong>。</p>
+<p>(2). 发送给Server1的第一个以太网帧的数据载荷是<strong>ARP请求报文</strong>。该以太网帧的目的MAC地址是<strong>FF-FF-FF-FF-FF-FF</strong>。</p>
+<p>(3). 除HTTP外还用的应用层协议是<strong>DNS协议</strong>。对应<strong>熟知端口号是53</strong>。从应用层到数据链路层逐层封装的协议为:DNS协议，UDP协议，IP协议，最后在数据链路层被封装在以太网帧中。</p>
+<img src="https://p.sda1.dev/14/debc8cc1f2119e41b63e2d97c0f84872/Image_1698924422482.jpg" alt="Image_1698924422482.jpg" style="zoom: 50%;">
 </li>
 </ul>
+<p>​	(4). H获取到自己的IP地址等网络参数时，S的交换表中的内容是:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">MAC地址</th>
+<th style="text-align:center">接口号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00-11-22-33-44-aa</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-ee</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+<p>收到来自Web服务器的相应时，S的交换表内容是:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">MAC地址</th>
+<th style="text-align:center">接口号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00-11-22-33-44-aa</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-ee</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-bb</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-dd</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+<p>​	(5). R1需要开启<strong>NAT功能</strong>。源IP地址是<strong>218.75.230.2/30</strong></p>
 ]]></content>
       <categories>
         <category>计算机网络</category>
