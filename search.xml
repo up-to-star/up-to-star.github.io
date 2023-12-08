@@ -1,590 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>计网模拟题</title>
-    <url>/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="2024-年全国硕士研究生入学统一考试模拟题01"><strong>2024 年全国硕士研究生入学统一考试模拟题01</strong></h2>
-<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
-<ul>
-<li>
-<ol start="33">
-<li>在OSI/RM中，不属于网络层相邻下层涉及的范畴是（  ）。</li>
-</ol>
-<p>A．物理地址</p>
-<p>B．封装成帧</p>
-<p>C．透明传输</p>
-<p>D．频分复用</p>
-</li>
-<li>
-<ol start="34">
-<li>假设某信道中的信号功率为0.6W，噪声功率为0.0193W，信道的频带宽度为160MHz，信道的长度为1km，信号在该信道的传播速率为200,000km/s，则该信道的时延带宽积是（  ）。</li>
-</ol>
-<p>A．500b</p>
-<p>B．512b</p>
-<p>C．1024b</p>
-<p>D．4000b</p>
-</li>
-<li>
-<ol start="35">
-<li>以下有关VLAN的叙述中，<strong>错误</strong>的有（ ）。</li>
-</ol>
-<p>I. VLAN是一种新型局域网</p>
-<p>II. VLAN使用的802.1Q帧的最大长度为1518B</p>
-<p>III. 连接在同一交换机上的多个站点可以属于不同的VLAN</p>
-<p>IV. 不同VLAN中的站点之间不能直接通信</p>
-<p>V. 属于同一VLAN的多个站点不能连接在不同的交换机上</p>
-<p>A．I、V</p>
-<p>B．II、IV</p>
-<p>C．I、II、V</p>
-<p>D．II、III、IV、V</p>
-</li>
-<li>
-<ol start="36">
-<li>若主机A的IP地址是192.168.0.129/25，则主机A所在网络中可分配给其他主机或路由器接口的最小地址是（  ）。</li>
-</ol>
-<p>A．192.168.0.127</p>
-<p>B．192.168.0.128</p>
-<p>C．192.168.0.129</p>
-<p>D．192.168.0.130</p>
-</li>
-<li>
-<ol start="37">
-<li>若将某个 “/17”地址块划分为9（不多也不少）个子块，则可能的最小子块中所包含的IP地址数量为（  ）。</li>
-</ol>
-<p>A．126</p>
-<p>B．128</p>
-<p>C．2046</p>
-<p>D．2048</p>
-</li>
-<li>
-<ol start="38">
-<li>以下有关SDN的叙述中，错误的是（  ）。</li>
-</ol>
-<p>A. 数据层面与控制层面是分离的，二者不在同一个设备中</p>
-<p>B. 各分组交换机的流表中的流表项，都是由SDN控制器进行计算、管理和安装的</p>
-<p>C. SDN控制器与网络控制应用程序的交互都要通过南向API接口</p>
-<p>D. OpenFlow协议是目前被广泛采用的SDN控制器通信层的协议</p>
-</li>
-<li>
-<ol start="39">
-<li>在TCP建立连接的过程中，TCP服务器收到SYN=1的TCP报文段并给TCP客户发送相应的SYN=1且ACK=1的TCP报文段后，TCP服务器的TCP状态转换为（  ）。</li>
-</ol>
-<p>A．SYN-RCVD</p>
-<p>B．TIME-WAIT</p>
-<p>C．ESTABLISHED</p>
-<p>D．CLOSED</p>
-</li>
-<li>
-<ol start="40">
-<li>假设主机H通过HTTP/1.1请求浏览某个Web服务器S上的Web页rfc.html，rfc.html引用了同目录下的3个JPEG小图像，一次请求-响应的时间为RTT，忽略其他各种时延，不考虑拥塞控制和流量控制，则从发送HTTP请求报文开始到收到全部内容为止，所耗费的时间是（  ）。</li>
-</ol>
-<p>A．2RTT</p>
-<p>B．2.5RTT</p>
-<p>C．4RTT</p>
-<p>D．4.5RTT</p>
-</li>
-</ul>
-<h3 id="二、综合应用题：第41-47-题，共70-分。">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
-<ul>
-<li>
-<ol start="47">
-<li>（9分）某网络拓扑如下图所示，现做如下假设：</li>
-</ol>
-<p>（1） 服务器Server1是本地域名服务器，其记录有Internet中Web服务器的域名和IP地址的对应关系。</p>
-<p>（2） 服务器Server2为主机H提供网络参数（IP地址、子网掩码、默认网关的IP地址、本地域名服务器的IP地址）。</p>
-<p>（3） S为二层交换机，其各接口的接口号已标注在接口旁边。</p>
-<p>（4） Server1、Server2、路由器R1和R2各自相关接口的IP地址和MAC地址已标注在它们各自的旁边； H的MAC地址已标注在其旁边。</p>
-<p>（5） 一开始H的ARP表和S的交换表均为空，并且后续各表获得的相关记录没有老化时间（即长期保存）。</p>
-<p>（6） H获取到IP地址、子网掩码以及默认网关的IP地址后，利用浏览器通过域名www.abc.com访问Web服务器，并且整个访问过程中没有传输差错，也未发生与Web访问无关的网络通信。</p>
-</li>
-</ul>
-<img src="https://p.sda1.dev/14/ca8243e36a1b972682be5ded7495f088/1.png" alt="1.png" style="zoom: 67%;">
-<p>请回答以下问题：</p>
-<p>（1） H使用什么协议从Server2获取到自己的IP地址？该IP地址所在范围是什么？H从Server2获取到的默认网关的IP地址是什么？</p>
-<p>（2） H向Server1请求Web服务器的域名www.abc.com所对应的IP地址时，发送给Server1的第一个以太网帧的数据载荷封装的是什么报文？该以太网帧的目的MAC地址是什么？</p>
-<p>（3） H访问Web服务器的过程中，除HTTP外还用到了哪个应用层协议？该应用层协议的熟知端口号是什么？从应用层到数据链路层，该应用层协议报文分别通过哪些协议进行逐层封装？</p>
-<p>（4） 若S的交换表结构为&lt;MAC地址，接口号&gt;，则H获取到自己的IP地址等网络参数时，S的交换表中的内容是什么？当H收到来自Web服务器的响应时，S的交换表中的内容是什么？</p>
-<p>（5） 为了使H能够与Web服务器通信，R1需要开启什么功能？H给Web服务器发送的IP数据报，从R1转发出来时，其源IP地址是什么？</p>
-<h2 id="2024-年全国硕士研究生入学统一考试模拟题01-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题01 答案</strong></h2>
-<ul>
-<li>
-<ol start="33">
-<li>D</li>
-</ol>
-<p>在OSI/RM中，网络层的相邻下层是数据链路层。</p>
-<p>选项A中的物理地址、也称为硬件地址、MAC地址，属于数据链路层范畴。</p>
-<p>选项B中的封装成帧、选项C中的透明传输都属于数据链路层范畴。另外，差错检测也属于数据链路层范畴。</p>
-<p>选项D中的<strong>频分复用，属于物理层范畴。</strong></p>
-</li>
-<li>
-<ol start="34">
-<li>D</li>
-</ol>
-<p>最大传输速率是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mo>∗</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mn>0.6</mn><mn>0.0193</mn></mfrac><mo stretchy="false">)</mo><mo>=</mo><mn>800</mn><mi>M</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">160*log_2(1+\frac{0.6}{0.0193})=800Mb/s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">160</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.0193</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.6</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">b</span><span class="mord">/</span><span class="mord mathnormal">s</span></span></span></span>。传播时延为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>200000</mn></mfrac><mi>s</mi></mrow><annotation encoding="application/x-tex">\frac{1}{200000}s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">s</span></span></span></span>，时延带宽积为<strong>单向传播时延<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>带宽</strong>。因此时延带宽积为:<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>800</mn><mi>M</mi><mo>∗</mo><mfrac><mn>1</mn><mn>200000</mn></mfrac><mo>=</mo><mn>4000</mn><mi>b</mi></mrow><annotation encoding="application/x-tex">800M * \frac{1}{200000}=4000b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">4000</span><span class="mord mathnormal">b</span></span></span></span>。</p>
-</li>
-<li>
-<ol start="35">
-<li>C</li>
-</ol>
-<p>I项的叙述错误。VLAN是在以太网交换机上实现的一种分割广播域的技术，而不是一种新型的局域网。</p>
-<p>II项的叙述错误。802.1Q帧对以太网V2的MAC帧格式进行了扩展：在源地址字段和类型字段之间插入了4字节的VLAN标签字段，则802.1Q帧的最大长度为1518B+4B=1522B。</p>
-<p>III项的叙述正确。在同一个交换机上可以划分不同的VLAN。</p>
-<p>IV项的叙述正确。不同VLAN中的站点之间不能直接通信，要实现它们之间的通信，需要使用三层交换机或路由器。</p>
-<p>V项的叙述错误。属于同一VLAN的多个站点，可以连接在不同的交换机上。只要将相关的交换机接口划分到同一VLAN即可。</p>
-</li>
-<li>
-<ol start="36">
-<li>D</li>
-</ol>
-</li>
-<li>
-<ol start="37">
-<li>B</li>
-</ol>
-<p>满足网络号不是前缀就行。一种可能的划分方法是: 0, 10, 110, 1110, 11110,  111110, 1111110, 11111110, 11111111。网络号最长是8位。</p>
-</li>
-<li>
-<ol start="38">
-<li>C</li>
-</ol>
-<img src="https://p.sda1.dev/14/ac356a62795b375f0ed50afb18fbd778/38.png" alt="38.png" style="zoom:67%;">
-</li>
-<li>
-<ol start="39">
-<li>A</li>
-</ol>
-<img src="https://p.sda1.dev/14/fbaab7001a2e3136b971b2f92fc8a113/18.jpg" style="zoom:80%;">
-</li>
-<li>
-<ol start="40">
-<li>A</li>
-</ol>
-<img src="https://p.sda1.dev/14/04fde899361ea840aa8192436fef5fe0/40.png" alt="40.png" style="zoom: 50%;">
-</li>
-<li>
-<ol start="47">
-<li></li>
-</ol>
-<p>(1). H通过<strong>DHCP协议</strong>从Server2获取到自己的IP地址。该IP地址所在范围是<strong>192.168.16.195-192.168.16.253</strong>。H从Server2获取的默认网关的IP地址是<strong>192.168.16.254</strong>。</p>
-<p>(2). 发送给Server1的第一个以太网帧的数据载荷是<strong>ARP请求报文</strong>。该以太网帧的目的MAC地址是<strong>FF-FF-FF-FF-FF-FF</strong>。</p>
-<p>(3). 除HTTP外还用的应用层协议是<strong>DNS协议</strong>。对应<strong>熟知端口号是53</strong>。从应用层到数据链路层逐层封装的协议为:DNS协议，UDP协议，IP协议，最后在数据链路层被封装在以太网帧中。</p>
-<img src="https://p.sda1.dev/14/debc8cc1f2119e41b63e2d97c0f84872/Image_1698924422482.jpg" alt="Image_1698924422482.jpg" style="zoom: 50%;">
-</li>
-</ul>
-<p>​	(4). H获取到自己的IP地址等网络参数时，S的交换表中的内容是:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">MAC地址</th>
-<th style="text-align:center">接口号</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">00-11-22-33-44-aa</td>
-<td style="text-align:center">4</td>
-</tr>
-<tr>
-<td style="text-align:center">00-11-22-33-44-ee</td>
-<td style="text-align:center">3</td>
-</tr>
-</tbody>
-</table>
-<p>收到来自Web服务器的相应时，S的交换表内容是:</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">MAC地址</th>
-<th style="text-align:center">接口号</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">00-11-22-33-44-aa</td>
-<td style="text-align:center">4</td>
-</tr>
-<tr>
-<td style="text-align:center">00-11-22-33-44-ee</td>
-<td style="text-align:center">3</td>
-</tr>
-<tr>
-<td style="text-align:center">00-11-22-33-44-bb</td>
-<td style="text-align:center">1</td>
-</tr>
-<tr>
-<td style="text-align:center">00-11-22-33-44-dd</td>
-<td style="text-align:center">2</td>
-</tr>
-</tbody>
-</table>
-<p>​	(5). R1需要开启<strong>NAT功能</strong>。源IP地址是<strong>218.75.230.2/30</strong></p>
-<hr>
-<h2 id="2024-年全国硕士研究生入学统一考试模拟题02"><strong>2024 年全国硕士研究生入学统一考试模拟题02</strong></h2>
-<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。-2">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
-<ul>
-<li>
-<ol start="33">
-<li>以下有关计算机网络体系结构的相关叙述中，<strong>错误</strong>的是（ ）。</li>
-</ol>
-<p>I. 对等实体是指通信双方相同网络体系结构中相同层次中的实体</p>
-<p>II. 协议的三要素为语法、语义、同步（或称时序）</p>
-<p>III. 实体为了使用下层提供的服务，需要知道实现服务的具体协议细节</p>
-<p>IV. 对等层次之间传送的数据包称为该层的SDU</p>
-<p>V. 上层要使用相邻下层所提供的服务，需要通过与相邻下层交换一些命令，这些命令称为服务原语</p>
-<p>A．I，IV</p>
-<p>B．III、IV</p>
-<p>C．II、III</p>
-<p>D．III、IV、V</p>
-</li>
-<li>
-<ol start="34">
-<li>有X、Y和Z共3个站进行CDMA通信，其中X站的码片序列是(-1 -1 -1 +1 +1 -1 +1 +1)，Y站的码片序列是(-1 -1 +1 -1 +1 +1 +1 -1)，则Z站的码片序列可以是（ ）。</li>
-</ol>
-<p>A. (+1 +1 +1 -1 -1 +1 -1 -1)</p>
-<p>B. (+1 +1 -1 +1 -1 -1 -1 +1)</p>
-<p>C. (-1 -1 +1 -1 -1 +1 -1 -1)</p>
-<p>D. (-1 +1 -1 +1 +1 +1 -1 -1)</p>
-</li>
-<li>
-<ol start="35">
-<li>以下有关停止-等待协议与GBN协议的相关叙述中，<strong>正确</strong>的是（ ）。</li>
-</ol>
-<p>I. 停止-等待协议的发送窗口和接收窗口的尺寸都是1</p>
-<p>II. GBN协议的发送窗口和接收窗口的尺寸都大于1</p>
-<p>III. 对于RTT远大于分组发送时延的卫星链路，不适合使用停止-等待协议，因为其信道利用率很低</p>
-<p>IV. GBN协议的信道利用率大于停止-等待协议的信道利用率</p>
-<p>A．I，IV</p>
-<p>B．I、III</p>
-<p>C．II、IV</p>
-<p>D．I、III、IV</p>
-</li>
-<li>
-<ol start="36">
-<li>在下图所示的802.11无线局域网中，主机A要通过接入点AP给主机B发送一个数据帧，则该数据帧从主机A发出时，其地址字段中的地址1、地址2以及地址3分别为是（ ）。</li>
-</ol>
-<img src="https://p.sda1.dev/14/ada875f76f8b8279319019ea8f73b217/2_36.png" alt="2_36.png" style="zoom:67%;">
-<p>A. MAC1、MAC2、MAC3</p>
-<p>B. MAC3、MAC2、MAC1</p>
-<p>C. MAC3、MAC1、MAC2</p>
-<p>D. MAC2、MAC1、MAC3</p>
-</li>
-<li>
-<ol start="37">
-<li>网络拓扑如下图所示，假设交换机当前已学习到了主机E的MAC地址，主机A给E发送ARP请求报文，主机E收到后给主机A发送ARP响应报文。则能收到ARP请求报文和ARP响应报文的主机数量分别（ ）。</li>
-</ol>
-<img src="https://p.sda1.dev/14/e7d59d65b48c2d192508053976d9ee2d/2_37.png" alt="2_37.png" style="zoom:67%;">
-<p>A．5，3</p>
-<p>B．5，1</p>
-<p>C．3，5</p>
-<p>D．1，1</p>
-</li>
-<li>
-<ol start="38">
-<li>将IP多播地址226.0.9.26和226.128.9.26转换成以太网的硬件多播地址分别是（ ）。</li>
-</ol>
-<p>A. 00-00-5E-00-00-00，00-00-5E-7F-FF-FF</p>
-<p>B. 01-00-5E-00-09-26，01-00-5E-10-09-26</p>
-<p>C. 01-00-5E-00-09-1A，01-00-5E-00-09-1A</p>
-<p>D. 00-00-5E-7F-FF-FF, 00-00-5E-00-00-00</p>
-</li>
-<li>
-<ol start="39">
-<li>下列有关SDN的叙述中，<strong>正确</strong>的是（ ）。</li>
-</ol>
-<p>A. SDN是近年来出现的一种新型物理网络</p>
-<p>B. SDN等同于OpenFlow</p>
-<p>C. SDN将网络的控制层面和数据层面分开</p>
-<p>D. OpenFlow交换机就是IP路由器</p>
-</li>
-<li>
-<ol start="40">
-<li>下列有关IPv4和IPv6的叙述中，<strong>错误</strong>的是（ ）。</li>
-</ol>
-<p>A. IPv4数据报首部固定部分长度为20字节，而IPv6数据报的基本首部长度为40字节</p>
-<p>B. IPv6支持任播</p>
-<p>C. IPv6首部取消了首部校验和字段</p>
-<p>D. 与IPv6配套使用的网际层协议有ICMPv6和IGMPv6</p>
-</li>
-</ul>
-<h3 id="二、综合应用题：第41-47-题，共70-分。-2">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
-<ul>
-<li>
-<ol start="47">
-<li>（9分）某网络拓扑如下图所示，AS1和AS2分别是两个自治系统，R1~R4都是路由器。本题所需的相关信息（例如网络地址、路由器接口的IP地址，MTU等）已标注在图中。</li>
-</ol>
-<img src="https://p.sda1.dev/14/e048536e18ac77dd8396e387099467dc/2_47.png" alt="2_47.png" style="zoom:67%;">
-<p>请回答以下问题：</p>
-<p>（1） 若AS2内部各路由器使用RIP协议进行路由选择且已收敛，网络192.1.1.0/25中的主机A给网络192.1.1.128/25中的主机B发送一个IP数据报，其首部中TTL字段的初始值为128，则当主机B正确接收到该IP数据报时，其首部中的TTL字段的值为多少？若TTL字段的初始值被设置为2，则会出现什么情况？</p>
-<p>（2） 请给R2添加一条去往AS1内部各网络的聚合路由条目（而非默认路由）,路由条目的格式为（目的网络 子网掩码 下一跳）。这条聚合路由是否会引入图中AS1内部三个网络以外的其他网络？</p>
-<p>（3） AS1与AS2之间可使用的路由选择协议是什么？该路由选择协议使用运输层的哪个协议？</p>
-<p>（4） 若R4在给网络192.1.2.192/26转发一个总长度为1580B的IP数据报（首部长度为20B）时进行了分片，且每个分片尽可能大，则最小的分片IP数据报的长度字段和片偏移字段的取值分别是多少？</p>
-<p>（5） 若R4的路由表中仅包含有直连网络的路由，当R4收到一个目的地址为192.1.4.16的IP数据报时，会如何处理？</p>
-<p>（6） 假设AS1与AS2可以完全互通，AS1中的某台主机通过浏览器访问AS2中的某台Web服务器，采用HTTP/1.1协议的持续的非流水线方式，一次请求-响应时间为RTT，若浏览器所请求的Web页面引用了2个图片，则从浏览器向Web服务器发出的第一个请求报文开始到浏览器收到全部内容为止，需要的RTT数量是多少？</p>
-</li>
-</ul>
-<p>​</p>
-<h2 id="2024-年全国硕士研究生入学统一考试模拟题02-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题02</strong> 答案</h2>
-<ul>
-<li>
-<ol start="33">
-<li>B</li>
-</ol>
-<p>实体看得见下层提供的服务，但并不知道实现该服务的具体协议。也就是说，下层的协议对上层的实体是“透明”的。因此，叙述III错误。</p>
-<p>对等层次之间传送的数据包称为该层的协议数据单元PDU；同一系统内层与层之间交换的数据包称为服务数据单元SDU。因此，叙述IV错误。</p>
-</li>
-<li>
-<ol start="34">
-<li>D</li>
-</ol>
-<p>CDMA系统给每个站分配的码片序列需要满足以下两个条件：</p>
-<p>● 条件1：必须各不相同</p>
-<p>● 条件2：必须相互正交，即规格化内积为0</p>
-</li>
-<li>
-<ol start="35">
-<li>B</li>
-</ol>
-<p>使用n个比特给分组编号，GBN协议的发送窗口的尺寸WT的取指范围是：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><msub><mi>W</mi><mi>T</mi></msub><mo>≤</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1&lt;W_T\le 2^n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。</p>
-<p><strong>只有在不出现传输差错的情况下，GBN协议的信道利用率大于停止-等待协议的信道利用率</strong>；若出现传输差错，则GBN协议就需要回退N帧进行重传，信道利用率不一定大于停止-等待协议的信道利用率。因此，叙述IV错误。</p>
-</li>
-<li>
-<ol start="36">
-<li>D</li>
-</ol>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">去往AP</th>
-<th style="text-align:center">来自AP</th>
-<th style="text-align:center">地址1</th>
-<th style="text-align:center">地址2</th>
-<th style="text-align:center">地址3</th>
-<th style="text-align:center">地址4</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">目的地址</td>
-<td style="text-align:center">源地址</td>
-<td style="text-align:center">BSSID</td>
-<td style="text-align:center">未使用</td>
-</tr>
-<tr>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">接收地址=目的地址</td>
-<td style="text-align:center">发送地址=AP地址</td>
-<td style="text-align:center">源地址</td>
-<td style="text-align:center">未使用</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">接收地址=AP地址</td>
-<td style="text-align:center">发送地址=源地址</td>
-<td style="text-align:center">目的地址</td>
-<td style="text-align:center">未使用</td>
-</tr>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">接收地址=AP地址</td>
-<td style="text-align:center">发送地址=AP地址</td>
-<td style="text-align:center">目的地址</td>
-<td style="text-align:center">源地址</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li>
-<ol start="37">
-<li>A</li>
-</ol>
-<img src="https://p.sda1.dev/14/47f1427fcaee0776c5a2ffedc78bc868/2_37_.png" alt="2_37_.png" style="zoom: 67%;">
-</li>
-<li>
-<ol start="38">
-<li>C</li>
-</ol>
-<img src="https://p.sda1.dev/14/e49b20ef0de0421bf63c6b1373547bf8/2_38.png" alt="2_38.png" style="zoom: 67%;">
-</li>
-<li>
-<ol start="39">
-<li>C</li>
-</ol>
-<p>SDN是一种新型网络体系结构，是一种设计、构建和管理网络的<strong>新方法和新概念</strong>，但<strong>不是一种新型物理网络</strong>。因此，选项A的叙述错误。</p>
-<p>OpenFlow协议可被看成是在SDN体系结构中<strong>控制层面与数据层面之间的通信接口</strong>。因此，选项B的叙述错误。</p>
-<p>SDN的核心思想就是<strong>把网络的控制层面和数据层面分离</strong>，而让控制层面利用软件来控制数据层面中的许多设备。因此，选项C的叙述正确。</p>
-<p>在SDN的<strong>广义转发</strong>中，<strong>完成“匹配+动作”的设备并不局限在网络层工作</strong>，因此不再称为路由器，而称为“OpenFlow交换机”或“分组交换机”，或更简单地称为“交换机”。相应的，在SDN中取代传统路由器中转发表的是“流表（Flow Table）”。因此，选项D的叙述错误。</p>
-</li>
-<li>
-<ol start="40">
-<li>D</li>
-</ol>
-<p>与IPv4协议配套使用的网际层协议有：ICMP、IGMP、ARP和RARP。</p>
-<p>在IPv6中，ICMPv6包括了IPv4中的ARP和IGMP的功能。邻站询问和邻站通告报文代替了原来的ARP协议，而多播听众发现报文替代了原来的IGMP协议。另外，IPv6取消了RARP协议。因此，与IPv6配套使用的网际层协议只有ICMPv6一个协议，选项D的叙述错误。</p>
-</li>
-<li>
-<ol start="47">
-<li></li>
-</ol>
-<ul>
-<li>
-<p>(1). 主机B正确收到IP数据报时，其首部中<strong>TTL字段是126</strong>。若TTL初始值设置为2，IP数据报进入R1时，TTL-1变成1，进入R3时，TTL变成0，<strong>R3会丢弃该IP数据报，并向该IP数据报的源主机A发送ICMP差错报告报文，类型为时间超过</strong>。</p>
-</li>
-<li>
-<p>(2). AS1中IP后8位分别为：</p>
-<p>​	<strong>0</strong>000 0000</p>
-<p>​	<strong>10</strong>00 0000</p>
-<p>​	<strong>110</strong>0 0000</p>
-<p>路由聚合后为<strong>192.1.2.0/24</strong>。因此R2添加的路由条目为：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">目的网络</th>
-<th style="text-align:center">子网掩码</th>
-<th style="text-align:center">下一跳</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">192.1.2.0/24</td>
-<td style="text-align:center">255.255.255.0</td>
-<td style="text-align:center">192.1.3.30/30</td>
-</tr>
-</tbody>
-</table>
-<p>从网络号可以看出，刚好是前缀划分的方法，因此聚合后没有引入其他网络。</p>
-</li>
-<li>
-<p>(3). AS1和AS2之间可使用的路由协议是BGP，该协议使用的运输层协议是TCP。</p>
-</li>
-<li>
-<p>(4). R4转发后MTU=800B，因此数据部分是8的整数倍，则数据部分为776B，首部20B。总长度1580B的IP数据报应划分为3个分片，第一个总长度为796B，片偏移0；第二个总长度为796B，片偏移为97；第三个长度为28B，片偏移为194。<strong>所以最小的分片IP数据报的长度字段为28，片偏移字段为194。</strong></p>
-</li>
-</ul>
-<img src="https://p.sda1.dev/14/3e1c81743232344cc8defb04baa95434/2_47_4.png" alt="2_47_4.png" style="zoom:67%;">
-<ul>
-<li>
-<p>(5). 该IP数据报所去的目的网络地址不在R4的路由表中，R4不知道应从自己的哪个接口转发该IP数据报，<strong>因此将其丢弃，并且会给发送该IP数据报的源主机发送ICMP差错报告报文，具体为目的网络不可达。</strong></p>
-</li>
-<li>
-<p>(6). <strong>4RTT</strong></p>
-<img src="https://p.sda1.dev/14/5be4f36e071810c990fa098307956eb7/2_47_6.png" alt="2_47_6.png" style="zoom: 50%;">
-</li>
-</ul>
-</li>
-</ul>
-<hr>
-<h2 id="2024-年全国硕士研究生入学统一考试模拟题03"><strong>2024 年全国硕士研究生入学统一考试模拟题03</strong></h2>
-<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。-3">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
-<ul>
-<li>
-<ol start="33">
-<li>以下有关OSI/RM的叙述中，<strong>错误</strong>的是（ A ）。</li>
-</ol>
-<p>I. 10Base-T中“T”的含义，属于物理层范畴</p>
-<p>II. 物理地址、硬件地址以及MAC地址，都属于数据链路层范畴</p>
-<p>III. 网络层不涉及拥塞控制功能</p>
-<p>IV. 运输层为其上层提供端到端的服务</p>
-<p>V. 应用层使用其下层提供的服务，在本层协议的控制下实现网络应用</p>
-<p>A．I，III</p>
-<p>B．II、V</p>
-<p>C．I、II、IV</p>
-<p>D．III、IV、V</p>
-</li>
-<li>
-<ol start="34">
-<li>假设下图所示的两个不同的编码波形表示的是同一串比特流，则该比特流是（ B ）。</li>
-</ol>
-<img src="https://p.sda1.dev/14/1e142157f5fc68040ace3caf817f5b13/3_34.png" alt="3_34.png" style="zoom: 50%;">
-<p>A. 011111100101</p>
-<p>B. 111111100101</p>
-<p>C. 000000011011</p>
-<p>D. 111111100100</p>
-</li>
-<li>
-<ol start="35">
-<li>采用CRC进行检错，接收到的信息为101101001，生成多项式为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">G(X)=X^3+X^2+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，则以下叙述<strong>错误</strong>的是（ C ）。</li>
-</ol>
-<p>A. 生成多项式各项系数构成的位串为1101</p>
-<p>B. 接收到的信息的最后3位，即001为冗余码</p>
-<p>C. 接收方认为收到的信息没有出现误码</p>
-<p>D. 收发双方应使用相同的生成多项式</p>
-</li>
-<li>
-<ol start="36">
-<li>某个按MSS为1540B封装的TCP报文段被封装成IP数据报，假设TCP和IP都使用固定首部（没有选项或扩展部分），某个路由器收到该IP数据报后向MTU为800B的链路转发该IP数据报时进行了分片，且每个分片尽可能大，则最小的分片IP数据报的长度字段和片偏移字段的取值分别是（ A ）。</li>
-</ol>
-<p>A. 28，194</p>
-<p>B. 784，97</p>
-<p>C. 800，97</p>
-<p>D. 800，0</p>
-</li>
-<li>
-<ol start="37">
-<li>下图给出的是一个移动IP的相关示例。移动主机A的归属网络地址、外地网络地址、永久地址以及漫游到外地网络后从外地代理获得的一个属于该外地网络的转交地址已标注在图中。假设图中的固定主机B要给处于外地网络的A发送一个IPv4数据报，则该IPv4数据报从B发送出来时的目的IP地址和从配置有归属代理的路由器转发出来时的目的IP地址分别是（ A ）。</li>
-</ol>
-<img src="https://p.sda1.dev/14/435ad86a839862cd01b94403fe7013f7/3_37.png" alt="3_37.png" style="zoom:50%;">
-<p>A. 218.75.230.16，175.1.1.1</p>
-<p>B. 175.1.1.1，218.75.230.16</p>
-<p>C. 218.75.230.16，0.0.0.0</p>
-<p>D. 255.255.255.255， 218.75.230.16</p>
-</li>
-<li>
-<ol start="38">
-<li>包含在TCP报文段首部中但不包含在UDP用户数据报首部中的字段是（ D ）。</li>
-</ol>
-<p>A. 检验和</p>
-<p>B. 源端口</p>
-<p>C. 目的端口</p>
-<p>D. 序号</p>
-</li>
-<li>
-<ol start="39">
-<li>以下关于TCP窗口与拥塞控制概念的叙述中，<strong>错误</strong>的是（ C ）。</li>
-</ol>
-<p>A. 接收窗口值通过TCP首部中的窗口字段通知数据的发送方</p>
-<p>B. 发送窗口值=min[接收端窗口值，拥塞窗口值]</p>
-<p>C. 拥塞窗口值是接收方根据网络拥塞情况确定的窗口值</p>
-<p>D. 拥塞窗口值在开始时可以按指数规律增长</p>
-</li>
-<li>
-<ol start="40">
-<li>浏览器请求Web服务器中的某个万维网文档，若该文档除包含文本外，还有2个图片，则在使用HTTP/1.0时，需要建立TCP连接和UDP连接的次数分别是（ A ）。</li>
-</ol>
-<p>A. 3，0</p>
-<p>B. 2，1</p>
-<p>C. 0，2</p>
-<p>D. 1，0</p>
-</li>
-</ul>
-<h3 id="二、综合应用题：第41-47-题，共70-分。-3">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
-<ul>
-<li>
-<ol start="47">
-<li>已知路由器R的路由表如下所示。</li>
-</ol>
-<img src="https://p.sda1.dev/14/e751919c75c761b60135b3738ef8b49f/3_47.png" alt="3_47.png" style="zoom: 60%;">
-<p>请回答以下问题：</p>
-<p>（1） 试画出各网络、必要的路由器、特定主机的连接拓扑，标注出必要的IP地址和接口，对不能确定的情况请指明。</p>
-<p>（2） 请给出路由器R的路由表中地址掩码这一列的点分十进制形式。</p>
-<p>（3） 假设DHCP服务器的IP地址为192.168.0.60，网络192.168.0.128/26中的各主机需要从DHCP服务器获取各自的网络参数（例如IP地址和子网掩码等），则需要在路由器R上进行怎样的配置？为什么要进行这样的配置？</p>
-<p>（4） 若IP地址为192.168.1.16的主机给IP地址为192.168.2.2的主机发送一个IP数据报，在不产生任何传输错误的情况下，为了使该IP数据报能够到达目的主机，其首部中TTL字段的初始值最少应设置为多少？该IP数据报从源主机发出时，其首部中源IP地址和目的IP地址分别是什么？该IP数据报从路由器R转发出来时，其首部中源IP地址和目的IP地址分别是什么、封装该IP数据报的以太网帧的源MAC地址和目的MAC地址分别是什么？</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>研究生入学考试</category>
-        <category>计算机网络</category>
-      </categories>
-      <tags>
-        <tag>计网</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>408真题</title>
     <url>/2023/11/27/408%E7%9C%9F%E9%A2%98/</url>
     <content><![CDATA[<h2 id="一些理解偏差的知识">一些理解偏差的知识</h2>
@@ -1183,7 +599,7 @@
 <li>(1). 指令为16位定长指令，转移目标地址计算公式为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>P</mi><mi>C</mi><mo stretchy="false">)</mo><mo>+</mo><mn>2</mn><mo>+</mo><mn>2</mn><mo>×</mo><mi>O</mi><mi>F</mi><mi>F</mi><mi>S</mi><mi>E</mi><mi>T</mi></mrow><annotation encoding="application/x-tex">(PC)+2+2\times OFFSET</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">PC</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">OFFSET</span></span></span></span>，因此该计算机存储器按字节编址。<code>OFFSET</code>字段占8位，补码表示范围为-128~127, 转移指令执行是PC自动指向下一条指令，因此该条件转移指令反向最多可跳转127条指令。</li>
 <li>(2). 指令中C=0, Z=1, N=1，因此需要检查ZF和NF，当CF=0，ZF=0，NF=1时，发生转移，指令执行后PC的值为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mi>C</mi><mi>H</mi><mo>+</mo><mn>2</mn><mo>+</mo><mn>11100011</mn><mi>B</mi><mo>×</mo><mn>2</mn><mo>=</mo><mn>1</mn><mi>F</mi><mi>D</mi><mn>4</mn><mi>H</mi></mrow><annotation encoding="application/x-tex">200CH+2+11100011B\times2=1FD4H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">200</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">11100011</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">1</span><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="mord mathnormal" style="margin-right:0.02778em;">D</span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>。当CF=1，ZF=0，NF=0时，指令不发生转移，因此指令执行后PC的值为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>200</mn><mi>C</mi><mi>H</mi><mo>+</mo><mn>2</mn><mo>=</mo><mn>200</mn><mi>E</mi><mi>H</mi></mrow><annotation encoding="application/x-tex">200CH+2=200EH</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">200</span><span class="mord mathnormal" style="margin-right:0.07153em;">C</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">200</span><span class="mord mathnormal" style="margin-right:0.05764em;">E</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>。</li>
 <li>(3). 实现无符号数比较小于等于转移时，C=1，Z=1，N=0。</li>
-<li>(4). <span style="font-size:18px; ">①</span>：指令寄存器；<span style="font-size:18px; ">②</span>：移位寄存器；<span style="font-size:18px; ">③</span>：加法器。</li>
+<li>(4). <span style="font-size:17.5px; ">①</span>：指令寄存器；<span style="font-size:17.5px; ">②</span>：移位寄存器；<span style="font-size:17.5px; ">③</span>：加法器。</li>
 </ul>
 <h3 id="45-10">45</h3>
 <figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Semaphore mutex = <span class="number">1</span>; <span class="comment">// 实现互斥进出门</span></span><br><span class="line">Semaphore empty = <span class="number">500</span>; <span class="comment">// 博物馆可容纳的人数</span></span><br><span class="line"></span><br><span class="line">cobegin</span><br><span class="line">    参观者进程i</span><br><span class="line">	&#123;</span><br><span class="line">    	...</span><br><span class="line">        P(empty);</span><br><span class="line">    	P(mutex);</span><br><span class="line">    	进门;</span><br><span class="line">    	V(mutex);</span><br><span class="line">    	参观;</span><br><span class="line">    	P(mutex);</span><br><span class="line">    	出门;</span><br><span class="line">    	V(mutex);</span><br><span class="line">    	V(empty);</span><br><span class="line">    	...</span><br><span class="line">	&#125;</span><br><span class="line">coend</span><br></pre></td></tr></table></figure>
@@ -1191,7 +607,7 @@
 <ul>
 <li>(1). 页内偏移量占12位，主存按字节编址，因此页的大小是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>12</mn></msup><mi>B</mi><mo>=</mo><mn>4</mn><mi>K</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">2^{12}B=4KB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12</span></span></span></span></span></span></span></span></span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.07153em;">K</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>。页号占20位，页表项大小为4字节，所以页表最大占用空间为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>2</mn><mn>20</mn></msup><mo>×</mo><mn>4</mn><mi>B</mi><mo>=</mo><mn>4</mn><mi>M</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">2^{20}\times 4B=4MB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">20</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.05017em;">MB</span></span></span></span>。</li>
 <li>(2). 页目录号表达式为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>L</mi><mi>A</mi><mo stretchy="false">)</mo><mtext> </mtext><mo>&gt;</mo><mo>&gt;</mo><mtext> </mtext><mn>22</mn><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">&amp;</mi><mtext> </mtext><mn>0</mn><mi>x</mi><mn>3</mn><mi>F</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">((LA) \ &gt;&gt; \ 22) \ \&amp; \ 0x3FF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">((</span><span class="mord mathnormal">L</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;&gt;</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">22</span><span class="mclose">)</span><span class="mspace"> </span><span class="mord">&amp;</span><span class="mspace"> </span><span class="mord">0</span><span class="mord mathnormal">x</span><span class="mord">3</span><span class="mord mathnormal" style="margin-right:0.13889em;">FF</span></span></span></span>;页表索引的表达式为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>L</mi><mi>A</mi><mo stretchy="false">)</mo><mtext> </mtext><mo>&gt;</mo><mo>&gt;</mo><mtext> </mtext><mn>12</mn><mo stretchy="false">)</mo><mtext> </mtext><mi mathvariant="normal">&amp;</mi><mtext> </mtext><mn>0</mn><mi>x</mi><mn>3</mn><mi>F</mi><mi>F</mi></mrow><annotation encoding="application/x-tex">((LA) \ &gt;&gt; \ 12) \ \&amp;\ 0x3FF</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">((</span><span class="mord mathnormal">L</span><span class="mord mathnormal">A</span><span class="mclose">)</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&gt;&gt;</span><span class="mspace"> </span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">12</span><span class="mclose">)</span><span class="mspace"> </span><span class="mord">&amp;</span><span class="mspace"> </span><span class="mord">0</span><span class="mord mathnormal">x</span><span class="mord">3</span><span class="mord mathnormal" style="margin-right:0.13889em;">FF</span></span></span></span>。</li>
-<li>(3). 起始逻辑地址是0000 8000H，所以页内偏移为000H，页号为0000 8H，因为一个页表项大小为4B，所以第一个页表项的物理地址是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0020</mn><mtext> </mtext><mn>0000</mn><mi>H</mi><mo>+</mo><mn>8</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>0020</mn><mtext> </mtext><mn>0020</mn><mi>H</mi></mrow><annotation encoding="application/x-tex">0020\ 0000H + 8 \times 4=0020 \ 0020H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0000</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0020</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span> ,则第二个页表项的物理地址是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0020</mn><mtext> </mtext><mn>0020</mn><mi>H</mi><mo>+</mo><mn>4</mn><mo>=</mo><mn>0020</mn><mtext> </mtext><mn>0024</mn><mi>H</mi></mrow><annotation encoding="application/x-tex">0020 \ 0020H + 4=0020\ 0024H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0020</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0024</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>。由于第一个代码页面的物理地址是0090 0000H，对应的也框号为00900H，所以页框号1为00900H，一个页面大小为4KB，所以代码页面2的起始物理地址是0090 1000H，则也框号2为00901H。</li>
+<li>(3). 起始逻辑地址是0000 8000H，所以页内偏移为000H，页号为0000 8H，因为一个页表项大小为4B，所以第一个页表项的物理地址是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0020</mn><mtext> </mtext><mn>0000</mn><mi>H</mi><mo>+</mo><mn>8</mn><mo>×</mo><mn>4</mn><mo>=</mo><mn>0020</mn><mtext> </mtext><mn>0020</mn><mi>H</mi></mrow><annotation encoding="application/x-tex">0020\ 0000H + 8 \times 4=0020 \ 0020H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0000</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">8</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0020</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span> ,则第二个页表项的物理地址是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>0020</mn><mtext> </mtext><mn>0020</mn><mi>H</mi><mo>+</mo><mn>4</mn><mo>=</mo><mn>0020</mn><mtext> </mtext><mn>0024</mn><mi>H</mi></mrow><annotation encoding="application/x-tex">0020 \ 0020H + 4=0020\ 0024H</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7667em;vertical-align:-0.0833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0020</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">0020</span><span class="mspace"> </span><span class="mord">0024</span><span class="mord mathnormal" style="margin-right:0.08125em;">H</span></span></span></span>。由于第一个代码页面的物理地址是0090 0000H，对应的也框号为00900H，所以页框号1为00900H，一个页面大小为4KB，所以代码页面2的起始物理地址是0090 1000H，则页框号2为00901H。</li>
 </ul>
 <h3 id="47-10">47</h3>
 <ul>
@@ -1418,6 +834,590 @@
 <img src="https://p.sda1.dev/14/6756dd0406633d59d806dab2e7e63b67/72.jpg" alt="72.jpg" style="zoom:80%;">
 <h2 id="day73-11月30日">day73 11月30日</h2>
 <img src="https://p.sda1.dev/14/eb93cbaa09435df8b0010132069ff5b2/73.jpg" alt="73.jpg" style="zoom:80%;">
+]]></content>
+      <categories>
+        <category>研究生入学考试</category>
+        <category>计算机网络</category>
+      </categories>
+      <tags>
+        <tag>计网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>计网模拟题</title>
+    <url>/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="2024-年全国硕士研究生入学统一考试模拟题01"><strong>2024 年全国硕士研究生入学统一考试模拟题01</strong></h2>
+<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
+<ul>
+<li>
+<ol start="33">
+<li>在OSI/RM中，不属于网络层相邻下层涉及的范畴是（  ）。</li>
+</ol>
+<p>A．物理地址</p>
+<p>B．封装成帧</p>
+<p>C．透明传输</p>
+<p>D．频分复用</p>
+</li>
+<li>
+<ol start="34">
+<li>假设某信道中的信号功率为0.6W，噪声功率为0.0193W，信道的频带宽度为160MHz，信道的长度为1km，信号在该信道的传播速率为200,000km/s，则该信道的时延带宽积是（  ）。</li>
+</ol>
+<p>A．500b</p>
+<p>B．512b</p>
+<p>C．1024b</p>
+<p>D．4000b</p>
+</li>
+<li>
+<ol start="35">
+<li>以下有关VLAN的叙述中，<strong>错误</strong>的有（ ）。</li>
+</ol>
+<p>I. VLAN是一种新型局域网</p>
+<p>II. VLAN使用的802.1Q帧的最大长度为1518B</p>
+<p>III. 连接在同一交换机上的多个站点可以属于不同的VLAN</p>
+<p>IV. 不同VLAN中的站点之间不能直接通信</p>
+<p>V. 属于同一VLAN的多个站点不能连接在不同的交换机上</p>
+<p>A．I、V</p>
+<p>B．II、IV</p>
+<p>C．I、II、V</p>
+<p>D．II、III、IV、V</p>
+</li>
+<li>
+<ol start="36">
+<li>若主机A的IP地址是192.168.0.129/25，则主机A所在网络中可分配给其他主机或路由器接口的最小地址是（  ）。</li>
+</ol>
+<p>A．192.168.0.127</p>
+<p>B．192.168.0.128</p>
+<p>C．192.168.0.129</p>
+<p>D．192.168.0.130</p>
+</li>
+<li>
+<ol start="37">
+<li>若将某个 “/17”地址块划分为9（不多也不少）个子块，则可能的最小子块中所包含的IP地址数量为（  ）。</li>
+</ol>
+<p>A．126</p>
+<p>B．128</p>
+<p>C．2046</p>
+<p>D．2048</p>
+</li>
+<li>
+<ol start="38">
+<li>以下有关SDN的叙述中，错误的是（  ）。</li>
+</ol>
+<p>A. 数据层面与控制层面是分离的，二者不在同一个设备中</p>
+<p>B. 各分组交换机的流表中的流表项，都是由SDN控制器进行计算、管理和安装的</p>
+<p>C. SDN控制器与网络控制应用程序的交互都要通过南向API接口</p>
+<p>D. OpenFlow协议是目前被广泛采用的SDN控制器通信层的协议</p>
+</li>
+<li>
+<ol start="39">
+<li>在TCP建立连接的过程中，TCP服务器收到SYN=1的TCP报文段并给TCP客户发送相应的SYN=1且ACK=1的TCP报文段后，TCP服务器的TCP状态转换为（  ）。</li>
+</ol>
+<p>A．SYN-RCVD</p>
+<p>B．TIME-WAIT</p>
+<p>C．ESTABLISHED</p>
+<p>D．CLOSED</p>
+</li>
+<li>
+<ol start="40">
+<li>假设主机H通过HTTP/1.1请求浏览某个Web服务器S上的Web页rfc.html，rfc.html引用了同目录下的3个JPEG小图像，一次请求-响应的时间为RTT，忽略其他各种时延，不考虑拥塞控制和流量控制，则从发送HTTP请求报文开始到收到全部内容为止，所耗费的时间是（  ）。</li>
+</ol>
+<p>A．2RTT</p>
+<p>B．2.5RTT</p>
+<p>C．4RTT</p>
+<p>D．4.5RTT</p>
+</li>
+</ul>
+<h3 id="二、综合应用题：第41-47-题，共70-分。">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
+<ul>
+<li>
+<ol start="47">
+<li>（9分）某网络拓扑如下图所示，现做如下假设：</li>
+</ol>
+<p>（1） 服务器Server1是本地域名服务器，其记录有Internet中Web服务器的域名和IP地址的对应关系。</p>
+<p>（2） 服务器Server2为主机H提供网络参数（IP地址、子网掩码、默认网关的IP地址、本地域名服务器的IP地址）。</p>
+<p>（3） S为二层交换机，其各接口的接口号已标注在接口旁边。</p>
+<p>（4） Server1、Server2、路由器R1和R2各自相关接口的IP地址和MAC地址已标注在它们各自的旁边； H的MAC地址已标注在其旁边。</p>
+<p>（5） 一开始H的ARP表和S的交换表均为空，并且后续各表获得的相关记录没有老化时间（即长期保存）。</p>
+<p>（6） H获取到IP地址、子网掩码以及默认网关的IP地址后，利用浏览器通过域名www.abc.com访问Web服务器，并且整个访问过程中没有传输差错，也未发生与Web访问无关的网络通信。</p>
+</li>
+</ul>
+<img src="https://p.sda1.dev/14/ca8243e36a1b972682be5ded7495f088/1.png" alt="1.png" style="zoom: 67%;">
+<p>请回答以下问题：</p>
+<p>（1） H使用什么协议从Server2获取到自己的IP地址？该IP地址所在范围是什么？H从Server2获取到的默认网关的IP地址是什么？</p>
+<p>（2） H向Server1请求Web服务器的域名www.abc.com所对应的IP地址时，发送给Server1的第一个以太网帧的数据载荷封装的是什么报文？该以太网帧的目的MAC地址是什么？</p>
+<p>（3） H访问Web服务器的过程中，除HTTP外还用到了哪个应用层协议？该应用层协议的熟知端口号是什么？从应用层到数据链路层，该应用层协议报文分别通过哪些协议进行逐层封装？</p>
+<p>（4） 若S的交换表结构为&lt;MAC地址，接口号&gt;，则H获取到自己的IP地址等网络参数时，S的交换表中的内容是什么？当H收到来自Web服务器的响应时，S的交换表中的内容是什么？</p>
+<p>（5） 为了使H能够与Web服务器通信，R1需要开启什么功能？H给Web服务器发送的IP数据报，从R1转发出来时，其源IP地址是什么？</p>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题01-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题01 答案</strong></h2>
+<ul>
+<li>
+<ol start="33">
+<li>D</li>
+</ol>
+<p>在OSI/RM中，网络层的相邻下层是数据链路层。</p>
+<p>选项A中的物理地址、也称为硬件地址、MAC地址，属于数据链路层范畴。</p>
+<p>选项B中的封装成帧、选项C中的透明传输都属于数据链路层范畴。另外，差错检测也属于数据链路层范畴。</p>
+<p>选项D中的<strong>频分复用，属于物理层范畴。</strong></p>
+</li>
+<li>
+<ol start="34">
+<li>D</li>
+</ol>
+<p>最大传输速率是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>160</mn><mo>∗</mo><mi>l</mi><mi>o</mi><msub><mi>g</mi><mn>2</mn></msub><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mfrac><mn>0.6</mn><mn>0.0193</mn></mfrac><mo stretchy="false">)</mo><mo>=</mo><mn>800</mn><mi>M</mi><mi>b</mi><mi mathvariant="normal">/</mi><mi>s</mi></mrow><annotation encoding="application/x-tex">160*log_2(1+\frac{0.6}{0.0193})=800Mb/s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">160</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal" style="margin-right:0.01968em;">l</span><span class="mord mathnormal">o</span><span class="mord"><span class="mord mathnormal" style="margin-right:0.03588em;">g</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.0359em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord">1</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.0193</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.6</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mord mathnormal">b</span><span class="mord">/</span><span class="mord mathnormal">s</span></span></span></span>。传播时延为：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mn>200000</mn></mfrac><mi>s</mi></mrow><annotation encoding="application/x-tex">\frac{1}{200000}s</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord mathnormal">s</span></span></span></span>，时延带宽积为<strong>单向传播时延<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>×</mo></mrow><annotation encoding="application/x-tex">\times</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6667em;vertical-align:-0.0833em;"></span><span class="mord">×</span></span></span></span>带宽</strong>。因此时延带宽积为:<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>800</mn><mi>M</mi><mo>∗</mo><mfrac><mn>1</mn><mn>200000</mn></mfrac><mo>=</mo><mn>4000</mn><mi>b</mi></mrow><annotation encoding="application/x-tex">800M * \frac{1}{200000}=4000b</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">800</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">200000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6944em;"></span><span class="mord">4000</span><span class="mord mathnormal">b</span></span></span></span>。</p>
+</li>
+<li>
+<ol start="35">
+<li>C</li>
+</ol>
+<p>I项的叙述错误。VLAN是在以太网交换机上实现的一种分割广播域的技术，而不是一种新型的局域网。</p>
+<p>II项的叙述错误。802.1Q帧对以太网V2的MAC帧格式进行了扩展：在源地址字段和类型字段之间插入了4字节的VLAN标签字段，则802.1Q帧的最大长度为1518B+4B=1522B。</p>
+<p>III项的叙述正确。在同一个交换机上可以划分不同的VLAN。</p>
+<p>IV项的叙述正确。不同VLAN中的站点之间不能直接通信，要实现它们之间的通信，需要使用三层交换机或路由器。</p>
+<p>V项的叙述错误。属于同一VLAN的多个站点，可以连接在不同的交换机上。只要将相关的交换机接口划分到同一VLAN即可。</p>
+</li>
+<li>
+<ol start="36">
+<li>D</li>
+</ol>
+</li>
+<li>
+<ol start="37">
+<li>B</li>
+</ol>
+<p>满足网络号不是前缀就行。一种可能的划分方法是: 0, 10, 110, 1110, 11110,  111110, 1111110, 11111110, 11111111。网络号最长是8位。</p>
+</li>
+<li>
+<ol start="38">
+<li>C</li>
+</ol>
+<img src="https://p.sda1.dev/14/ac356a62795b375f0ed50afb18fbd778/38.png" alt="38.png" style="zoom:67%;">
+</li>
+<li>
+<ol start="39">
+<li>A</li>
+</ol>
+<img src="https://p.sda1.dev/14/fbaab7001a2e3136b971b2f92fc8a113/18.jpg" style="zoom:80%;">
+</li>
+<li>
+<ol start="40">
+<li>A</li>
+</ol>
+<img src="https://p.sda1.dev/14/04fde899361ea840aa8192436fef5fe0/40.png" alt="40.png" style="zoom: 50%;">
+</li>
+<li>
+<ol start="47">
+<li></li>
+</ol>
+<p>(1). H通过<strong>DHCP协议</strong>从Server2获取到自己的IP地址。该IP地址所在范围是<strong>192.168.16.195-192.168.16.253</strong>。H从Server2获取的默认网关的IP地址是<strong>192.168.16.254</strong>。</p>
+<p>(2). 发送给Server1的第一个以太网帧的数据载荷是<strong>ARP请求报文</strong>。该以太网帧的目的MAC地址是<strong>FF-FF-FF-FF-FF-FF</strong>。</p>
+<p>(3). 除HTTP外还用的应用层协议是<strong>DNS协议</strong>。对应<strong>熟知端口号是53</strong>。从应用层到数据链路层逐层封装的协议为:DNS协议，UDP协议，IP协议，最后在数据链路层被封装在以太网帧中。</p>
+<img src="https://p.sda1.dev/14/debc8cc1f2119e41b63e2d97c0f84872/Image_1698924422482.jpg" alt="Image_1698924422482.jpg" style="zoom: 50%;">
+</li>
+</ul>
+<p>​	(4). H获取到自己的IP地址等网络参数时，S的交换表中的内容是:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">MAC地址</th>
+<th style="text-align:center">接口号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00-11-22-33-44-aa</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-ee</td>
+<td style="text-align:center">3</td>
+</tr>
+</tbody>
+</table>
+<p>收到来自Web服务器的相应时，S的交换表内容是:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">MAC地址</th>
+<th style="text-align:center">接口号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">00-11-22-33-44-aa</td>
+<td style="text-align:center">4</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-ee</td>
+<td style="text-align:center">3</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-bb</td>
+<td style="text-align:center">1</td>
+</tr>
+<tr>
+<td style="text-align:center">00-11-22-33-44-dd</td>
+<td style="text-align:center">2</td>
+</tr>
+</tbody>
+</table>
+<p>​	(5). R1需要开启<strong>NAT功能</strong>。源IP地址是<strong>218.75.230.2/30</strong></p>
+<hr>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题02"><strong>2024 年全国硕士研究生入学统一考试模拟题02</strong></h2>
+<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。-2">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
+<ul>
+<li>
+<ol start="33">
+<li>以下有关计算机网络体系结构的相关叙述中，<strong>错误</strong>的是（ ）。</li>
+</ol>
+<p>I. 对等实体是指通信双方相同网络体系结构中相同层次中的实体</p>
+<p>II. 协议的三要素为语法、语义、同步（或称时序）</p>
+<p>III. 实体为了使用下层提供的服务，需要知道实现服务的具体协议细节</p>
+<p>IV. 对等层次之间传送的数据包称为该层的SDU</p>
+<p>V. 上层要使用相邻下层所提供的服务，需要通过与相邻下层交换一些命令，这些命令称为服务原语</p>
+<p>A．I，IV</p>
+<p>B．III、IV</p>
+<p>C．II、III</p>
+<p>D．III、IV、V</p>
+</li>
+<li>
+<ol start="34">
+<li>有X、Y和Z共3个站进行CDMA通信，其中X站的码片序列是(-1 -1 -1 +1 +1 -1 +1 +1)，Y站的码片序列是(-1 -1 +1 -1 +1 +1 +1 -1)，则Z站的码片序列可以是（ ）。</li>
+</ol>
+<p>A. (+1 +1 +1 -1 -1 +1 -1 -1)</p>
+<p>B. (+1 +1 -1 +1 -1 -1 -1 +1)</p>
+<p>C. (-1 -1 +1 -1 -1 +1 -1 -1)</p>
+<p>D. (-1 +1 -1 +1 +1 +1 -1 -1)</p>
+</li>
+<li>
+<ol start="35">
+<li>以下有关停止-等待协议与GBN协议的相关叙述中，<strong>正确</strong>的是（ ）。</li>
+</ol>
+<p>I. 停止-等待协议的发送窗口和接收窗口的尺寸都是1</p>
+<p>II. GBN协议的发送窗口和接收窗口的尺寸都大于1</p>
+<p>III. 对于RTT远大于分组发送时延的卫星链路，不适合使用停止-等待协议，因为其信道利用率很低</p>
+<p>IV. GBN协议的信道利用率大于停止-等待协议的信道利用率</p>
+<p>A．I，IV</p>
+<p>B．I、III</p>
+<p>C．II、IV</p>
+<p>D．I、III、IV</p>
+</li>
+<li>
+<ol start="36">
+<li>在下图所示的802.11无线局域网中，主机A要通过接入点AP给主机B发送一个数据帧，则该数据帧从主机A发出时，其地址字段中的地址1、地址2以及地址3分别为是（ ）。</li>
+</ol>
+<img src="https://p.sda1.dev/14/ada875f76f8b8279319019ea8f73b217/2_36.png" alt="2_36.png" style="zoom:67%;">
+<p>A. MAC1、MAC2、MAC3</p>
+<p>B. MAC3、MAC2、MAC1</p>
+<p>C. MAC3、MAC1、MAC2</p>
+<p>D. MAC2、MAC1、MAC3</p>
+</li>
+<li>
+<ol start="37">
+<li>网络拓扑如下图所示，假设交换机当前已学习到了主机E的MAC地址，主机A给E发送ARP请求报文，主机E收到后给主机A发送ARP响应报文。则能收到ARP请求报文和ARP响应报文的主机数量分别（ ）。</li>
+</ol>
+<img src="https://p.sda1.dev/14/e7d59d65b48c2d192508053976d9ee2d/2_37.png" alt="2_37.png" style="zoom:67%;">
+<p>A．5，3</p>
+<p>B．5，1</p>
+<p>C．3，5</p>
+<p>D．1，1</p>
+</li>
+<li>
+<ol start="38">
+<li>将IP多播地址226.0.9.26和226.128.9.26转换成以太网的硬件多播地址分别是（ ）。</li>
+</ol>
+<p>A. 00-00-5E-00-00-00，00-00-5E-7F-FF-FF</p>
+<p>B. 01-00-5E-00-09-26，01-00-5E-10-09-26</p>
+<p>C. 01-00-5E-00-09-1A，01-00-5E-00-09-1A</p>
+<p>D. 00-00-5E-7F-FF-FF, 00-00-5E-00-00-00</p>
+</li>
+<li>
+<ol start="39">
+<li>下列有关SDN的叙述中，<strong>正确</strong>的是（ ）。</li>
+</ol>
+<p>A. SDN是近年来出现的一种新型物理网络</p>
+<p>B. SDN等同于OpenFlow</p>
+<p>C. SDN将网络的控制层面和数据层面分开</p>
+<p>D. OpenFlow交换机就是IP路由器</p>
+</li>
+<li>
+<ol start="40">
+<li>下列有关IPv4和IPv6的叙述中，<strong>错误</strong>的是（ ）。</li>
+</ol>
+<p>A. IPv4数据报首部固定部分长度为20字节，而IPv6数据报的基本首部长度为40字节</p>
+<p>B. IPv6支持任播</p>
+<p>C. IPv6首部取消了首部校验和字段</p>
+<p>D. 与IPv6配套使用的网际层协议有ICMPv6和IGMPv6</p>
+</li>
+</ul>
+<h3 id="二、综合应用题：第41-47-题，共70-分。-2">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
+<ul>
+<li>
+<ol start="47">
+<li>（9分）某网络拓扑如下图所示，AS1和AS2分别是两个自治系统，R1~R4都是路由器。本题所需的相关信息（例如网络地址、路由器接口的IP地址，MTU等）已标注在图中。</li>
+</ol>
+<img src="https://p.sda1.dev/14/e048536e18ac77dd8396e387099467dc/2_47.png" alt="2_47.png" style="zoom:67%;">
+<p>请回答以下问题：</p>
+<p>（1） 若AS2内部各路由器使用RIP协议进行路由选择且已收敛，网络192.1.1.0/25中的主机A给网络192.1.1.128/25中的主机B发送一个IP数据报，其首部中TTL字段的初始值为128，则当主机B正确接收到该IP数据报时，其首部中的TTL字段的值为多少？若TTL字段的初始值被设置为2，则会出现什么情况？</p>
+<p>（2） 请给R2添加一条去往AS1内部各网络的聚合路由条目（而非默认路由）,路由条目的格式为（目的网络 子网掩码 下一跳）。这条聚合路由是否会引入图中AS1内部三个网络以外的其他网络？</p>
+<p>（3） AS1与AS2之间可使用的路由选择协议是什么？该路由选择协议使用运输层的哪个协议？</p>
+<p>（4） 若R4在给网络192.1.2.192/26转发一个总长度为1580B的IP数据报（首部长度为20B）时进行了分片，且每个分片尽可能大，则最小的分片IP数据报的长度字段和片偏移字段的取值分别是多少？</p>
+<p>（5） 若R4的路由表中仅包含有直连网络的路由，当R4收到一个目的地址为192.1.4.16的IP数据报时，会如何处理？</p>
+<p>（6） 假设AS1与AS2可以完全互通，AS1中的某台主机通过浏览器访问AS2中的某台Web服务器，采用HTTP/1.1协议的持续的非流水线方式，一次请求-响应时间为RTT，若浏览器所请求的Web页面引用了2个图片，则从浏览器向Web服务器发出的第一个请求报文开始到浏览器收到全部内容为止，需要的RTT数量是多少？</p>
+</li>
+</ul>
+<p>​</p>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题02-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题02</strong> 答案</h2>
+<ul>
+<li>
+<ol start="33">
+<li>B</li>
+</ol>
+<p>实体看得见下层提供的服务，但并不知道实现该服务的具体协议。也就是说，下层的协议对上层的实体是“透明”的。因此，叙述III错误。</p>
+<p>对等层次之间传送的数据包称为该层的协议数据单元PDU；同一系统内层与层之间交换的数据包称为服务数据单元SDU。因此，叙述IV错误。</p>
+</li>
+<li>
+<ol start="34">
+<li>D</li>
+</ol>
+<p>CDMA系统给每个站分配的码片序列需要满足以下两个条件：</p>
+<p>● 条件1：必须各不相同</p>
+<p>● 条件2：必须相互正交，即规格化内积为0</p>
+</li>
+<li>
+<ol start="35">
+<li>B</li>
+</ol>
+<p>使用n个比特给分组编号，GBN协议的发送窗口的尺寸WT的取指范围是：<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><mo>&lt;</mo><msub><mi>W</mi><mi>T</mi></msub><mo>≤</mo><msup><mn>2</mn><mi>n</mi></msup><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">1&lt;W_T\le 2^n-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6835em;vertical-align:-0.0391em;"></span><span class="mord">1</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">W</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3283em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">T</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7477em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight">n</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>。</p>
+<p><strong>只有在不出现传输差错的情况下，GBN协议的信道利用率大于停止-等待协议的信道利用率</strong>；若出现传输差错，则GBN协议就需要回退N帧进行重传，信道利用率不一定大于停止-等待协议的信道利用率。因此，叙述IV错误。</p>
+</li>
+<li>
+<ol start="36">
+<li>D</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">去往AP</th>
+<th style="text-align:center">来自AP</th>
+<th style="text-align:center">地址1</th>
+<th style="text-align:center">地址2</th>
+<th style="text-align:center">地址3</th>
+<th style="text-align:center">地址4</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">目的地址</td>
+<td style="text-align:center">源地址</td>
+<td style="text-align:center">BSSID</td>
+<td style="text-align:center">未使用</td>
+</tr>
+<tr>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">接收地址=目的地址</td>
+<td style="text-align:center">发送地址=AP地址</td>
+<td style="text-align:center">源地址</td>
+<td style="text-align:center">未使用</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">接收地址=AP地址</td>
+<td style="text-align:center">发送地址=源地址</td>
+<td style="text-align:center">目的地址</td>
+<td style="text-align:center">未使用</td>
+</tr>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">接收地址=AP地址</td>
+<td style="text-align:center">发送地址=AP地址</td>
+<td style="text-align:center">目的地址</td>
+<td style="text-align:center">源地址</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<ol start="37">
+<li>A</li>
+</ol>
+<img src="https://p.sda1.dev/14/47f1427fcaee0776c5a2ffedc78bc868/2_37_.png" alt="2_37_.png" style="zoom: 67%;">
+</li>
+<li>
+<ol start="38">
+<li>C</li>
+</ol>
+<img src="https://p.sda1.dev/14/e49b20ef0de0421bf63c6b1373547bf8/2_38.png" alt="2_38.png" style="zoom: 67%;">
+</li>
+<li>
+<ol start="39">
+<li>C</li>
+</ol>
+<p>SDN是一种新型网络体系结构，是一种设计、构建和管理网络的<strong>新方法和新概念</strong>，但<strong>不是一种新型物理网络</strong>。因此，选项A的叙述错误。</p>
+<p>OpenFlow协议可被看成是在SDN体系结构中<strong>控制层面与数据层面之间的通信接口</strong>。因此，选项B的叙述错误。</p>
+<p>SDN的核心思想就是<strong>把网络的控制层面和数据层面分离</strong>，而让控制层面利用软件来控制数据层面中的许多设备。因此，选项C的叙述正确。</p>
+<p>在SDN的<strong>广义转发</strong>中，<strong>完成“匹配+动作”的设备并不局限在网络层工作</strong>，因此不再称为路由器，而称为“OpenFlow交换机”或“分组交换机”，或更简单地称为“交换机”。相应的，在SDN中取代传统路由器中转发表的是“流表（Flow Table）”。因此，选项D的叙述错误。</p>
+</li>
+<li>
+<ol start="40">
+<li>D</li>
+</ol>
+<p>与IPv4协议配套使用的网际层协议有：ICMP、IGMP、ARP和RARP。</p>
+<p>在IPv6中，ICMPv6包括了IPv4中的ARP和IGMP的功能。邻站询问和邻站通告报文代替了原来的ARP协议，而多播听众发现报文替代了原来的IGMP协议。另外，IPv6取消了RARP协议。因此，与IPv6配套使用的网际层协议只有ICMPv6一个协议，选项D的叙述错误。</p>
+</li>
+<li>
+<ol start="47">
+<li></li>
+</ol>
+<ul>
+<li>
+<p>(1). 主机B正确收到IP数据报时，其首部中<strong>TTL字段是126</strong>。若TTL初始值设置为2，IP数据报进入R1时，TTL-1变成1，进入R3时，TTL变成0，<strong>R3会丢弃该IP数据报，并向该IP数据报的源主机A发送ICMP差错报告报文，类型为时间超过</strong>。</p>
+</li>
+<li>
+<p>(2). AS1中IP后8位分别为：</p>
+<p>​	<strong>0</strong>000 0000</p>
+<p>​	<strong>10</strong>00 0000</p>
+<p>​	<strong>110</strong>0 0000</p>
+<p>路由聚合后为<strong>192.1.2.0/24</strong>。因此R2添加的路由条目为：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">目的网络</th>
+<th style="text-align:center">子网掩码</th>
+<th style="text-align:center">下一跳</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.1.2.0/24</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">192.1.3.30/30</td>
+</tr>
+</tbody>
+</table>
+<p>从网络号可以看出，刚好是前缀划分的方法，因此聚合后没有引入其他网络。</p>
+</li>
+<li>
+<p>(3). AS1和AS2之间可使用的路由协议是BGP，该协议使用的运输层协议是TCP。</p>
+</li>
+<li>
+<p>(4). R4转发后MTU=800B，因此数据部分是8的整数倍，则数据部分为776B，首部20B。总长度1580B的IP数据报应划分为3个分片，第一个总长度为796B，片偏移0；第二个总长度为796B，片偏移为97；第三个长度为28B，片偏移为194。<strong>所以最小的分片IP数据报的长度字段为28，片偏移字段为194。</strong></p>
+</li>
+</ul>
+<img src="https://p.sda1.dev/14/3e1c81743232344cc8defb04baa95434/2_47_4.png" alt="2_47_4.png" style="zoom:67%;">
+<ul>
+<li>
+<p>(5). 该IP数据报所去的目的网络地址不在R4的路由表中，R4不知道应从自己的哪个接口转发该IP数据报，<strong>因此将其丢弃，并且会给发送该IP数据报的源主机发送ICMP差错报告报文，具体为目的网络不可达。</strong></p>
+</li>
+<li>
+<p>(6). <strong>4RTT</strong></p>
+<img src="https://p.sda1.dev/14/5be4f36e071810c990fa098307956eb7/2_47_6.png" alt="2_47_6.png" style="zoom: 50%;">
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题03"><strong>2024 年全国硕士研究生入学统一考试模拟题03</strong></h2>
+<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。-3">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
+<ul>
+<li>
+<ol start="33">
+<li>以下有关OSI/RM的叙述中，<strong>错误</strong>的是（ A ）。</li>
+</ol>
+<p>I. 10Base-T中“T”的含义，属于物理层范畴</p>
+<p>II. 物理地址、硬件地址以及MAC地址，都属于数据链路层范畴</p>
+<p>III. 网络层不涉及拥塞控制功能</p>
+<p>IV. 运输层为其上层提供端到端的服务</p>
+<p>V. 应用层使用其下层提供的服务，在本层协议的控制下实现网络应用</p>
+<p>A．I，III</p>
+<p>B．II、V</p>
+<p>C．I、II、IV</p>
+<p>D．III、IV、V</p>
+</li>
+<li>
+<ol start="34">
+<li>假设下图所示的两个不同的编码波形表示的是同一串比特流，则该比特流是（ B ）。</li>
+</ol>
+<img src="https://p.sda1.dev/14/1e142157f5fc68040ace3caf817f5b13/3_34.png" alt="3_34.png" style="zoom: 50%;">
+<p>A. 011111100101</p>
+<p>B. 111111100101</p>
+<p>C. 000000011011</p>
+<p>D. 111111100100</p>
+</li>
+<li>
+<ol start="35">
+<li>采用CRC进行检错，接收到的信息为101101001，生成多项式为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">G(X)=X^3+X^2+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，则以下叙述<strong>错误</strong>的是（ C ）。</li>
+</ol>
+<p>A. 生成多项式各项系数构成的位串为1101</p>
+<p>B. 接收到的信息的最后3位，即001为冗余码</p>
+<p>C. 接收方认为收到的信息没有出现误码</p>
+<p>D. 收发双方应使用相同的生成多项式</p>
+</li>
+<li>
+<ol start="36">
+<li>某个按MSS为1540B封装的TCP报文段被封装成IP数据报，假设TCP和IP都使用固定首部（没有选项或扩展部分），某个路由器收到该IP数据报后向MTU为800B的链路转发该IP数据报时进行了分片，且每个分片尽可能大，则最小的分片IP数据报的长度字段和片偏移字段的取值分别是（ A ）。</li>
+</ol>
+<p>A. 28，194</p>
+<p>B. 784，97</p>
+<p>C. 800，97</p>
+<p>D. 800，0</p>
+</li>
+<li>
+<ol start="37">
+<li>下图给出的是一个移动IP的相关示例。移动主机A的归属网络地址、外地网络地址、永久地址以及漫游到外地网络后从外地代理获得的一个属于该外地网络的转交地址已标注在图中。假设图中的固定主机B要给处于外地网络的A发送一个IPv4数据报，则该IPv4数据报从B发送出来时的目的IP地址和从配置有归属代理的路由器转发出来时的目的IP地址分别是（ A ）。</li>
+</ol>
+<img src="https://p.sda1.dev/14/435ad86a839862cd01b94403fe7013f7/3_37.png" alt="3_37.png" style="zoom:50%;">
+<p>A. 218.75.230.16，175.1.1.1</p>
+<p>B. 175.1.1.1，218.75.230.16</p>
+<p>C. 218.75.230.16，0.0.0.0</p>
+<p>D. 255.255.255.255， 218.75.230.16</p>
+</li>
+<li>
+<ol start="38">
+<li>包含在TCP报文段首部中但不包含在UDP用户数据报首部中的字段是（ D ）。</li>
+</ol>
+<p>A. 检验和</p>
+<p>B. 源端口</p>
+<p>C. 目的端口</p>
+<p>D. 序号</p>
+</li>
+<li>
+<ol start="39">
+<li>以下关于TCP窗口与拥塞控制概念的叙述中，<strong>错误</strong>的是（ C ）。</li>
+</ol>
+<p>A. 接收窗口值通过TCP首部中的窗口字段通知数据的发送方</p>
+<p>B. 发送窗口值=min[接收端窗口值，拥塞窗口值]</p>
+<p>C. 拥塞窗口值是接收方根据网络拥塞情况确定的窗口值</p>
+<p>D. 拥塞窗口值在开始时可以按指数规律增长</p>
+</li>
+<li>
+<ol start="40">
+<li>浏览器请求Web服务器中的某个万维网文档，若该文档除包含文本外，还有2个图片，则在使用HTTP/1.0时，需要建立TCP连接和UDP连接的次数分别是（ A ）。</li>
+</ol>
+<p>A. 3，0</p>
+<p>B. 2，1</p>
+<p>C. 0，2</p>
+<p>D. 1，0</p>
+</li>
+</ul>
+<h3 id="二、综合应用题：第41-47-题，共70-分。-3">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
+<ul>
+<li>
+<ol start="47">
+<li>已知路由器R的路由表如下所示。</li>
+</ol>
+<img src="https://p.sda1.dev/14/e751919c75c761b60135b3738ef8b49f/3_47.png" alt="3_47.png" style="zoom: 60%;">
+<p>请回答以下问题：</p>
+<p>（1） 试画出各网络、必要的路由器、特定主机的连接拓扑，标注出必要的IP地址和接口，对不能确定的情况请指明。</p>
+<p>（2） 请给出路由器R的路由表中地址掩码这一列的点分十进制形式。</p>
+<p>（3） 假设DHCP服务器的IP地址为192.168.0.60，网络192.168.0.128/26中的各主机需要从DHCP服务器获取各自的网络参数（例如IP地址和子网掩码等），则需要在路由器R上进行怎样的配置？为什么要进行这样的配置？</p>
+<p>（4） 若IP地址为192.168.1.16的主机给IP地址为192.168.2.2的主机发送一个IP数据报，在不产生任何传输错误的情况下，为了使该IP数据报能够到达目的主机，其首部中TTL字段的初始值最少应设置为多少？该IP数据报从源主机发出时，其首部中源IP地址和目的IP地址分别是什么？该IP数据报从路由器R转发出来时，其首部中源IP地址和目的IP地址分别是什么、封装该IP数据报的以太网帧的源MAC地址和目的MAC地址分别是什么？</p>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
