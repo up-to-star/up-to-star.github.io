@@ -524,6 +524,67 @@
 <li>(2). 发出的第一个以太网帧的目的MAC地址是FF-FF-FF-FF-FF-FF。封装主机2发往Internet的IP分组的以太网帧的目的MAC地址是00-a1-a1-a1-a1-a1。</li>
 <li>(3). 主机1能够访问WWW服务器，不能访问Internet。由于主机1的子网掩码配 置正确而默认网关IP地址被错误地配置为111.123.15.2 （正确IP地址是111.123.15.1）,所以 主机1可以访问在同一个子网内的WWW服务器，但当主机1访问Internet时，主机1发出 的IP分组会被路由到错误的默认网关（111.123.15.2）,从而无法到达目的主机。</li>
 </ul>
+<hr>
+<h2 id="2014年">2014年</h2>
+<h3 id="43-9">43</h3>
+<ul>
+<li>(1).</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">目的网络</th>
+<th style="text-align:center">下一跳</th>
+<th style="text-align:center">接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">192.1.1.0/24</td>
+<td style="text-align:center">直连</td>
+<td style="text-align:center">E0</td>
+</tr>
+<tr>
+<td style="text-align:center">192.1.5.0/24</td>
+<td style="text-align:center">10.1.1.10</td>
+<td style="text-align:center">L1</td>
+</tr>
+<tr>
+<td style="text-align:center">192.1.6.0/23</td>
+<td style="text-align:center">10.1.1.2</td>
+<td style="text-align:center">L0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>(2). R1通过接口L0转发该IP分组。主机192.1.7.211收到的IP分组TTL是61。</li>
+<li>(3). R1的LSI需要增加一条直连网络，增加Prefix：0.0.0.0/0；Metric为：10。</li>
+</ul>
+<h3 id="44-9">44</h3>
+<ul>
+<li>(1). 由于相邻两条机器代码的地址相差4，且指令字长为32位，因此M的存储器编址单位是字节。</li>
+<li>(2). 表中<code>sll</code>指令左移2位，因此数组A中每个元素占32位。</li>
+<li>(3). 表中<code>bne</code>指令<code>OFFSET</code>字段为FFFAH，补码表示，十进制值为-6。执行<code>bne</code>指令时，PC自动指向下一条指令，即PC值为0804 8118H，执行后跳转到第一条指令执行，则PC值应变为0804 8100H，二者相差18H，即24.而OFFSET值为-6，因此转移目标地址计算公式为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mi>P</mi><mi>C</mi><mo stretchy="false">)</mo><mo>+</mo><mn>4</mn><mo>+</mo><mi>O</mi><mi>F</mi><mi>F</mi><mi>S</mi><mi>E</mi><mi>T</mi><mo>&lt;</mo><mo>&lt;</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">(PC)+4+OFFSET&lt;&lt;2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07153em;">PC</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">4</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7224em;vertical-align:-0.0391em;"></span><span class="mord mathnormal" style="margin-right:0.13889em;">OFFSET</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">&lt;&lt;</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">2</span></span></span></span>.</li>
+<li>(4). 由于数据相关发生流水线阻塞的指令编号为2、3、4、6；编号6的指令会发生控制冒险。因为指令6会发生控制冒险，插入3个时钟周期的阻塞，消除了指令5和指令1的数据相关。</li>
+</ul>
+<h3 id="45-9">45</h3>
+<ul>
+<li>(1). 由于(R6)=1000,因此P执行结束时，R2的内容是1000.</li>
+<li>(2). 因为指令Cache共有16行，和主存块交换的块大小是32B，因此数据区的容量是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>16</mn><mo>×</mo><mn>32</mn><mi>B</mi><mo>=</mo><mn>512</mn><mi>B</mi></mrow><annotation encoding="application/x-tex">16\times32B=512B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">16</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">32</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">512</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span></span></span></span>。指令字长为4B，因此一个Cache行可存放8条指令，程序P有6条指令，只有在第一次访问第一条指令时发生Cache缺失，程序循环执行了1000次。因此Cache的命中率是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>1000</mn><mo>×</mo><mn>6</mn><mo>−</mo><mn>1</mn></mrow><mrow><mn>1000</mn><mo>×</mo><mn>6</mn></mrow></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi><mo>=</mo><mn>99.98</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\frac{1000\times6-1}{1000\times 6}\times 100 \%=99.98\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2484em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1000</span><span class="mbin mtight">×</span><span class="mord mtight">6</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1000</span><span class="mbin mtight">×</span><span class="mord mtight">6</span><span class="mbin mtight">−</span><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">99.98%</span></span></span></span>。</li>
+<li>(3). 第4条指令执行可能发生溢出异常。第3条指令执行可能发生缺页异常。因为只有第4条指令执行的是<code>sum+=A[i]</code>，可能会发生溢出。而数组元素存放一个页中，且磁盘同一扇区，因此只有第一次访问数组元素时发生缺页，所以第3条指令加载数组元素的值可能会发生缺页异常。由于只有第一次访问数组元素时会发生缺页，因此需要读磁盘一次。而进行1000次访问，每次都需要读TLB一次，且第一次读数组元素时发生缺页，进行缺页处理后重新执行指令需要读取一次TLB，因此一共读TLB 1001次。</li>
+</ul>
+<h3 id="46-8">46</h3>
+<ul>
+<li>
+<p>(1). 因为文件系统采用连续分配方式，F存储区域前后均有足够的空闲磁盘空间，因此为使访问磁盘次数最少，则应在F存储区域的前边进行插入。首先需要将前29条记录进行前移，这个过程中读取记录内容访问一次磁盘，然后将内容重新写入前边的空闲区域访问一次磁盘，总共访问58次磁盘，最后将新记录查如第30条记录的位置，访问一次磁盘，因此一共访问59次磁盘。<strong>F的文件控制块的起始块号和文件长度会发生改变</strong>。</p>
+</li>
+<li>
+<p>(2). 文件系统采用链接分配时，首先需要访问前29条记录找到新记录要插入的位置，访问了29次磁盘，然后需要将第29条记录读入内存，修改其链接指针内容为新记录的地址，而新记录的指针内容是原来第29条记录的指针内容，最后将第29条记录写回磁盘，将第30条记录存入磁盘分配的空闲区域，访问2次磁盘，因此一共访问31次磁盘。</p>
+<p>每个存储块的大小为1KB，链接指针为4B，因此文件系统支持的文件最大长度是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>1024</mn><mi>B</mi><mo>−</mo><mn>4</mn><mi>B</mi><mo stretchy="false">)</mo><mo>×</mo><msup><mn>2</mn><mn>32</mn></msup><mo>=</mo><mn>4080</mn><mi>G</mi><mi>B</mi></mrow><annotation encoding="application/x-tex">(1024B-4B)\times 2^{32}=4080GB</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">1024</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">4</span><span class="mord mathnormal" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord"><span class="mord">2</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">32</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">4080</span><span class="mord mathnormal" style="margin-right:0.05017em;">GB</span></span></span></span>。</p>
+</li>
+</ul>
+<h3 id="47-9">47</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Semaphore mutex = <span class="number">1</span>; <span class="comment">// 实现互斥访问缓冲区</span></span><br><span class="line">Semaphore full = <span class="number">0</span>; <span class="comment">// 缓冲区中产品数量</span></span><br><span class="line">Semaphore empty = <span class="number">1000</span>; <span class="comment">// 缓冲区空闲位置数量</span></span><br><span class="line">Semaphore mutex1 = <span class="number">1</span>; <span class="comment">// 用于实现消费者互斥连续取10件产品</span></span><br><span class="line"></span><br><span class="line">生产者 &#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        生产一个产品;</span><br><span class="line">        P(empty);</span><br><span class="line">        P(mutex);</span><br><span class="line">        将产品放入缓冲区;</span><br><span class="line">        V(mutex);</span><br><span class="line">        V(full);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">消费者 &#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="literal">true</span>) &#123;</span><br><span class="line">        P(mutex1); <span class="comment">// 连续取10次</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> i=<span class="number">0</span>;i&lt;<span class="number">10</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            P(full);</span><br><span class="line">            P(mutex);</span><br><span class="line">            取一件产品;</span><br><span class="line">            V(mutex);</span><br><span class="line">            V(empty);</span><br><span class="line">        &#125;</span><br><span class="line">        V(mutex1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
