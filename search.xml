@@ -838,7 +838,7 @@
 <ul>
 <li>
 <ol start="33">
-<li>以下有关OSI/RM的叙述中，<strong>错误</strong>的是（ A ）。</li>
+<li>以下有关OSI/RM的叙述中，<strong>错误</strong>的是（  ）。</li>
 </ol>
 <p>I. 10Base-T中“T”的含义，属于物理层范畴</p>
 <p>II. 物理地址、硬件地址以及MAC地址，都属于数据链路层范畴</p>
@@ -852,7 +852,7 @@
 </li>
 <li>
 <ol start="34">
-<li>假设下图所示的两个不同的编码波形表示的是同一串比特流，则该比特流是（ B ）。</li>
+<li>假设下图所示的两个不同的编码波形表示的是同一串比特流，则该比特流是（  ）。</li>
 </ol>
 <img src="https://p.sda1.dev/14/1e142157f5fc68040ace3caf817f5b13/3_34.png" alt="3_34.png" style="zoom: 50%;">
 <p>A. 011111100101</p>
@@ -862,7 +862,7 @@
 </li>
 <li>
 <ol start="35">
-<li>采用CRC进行检错，接收到的信息为101101001，生成多项式为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">G(X)=X^3+X^2+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，则以下叙述<strong>错误</strong>的是（ C ）。</li>
+<li>采用CRC进行检错，接收到的信息为101101001，生成多项式为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>G</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><msup><mi>X</mi><mn>3</mn></msup><mo>+</mo><msup><mi>X</mi><mn>2</mn></msup><mo>+</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">G(X)=X^3+X^2+1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathnormal">G</span><span class="mopen">(</span><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.07847em;">X</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1</span></span></span></span>，则以下叙述<strong>错误</strong>的是（  ）。</li>
 </ol>
 <p>A. 生成多项式各项系数构成的位串为1101</p>
 <p>B. 接收到的信息的最后3位，即001为冗余码</p>
@@ -871,7 +871,7 @@
 </li>
 <li>
 <ol start="36">
-<li>某个按MSS为1540B封装的TCP报文段被封装成IP数据报，假设TCP和IP都使用固定首部（没有选项或扩展部分），某个路由器收到该IP数据报后向MTU为800B的链路转发该IP数据报时进行了分片，且每个分片尽可能大，则最小的分片IP数据报的长度字段和片偏移字段的取值分别是（ A ）。</li>
+<li>某个按MSS为1540B封装的TCP报文段被封装成IP数据报，假设TCP和IP都使用固定首部（没有选项或扩展部分），某个路由器收到该IP数据报后向MTU为800B的链路转发该IP数据报时进行了分片，且每个分片尽可能大，则最小的分片IP数据报的长度字段和片偏移字段的取值分别是（  ）。</li>
 </ol>
 <p>A. 28，194</p>
 <p>B. 784，97</p>
@@ -880,7 +880,7 @@
 </li>
 <li>
 <ol start="37">
-<li>下图给出的是一个移动IP的相关示例。移动主机A的归属网络地址、外地网络地址、永久地址以及漫游到外地网络后从外地代理获得的一个属于该外地网络的转交地址已标注在图中。假设图中的固定主机B要给处于外地网络的A发送一个IPv4数据报，则该IPv4数据报从B发送出来时的目的IP地址和从配置有归属代理的路由器转发出来时的目的IP地址分别是（ A ）。</li>
+<li>下图给出的是一个移动IP的相关示例。移动主机A的归属网络地址、外地网络地址、永久地址以及漫游到外地网络后从外地代理获得的一个属于该外地网络的转交地址已标注在图中。假设图中的固定主机B要给处于外地网络的A发送一个IPv4数据报，则该IPv4数据报从B发送出来时的目的IP地址和从配置有归属代理的路由器转发出来时的目的IP地址分别是（  ）。</li>
 </ol>
 <img src="https://p.sda1.dev/14/435ad86a839862cd01b94403fe7013f7/3_37.png" alt="3_37.png" style="zoom:50%;">
 <p>A. 218.75.230.16，175.1.1.1</p>
@@ -890,7 +890,7 @@
 </li>
 <li>
 <ol start="38">
-<li>包含在TCP报文段首部中但不包含在UDP用户数据报首部中的字段是（ D ）。</li>
+<li>包含在TCP报文段首部中但不包含在UDP用户数据报首部中的字段是（  ）。</li>
 </ol>
 <p>A. 检验和</p>
 <p>B. 源端口</p>
@@ -899,7 +899,7 @@
 </li>
 <li>
 <ol start="39">
-<li>以下关于TCP窗口与拥塞控制概念的叙述中，<strong>错误</strong>的是（ C ）。</li>
+<li>以下关于TCP窗口与拥塞控制概念的叙述中，<strong>错误</strong>的是（  ）。</li>
 </ol>
 <p>A. 接收窗口值通过TCP首部中的窗口字段通知数据的发送方</p>
 <p>B. 发送窗口值=min[接收端窗口值，拥塞窗口值]</p>
@@ -908,7 +908,7 @@
 </li>
 <li>
 <ol start="40">
-<li>浏览器请求Web服务器中的某个万维网文档，若该文档除包含文本外，还有2个图片，则在使用HTTP/1.0时，需要建立TCP连接和UDP连接的次数分别是（ A ）。</li>
+<li>浏览器请求Web服务器中的某个万维网文档，若该文档除包含文本外，还有2个图片，则在使用HTTP/1.0时，需要建立TCP连接和UDP连接的次数分别是（  ）。</li>
 </ol>
 <p>A. 3，0</p>
 <p>B. 2，1</p>
@@ -930,6 +930,72 @@
 <p>（4） 若IP地址为192.168.1.16的主机给IP地址为192.168.2.2的主机发送一个IP数据报，在不产生任何传输错误的情况下，为了使该IP数据报能够到达目的主机，其首部中TTL字段的初始值最少应设置为多少？该IP数据报从源主机发出时，其首部中源IP地址和目的IP地址分别是什么？该IP数据报从路由器R转发出来时，其首部中源IP地址和目的IP地址分别是什么、封装该IP数据报的以太网帧的源MAC地址和目的MAC地址分别是什么？</p>
 </li>
 </ul>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题03-答案"><strong>2024 年全国硕士研究生入学统一考试模拟题03</strong> 答案</h2>
+<ul>
+<li>
+<ol start="33">
+<li>A</li>
+</ol>
+<p>10Base-T中“T”的含义是双绞线，传输媒体不属于网络体系结构。因此，叙述I错误。</p>
+<p>路由器会采用主动丢包策略，这表明网络层参与拥塞控制。因此，叙述III错误。</p>
+</li>
+<li>
+<ol start="34">
+<li>B</li>
+</ol>
+<p>曼彻斯特编码：每个码元的中间时刻电平发生跳变：正跳变表示1还是0，负跳变表示0还是1，可以自行定义。</p>
+<p>差分曼彻斯特编码： 码元中间时刻的电平跳变仅表示时钟信号，而不表示数据。 数据的表示在于每一个码元开始处是否有电平跳变：无跳变表示1，有跳变表示0。</p>
+</li>
+<li>
+<ol start="35">
+<li>C</li>
+</ol>
+</li>
+<li>
+<ol start="36">
+<li>A</li>
+</ol>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_37_.png" style="zoom: 50%;">
+</li>
+<li>
+<ol start="37">
+<li>A</li>
+</ol>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_38_.png" style="zoom:50%;">
+</li>
+<li>
+<ol start="38">
+<li>D</li>
+</ol>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_38.png" style="zoom:50%;">
+</li>
+<li>
+<ol start="39">
+<li>C</li>
+</ol>
+<p>拥塞窗口值是<strong>发送方</strong>根据网络拥塞情况确定的窗口值。</p>
+</li>
+<li>
+<ol start="40">
+<li>A</li>
+</ol>
+<p>HTTP/1.0，HTTP/1.1，HTTP/2.0在运输层使用TCP，而HTTP/3.0在运输层使用UDP。</p>
+</li>
+<li>
+<ol start="47">
+<li>
+<p>(1).</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_47_1.png" style="zoom:50%;">
+</li>
+</ol>
+</li>
+</ul>
+<p>​	(2).</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_47_2.jpg" style="zoom: 67%;">
+<p>​	(3).</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_47_3.png" style="zoom:50%;">
+<p>​	(4).</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_47_4.png" style="zoom: 50%;">
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
