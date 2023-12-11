@@ -1938,6 +1938,124 @@
 </li>
 </ul>
 <hr>
+<h2 id="2009年">2009年</h2>
+<h3 id="43-14">43</h3>
+<ul>
+<li>(1). 在中断方式下，数据传输率为0.5MB/s，以32位为单位进行传输，则每秒需要传输次数至少为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>0.5</mn><mi>M</mi></mrow><mn>4</mn></mfrac><mo>=</mo><mn>1.25</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup></mrow><annotation encoding="application/x-tex">\frac{0.5M}{4}=1.25\times 10^5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">0.5</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.25</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span></span></span></span>，CPI为4，一次中断处理开销指向时间相当于20条指令，所以每秒中断处理需要时钟周期数为<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1.25</mn><mo>×</mo><mn>1</mn><msup><mn>0</mn><mn>5</mn></msup><mo>×</mo><mn>20</mn><mo>×</mo><mn>5</mn><mo>=</mo><mn>12.5</mn><mi>M</mi></mrow><annotation encoding="application/x-tex">1.25\times 10^5\times 20\times 5=12.5M</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">1.25</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8974em;vertical-align:-0.0833em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">5</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.7278em;vertical-align:-0.0833em;"></span><span class="mord">20</span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">5</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6833em;"></span><span class="mord">12.5</span><span class="mord mathnormal" style="margin-right:0.10903em;">M</span></span></span></span>，CPU的主频为500MHz，所以用于外设IO的时间占整个CPU时间的百分比是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>12.5</mn><mi>M</mi></mrow><mrow><mn>500</mn><mi>M</mi></mrow></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi><mo>=</mo><mn>2.5</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\frac{12.5M}{500M}\times 100 \%=2.5\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">500</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">12.5</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">2.5%</span></span></span></span>。</li>
+<li>(2). 采用DMA传送，每秒DMA请求次数至少是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>5</mn><mi>M</mi></mrow><mn>5000</mn></mfrac><mo>=</mo><mn>1000</mn></mrow><annotation encoding="application/x-tex">\frac{5M}{5000}=1000</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2173em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5000</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">5</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.6444em;"></span><span class="mord">1000</span></span></span></span>次，DMA的总开销是500个时钟周期，所以用于IO的时间占比是<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>1000</mn><mo>×</mo><mn>500</mn></mrow><mrow><mn>500</mn><mi>M</mi></mrow></mfrac><mo>×</mo><mn>100</mn><mi mathvariant="normal">%</mi><mo>=</mo><mn>0.1</mn><mi mathvariant="normal">%</mi></mrow><annotation encoding="application/x-tex">\frac{1000 \times500}{500M}\times 100\%=0.1\%</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">500</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">M</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1000</span><span class="mbin mtight">×</span><span class="mord mtight">500</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">100%</span><span class="mspace" style="margin-right:0.2778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2778em;"></span></span><span class="base"><span class="strut" style="height:0.8056em;vertical-align:-0.0556em;"></span><span class="mord">0.1%</span></span></span></span>。】</li>
+</ul>
+<h3 id="44-14">44</h3>
+<p>执行阶段的每个节拍的功能和有效控制信号为：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">时钟</th>
+<th style="text-align:center">功能</th>
+<th style="text-align:center">有效控制信号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">C5</td>
+<td style="text-align:center">MAR <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span> (R1)</td>
+<td style="text-align:center">R1out, MARin</td>
+</tr>
+<tr>
+<td style="text-align:center">C6</td>
+<td style="text-align:center">MDR <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span> M(MAR)</td>
+<td style="text-align:center">MemR, MDRinE</td>
+</tr>
+<tr>
+<td style="text-align:center">C7</td>
+<td style="text-align:center">A <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span> (MDR)</td>
+<td style="text-align:center">MDRout, Ain</td>
+</tr>
+<tr>
+<td style="text-align:center">C8</td>
+<td style="text-align:center">AC <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span> (A) + (R0)</td>
+<td style="text-align:center">R0out, Add, ACin</td>
+</tr>
+<tr>
+<td style="text-align:center">C9</td>
+<td style="text-align:center">MDR <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span> (AC)</td>
+<td style="text-align:center">ACout, MDRin</td>
+</tr>
+<tr>
+<td style="text-align:center">C10</td>
+<td style="text-align:center">M(MAR) <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo>←</mo></mrow><annotation encoding="application/x-tex">\leftarrow</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.3669em;"></span><span class="mrel">←</span></span></span></span> (MDR)</td>
+<td style="text-align:center">MDRoutE, MemW</td>
+</tr>
+</tbody>
+</table>
+<h3 id="45-14">45</h3>
+<figure class="highlight c"><table><tr><td class="code"><pre><span class="line">Semaphore mutex = <span class="number">1</span>; <span class="comment">// 互斥访问缓冲区</span></span><br><span class="line">Semaphore empty = N; <span class="comment">// 缓冲区空闲位置</span></span><br><span class="line">Semaphore full_odd = <span class="number">0</span>; <span class="comment">// 奇数个数</span></span><br><span class="line">Semaphore full_even = <span class="number">0</span>; <span class="comment">// 偶数个数</span></span><br><span class="line"></span><br><span class="line">P1 &#123;</span><br><span class="line">    <span class="type">int</span> x = produce();</span><br><span class="line">    P(empty);</span><br><span class="line">    P(mutex);</span><br><span class="line">  	put();</span><br><span class="line">    V(mutex);</span><br><span class="line">    <span class="keyword">if</span>(x % <span class="number">2</span> == <span class="number">0</span>) V(full_even);</span><br><span class="line">    <span class="keyword">else</span> V(full_odd);  </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">P2 &#123;</span><br><span class="line">    P(full_odd);</span><br><span class="line">    P(mutex);</span><br><span class="line">    getodd();</span><br><span class="line">    countodd();</span><br><span class="line">    V(empty);</span><br><span class="line">    V(mutex);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">P3 &#123;</span><br><span class="line">    P(full_even);</span><br><span class="line">    P(mutex);</span><br><span class="line">    geteven();</span><br><span class="line">    counteven();</span><br><span class="line">    V(empty);</span><br><span class="line">    V(mutex);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="46-13">46</h3>
+<ul>
+<li>(1). 页面大小为4KB，则页内偏移占12位                                                                                                                                                                                                                        访问虚拟地址2362H，页内偏移为362H，页号为2，初识时TLB为空，因此查询TLB未命中，花费10ns，然后查询页表花费100ns，页表中页号2对应的表项有效位1，页框号为254H，因此物理地址为254362H，然后根据物理地址访问内存中的数据，花费100ns，总共需要时间为210ns。                                                                        访问虚拟地址1565H，页内偏移为565H，页号为1，先查询TLB，未命中，花费10ns，难后查询内存中的页表，对应页表项的有效位为0，因此发生缺页，需要进行缺页处理，处理后再次执行该命令，访问TLB命中，分配的页号为0，对应也框号为101H，最后根据物理地址访问内存中的数据，因此总共需要时间为10ns + 100ns + <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mn>1</mn><msup><mn>0</mn><mn>8</mn></msup></mrow><annotation encoding="application/x-tex">10^8</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141em;"></span><span class="mord">1</span><span class="mord"><span class="mord">0</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">8</span></span></span></span></span></span></span></span></span></span></span>ns + 10ns + 100ns = 10000 0220ns。                                                                                                                                                                                    访问虚拟地址25A5H时，对应的页号为2，在访问2362H时，已将对应的页表项存入TLB，因此查询TLB命中，转换成物理地址后访问内存中的数据，因此总共需要时间为110ns。</li>
+<li>(2). 访问虚拟地址1565H时，页内偏移为565H，页号为1，查询页表发生缺页，因为进程的驻留集为2，所以采用最近最少使用替换策略应将0号页替换，对应的页框号为101H，所以物理地址为101565H。</li>
+</ul>
+<h3 id="47-14">47</h3>
+<ul>
+<li>(1). 每个局域网的IP地址数不少于120个，因此主机号为7位，网络号为1位，两个子网分别为202.118.1.0/25, 202.118.1.128/25。因此局域网1与局域网2可以分别为202.118.1.0/25，子网掩码是255.255.255.128，局域网2：子网地址为202.118.1.128/25，子网掩码是255.255.255.128。</li>
+<li>(2). R1的路由表如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">目的网络IP地址</th>
+<th style="text-align:center">子网掩码</th>
+<th style="text-align:center">下一跳IP地址</th>
+<th style="text-align:center">接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">202.118.1.0/25</td>
+<td style="text-align:center">255.255.255.128</td>
+<td style="text-align:center">——</td>
+<td style="text-align:center">E1</td>
+</tr>
+<tr>
+<td style="text-align:center">202.118.1.128/25</td>
+<td style="text-align:center">255.255.255.128</td>
+<td style="text-align:center">——</td>
+<td style="text-align:center">E2</td>
+</tr>
+<tr>
+<td style="text-align:center">202.118.3.2/32</td>
+<td style="text-align:center">255.255.255.255</td>
+<td style="text-align:center">202.118.2.2</td>
+<td style="text-align:center">L0</td>
+</tr>
+<tr>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">0.0.0.0</td>
+<td style="text-align:center">202.118.2.2</td>
+<td style="text-align:center">L0</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>(3). 局域网1与局域网2可以聚合为202.118.1.0/24， 子网掩码为255.255.255.0，所以R2到局域网1和局域网2的路由为</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">目的网络IP地址</th>
+<th style="text-align:center">子网掩码</th>
+<th style="text-align:center">吓一跳IP地址</th>
+<th style="text-align:center">接口</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">202.118.1.0/24</td>
+<td style="text-align:center">255.255.255.0</td>
+<td style="text-align:center">202.118.2.1</td>
+<td style="text-align:center">L0</td>
+</tr>
+</tbody>
+</table>
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
