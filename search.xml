@@ -1279,8 +1279,15 @@
 <p><span style="font-weight: bold">《论十大关系》</span>是以毛泽东为主要代表的中国共产党人<span style="color: red"><strong>开始探索适合中国国情的社会主义建设道路的标志</strong></span>，在新的历史条件下从经济方面和政治方面提出了新的指导方针，为中共八大的召开做了理论准备。</p>
 </li>
 <li>
-<p><strong>《关于正确处理人民内部矛盾的问题》<strong>提出了</strong>中国工业化道路问题，主要是重工业和轻工业、农业的发展关系问题</strong>，强调走一条有别与苏联的中国工业化道路。</p>
+<p><span style="color: green; font-weight: bold">《关于正确处理人民内部矛盾的问题》</span></p>
 </li>
+</ol>
+<ul>
+<li>提出了<strong>中国工业化道路问题，主要是重工业和轻工业、农业的发展关系问题</strong>，强调走一条有别与苏联的中国工业化道路。</li>
+<li>所谓<strong>专政方式</strong>，就是运用人民民主专政的国家机器 ，对于国家内部那些反抗社会主义改造、破坏社会主义建设的敌对分子和严重犯罪分子依法治罪，剥夺他们的政治权利，强迫他们从事劳动，并在劳动中尽量使他们改造成为新人</li>
+<li>所谓<strong>民主方法</strong>，就是<strong>讨论</strong>的方法、<strong>批评</strong>的方法、<strong>说服教育</strong>的方法。</li>
+</ul>
+<ol start="3">
 <li>
 <p><span style="color:red"><strong>军政军民团结</strong></span>是实现富国和强军相统一的<span style="color: red"><strong>重要政治保障</strong></span>。</p>
 </li>
@@ -1664,6 +1671,11 @@
 <li><strong>主题</strong>：建设<span style="color: red; font-weight: bold">包容</span>、<span style="color: red; font-weight: bold">普惠</span>、<span style="color: red; font-weight: bold">有韧性</span>的数字世界——携手构建网络空间命运共同体。</li>
 <li>致辞：倡导<span style="color: red; font-weight: bold">发展优先</span>，构建更加<strong>普惠繁荣</strong>的网络空间；倡导<span style="color: red; font-weight: bold">安危与共</span>，构建更加<strong>和平安全</strong>的网络空间；倡导<span style="color: red; font-weight: bold">文明互鉴</span>，构建更加<strong>平等包容</strong>的网络空间。</li>
 </ul>
+<ol start="61">
+<li>中国式现代化的关键是<span style="color: red; font-weight: bold">科技现代化</span></li>
+<li>亚洲价值观的核心是<span style="color:red; font-weight: bold">和平、合作、包容、融合</span></li>
+<li></li>
+</ol>
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
@@ -2314,6 +2326,108 @@
 <img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_47_3.png" style="zoom:50%;">
 <p>​	(4).</p>
 <img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/3_47_4.png" style="zoom: 50%;">
+<hr>
+<h2 id="2024-年全国硕士研究生入学统一考试模拟题04"><strong>2024 年全国硕士研究生入学统一考试模拟题04</strong></h2>
+<h3 id="一、单项选择题：第1-40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。-4">一、<strong>单项选择题：第1</strong>~<strong>40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。</strong></h3>
+<ul>
+<li>
+<ol start="33">
+<li>OSI参考模型自下而上的第3层完成的主要功能是（ C ）。</li>
+</ol>
+<p>A．数据表示和转换</p>
+<p>B．差错控制</p>
+<p>C．路由选择</p>
+<p>D．会话管理</p>
+</li>
+<li>
+<ol start="34">
+<li>以下有关100Base-T快速以太网的叙述中，<strong>错误</strong>的是（ B ）。</li>
+</ol>
+<p>A. 网段的最大电缆长度为100m</p>
+<p>B. 最大传输速率为100MB/s</p>
+<p>C. 传输基带信号</p>
+<p>D. 使用双绞线作为传输介质</p>
+</li>
+<li>
+<ol start="35">
+<li>数据链路层使用GBN协议，采用3个比特给帧编序号，发送方的发送窗口取最大值，不考虑流量控制。假设发送方发送的第一个帧的序号为0，并且将序号落入发送窗口内的所有帧都已经发送出去。当计时器超时时，若发送方只收到了1、3号帧的确认，则发送方需要重发的帧的数量以及发送窗口内的最后一个序号分别是（ C ）。</li>
+</ol>
+<p>A. 1，2</p>
+<p>B. 2，0</p>
+<p>C. 3，2</p>
+<p>D. 7，0</p>
+</li>
+<li>
+<ol start="36">
+<li>主机A和B位于总线型以太网的两端，它们使用CSMA/CD协议和截断二进制指数退避算法进行重传。假设该网络中仅有这两台主机，则第11次重传失败的概率是（ C ）。</li>
+</ol>
+<p>A. 0</p>
+<p>B. (0.25)11</p>
+<p>C. (0.5)10</p>
+<p>D. 1</p>
+</li>
+<li>
+<ol start="37">
+<li>若网络层要发送长度为21B的数据，将其封装成IP数据报时采用固定首部（没有选项部分），封装好的IP数据报通过以太网传输，则数据链路层将其封装成帧时，需要在帧的数据载荷部分额外填充的字节数量是（ B ）。</li>
+</ol>
+<p>A. 0</p>
+<p>B. 5</p>
+<p>C. 23</p>
+<p>D. 1459</p>
+</li>
+<li>
+<ol start="38">
+<li>某路由器的路由表中有四项路由条目，各路由条目中的目的网络如下。</li>
+</ol>
+<p>路由条目1：目的网络地址为11.0.0.0/8</p>
+<p>路由条目2：目的网络地址为11.1.0.0/16</p>
+<p>路由条目3：目的网络地址为11.1.2.0/24</p>
+<p>路由条目4：目的网络地址为0.0.0.0/0</p>
+<p>若该路由器收到一个IP数据报，其目的地址为11.1.2.5，则转发该IP数据报时应当选择的路由条目是（ C ）。</p>
+<p>A. 路由条目1</p>
+<p>B. 路由条目2</p>
+<p>C. 路由条目3</p>
+<p>D. 路由条目4</p>
+</li>
+<li>
+<ol start="39">
+<li>TCP双方基于长度为2000m的链路传送数据，信号在该链路上的传播速率为200,000km/s，该链路的时延带宽积为1000b，如果充分利用链路的带宽且不考虑流量控制，则TCP出现序号绕回的周期约为（ B ）。</li>
+</ol>
+<p>A. 42.9s</p>
+<p>B. 343.6s</p>
+<p>C. 687.2s</p>
+<p>D. 996.4s</p>
+</li>
+<li>
+<ol start="40">
+<li>某主机通过已知URL获取Web服务器中的某个Web页，若一开始主机不知道Web服务器的IP地址并且主机的ARP高速缓存是空的，则除HTTP外，主机需要使用的应用层协议和运输层协议有（ C ）。</li>
+</ol>
+<p>I. FTP</p>
+<p>II. DNS</p>
+<p>III. UDP</p>
+<p>IV. TCP</p>
+<p>V. ICMP</p>
+<p>VI. ARP</p>
+<p>A. I、IV</p>
+<p>B. II、IV、VI</p>
+<p>C. II、III、IV</p>
+<p>D. II、IV、V、VI</p>
+</li>
+</ul>
+<h3 id="二、综合应用题：第41-47-题，共70-分。-4">二、<strong>综合应用题：第41~47 题，共70 分。</strong></h3>
+<ul>
+<li>
+<ol start="47">
+<li>假设用户在自己的主机上使用浏览器访问远程服务器上的某个Web页面，该Web页面非常简单，仅引用了同目录下的3个非常小的GIF图像，若忽略Web页面和这些GIF图像的传输时延，用户主机访问远程服务器的往返时间记为RTT，请回答以下问题。</li>
+</ol>
+<ol>
+<li>若使用HTTP/1.0标准协议且不考虑“TCP四报文挥手”过程，则从浏览器向Web服务器发出第一个请求报文开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
+<li>若使用HTTP/1.1协议以持续的非流水线方式，则从浏览器向Web服务器发出Web请求开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
+<li>若使用HTTP/1.1标准协议，则从浏览器向Web服务器发出HTTP请求报文开始到浏览器收到全部内容为止，需要的RTT数量<strong>至少</strong>是？</li>
+<li>若根据Web页面引用对象的数量采用并行TCP连接的非持续HTTP，则从浏览器向Web服务器发出第一个请求报文开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
+</ol>
+</li>
+</ul>
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
