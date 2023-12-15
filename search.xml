@@ -2347,6 +2347,7 @@
 <p>B. 最大传输速率为100MB/s</p>
 <p>C. 传输基带信号</p>
 <p>D. 使用双绞线作为传输介质</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_34.png" style="zoom:67%;">
 </li>
 <li>
 <ol start="35">
@@ -2356,14 +2357,15 @@
 <p>B. 2，0</p>
 <p>C. 3，2</p>
 <p>D. 7，0</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_35.png" style="zoom:80%;">
 </li>
 <li>
 <ol start="36">
 <li>主机A和B位于总线型以太网的两端，它们使用CSMA/CD协议和截断二进制指数退避算法进行重传。假设该网络中仅有这两台主机，则第11次重传失败的概率是（ C ）。</li>
 </ol>
 <p>A. 0</p>
-<p>B. (0.25)11</p>
-<p>C. (0.5)10</p>
+<p>B. <span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mo stretchy="false">(</mo><mn>0.25</mn><msup><mo stretchy="false">)</mo><mn>11</mn></msup></mrow><annotation encoding="application/x-tex">(0.25)^{11}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.0641em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">0.25</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">11</span></span></span></span></span></span></span></span></span></span></span></span></p>
+<p>C.$ (0.5)^{10}$</p>
 <p>D. 1</p>
 </li>
 <li>
@@ -2397,6 +2399,7 @@
 <p>B. 343.6s</p>
 <p>C. 687.2s</p>
 <p>D. 996.4s</p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_39.png" style="zoom:80%;">
 </li>
 <li>
 <ol start="40">
@@ -2422,12 +2425,27 @@
 </ol>
 <ol>
 <li>若使用HTTP/1.0标准协议且不考虑“TCP四报文挥手”过程，则从浏览器向Web服务器发出第一个请求报文开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
-<li>若使用HTTP/1.1协议以持续的非流水线方式，则从浏览器向Web服务器发出Web请求开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
+<li>若使用HTTP/1.1协议以持续的非流水线方式，则从浏览器<strong>向Web服务器发出Web请求</strong>开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
 <li>若使用HTTP/1.1标准协议，则从浏览器向Web服务器发出HTTP请求报文开始到浏览器收到全部内容为止，需要的RTT数量<strong>至少</strong>是？</li>
 <li>若根据Web页面引用对象的数量采用并行TCP连接的非持续HTTP，则从浏览器向Web服务器发出第一个请求报文开始到浏览器收到全部内容为止，需要的RTT数量至少是？</li>
 </ol>
+<p><strong>HTTP/1.0标准协议不支持持续连接和流水线。</strong></p>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_47.png" style="zoom:80%;">
 </li>
 </ul>
+<ol>
+<li>8</li>
+<li></li>
+</ol>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_47_2.png" style="zoom: 50%;">
+<ol start="3">
+<li></li>
+</ol>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_37_4.png" style="zoom:50%;">
+<ol start="4">
+<li></li>
+</ol>
+<img src="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/4_47_4.png" style="zoom:50%;">
 ]]></content>
       <categories>
         <category>研究生入学考试</category>
