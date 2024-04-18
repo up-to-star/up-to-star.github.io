@@ -18,6 +18,16 @@
     <url>/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
     <content><![CDATA[<h2 id="协程">协程</h2>
 <p>协程(Coroutine)，也称为微线程，是一种用户态内的上下文切换技术，就是通过一个线程实现代码块相互切换执行。</p>
+<p>Python实现协程的几种方法:</p>
+<ul>
+<li>greenlet, 早期的模块</li>
+<li>yield关键字</li>
+<li>asyncio装饰器(py3.4引入)</li>
+<li>async、await关键字(py3.5之后)</li>
+</ul>
+<h3 id="asyncio事件循环">asyncio事件循环</h3>
+<p>事件循环可以看做一个死循环，去检测并执行某些代码。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">任务列表 = [任务<span class="number">1</span>, 任务<span class="number">2</span>, 任务<span class="number">3</span>, ...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将<span class="string">&#x27;可执行&#x27;</span>和<span class="string">&#x27;已完成&#x27;</span>的任务返回</span><br><span class="line">    <span class="keyword">for</span> 就绪任务 <span class="keyword">in</span> 已准备就绪的任务列表:</span><br><span class="line">        执行已就绪的任务</span><br><span class="line">    <span class="keyword">for</span> 已完成的任务 <span class="keyword">in</span> 已完成的任务列表:</span><br><span class="line">        在任务列表中移除 已完成的任务</span><br><span class="line">    如果 任务列表 中的任务都已完成，则终止循环</span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
         <category>Python</category>
