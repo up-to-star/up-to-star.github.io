@@ -28,6 +28,9 @@
 <h3 id="asyncio事件循环">asyncio事件循环</h3>
 <p>事件循环可以看做一个死循环，去检测并执行某些代码。</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">任务列表 = [任务<span class="number">1</span>, 任务<span class="number">2</span>, 任务<span class="number">3</span>, ...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将<span class="string">&#x27;可执行&#x27;</span>和<span class="string">&#x27;已完成&#x27;</span>的任务返回</span><br><span class="line">    <span class="keyword">for</span> 就绪任务 <span class="keyword">in</span> 已准备就绪的任务列表:</span><br><span class="line">        执行已就绪的任务</span><br><span class="line">    <span class="keyword">for</span> 已完成的任务 <span class="keyword">in</span> 已完成的任务列表:</span><br><span class="line">        在任务列表中移除 已完成的任务</span><br><span class="line">    如果 任务列表 中的任务都已完成，则终止循环</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成或获取一个事件循环</span></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line"><span class="comment"># 将任务放到&quot;任务列表&quot;</span></span><br><span class="line">loop.run_until_complete(tasks)</span><br><span class="line">asyncio.run()</span><br></pre></td></tr></table></figure>
+<h3 id="await关键字">await关键字</h3>
+<p>用法: <code>await</code> + 可等待的对象(协程对象、Future、Task对象)</p>
 ]]></content>
       <categories>
         <category>Python</category>
