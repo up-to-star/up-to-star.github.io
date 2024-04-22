@@ -50,7 +50,7 @@
 ]]></content>
       <categories>
         <category>Python</category>
-        <category>语法知识</category>
+        <category>异步编程</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -3006,8 +3006,8 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"><span class="keyword">import</span> time</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Window</span>(metaclass=ABCMeta):</span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">repaint</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">stop</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">run</span>(<span class="params">self</span>):</span><br><span class="line">        self.start()</span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                self.repaint()</span><br><span class="line">                time.sleep(<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">except</span> KeyboardInterrupt:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        self.stop()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">MyWindow</span>(<span class="title class_ inherited__">Window</span>):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, msg</span>):</span><br><span class="line">        self.msg = msg</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">start</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;mywindow start&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">stop</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&quot;mywindow stop&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">repaint</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="built_in">print</span>(self.msg)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">w = MyWindow(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">w.run()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
+        <category>开发</category>
         <category>Python</category>
-        <category>高级知识</category>
       </categories>
       <tags>
         <tag>Python</tag>
@@ -3189,10 +3189,23 @@
 ]]></content>
       <categories>
         <category>机器学习</category>
-        <category>统计学习方法</category>
       </categories>
       <tags>
         <tag>机器学习</tag>
+        <tag>统计学习方法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>MySQL学习</title>
+    <url>/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[]]></content>
+      <categories>
+        <category>开发</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
       </tags>
   </entry>
 </search>
