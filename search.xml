@@ -4,6 +4,26 @@
     <title>MySQL学习</title>
     <url>/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h3 id="创建数据库">创建数据库</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">CREATE DATABASE [IF NOT EXISTS] db_name [create_specification [, create_specification]...]</span><br></pre></td></tr></table></figure>
+<p>create_specification: 默认<code>CHARACTER SET</code>指定数据集采用的字符集，如果不指定字符集，默认<code>utf8</code>;<code>COLLATE</code>指定数据库字符集的校对规则(常用的<code>utf8_bin</code>区分大小写、<code>utf8_general_ci</code>不区分大小写)</p>
+<h3 id="查看、删除数据库">查看、删除数据库</h3>
+<ul>
+<li>显示数据库语句：<code>SHOW DATABASES</code></li>
+<li>显示数据库创建语句：<code>SHOWCREATE DATABASE db_name</code></li>
+<li>数据库删除语句：<code>DROP DATABASE [IF EXISTS] db_name</code></li>
+</ul>
+<h3 id="备份恢复数据库">备份恢复数据库</h3>
+<ul>
+<li>
+<p>备份数据库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysqldump -u 用户名 -p -B 数据库1 数据库2 数据库n &gt; 文件名.sql</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">备份库的表</span></span><br><span class="line">mysqldump -u 用户名 -p密码 数据库 表1 表2 表n &gt; 文件名.sql</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>恢复数据库</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Source 文件名.sql</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="创建表">创建表</h3>
 ]]></content>
       <categories>
         <category>开发</category>
