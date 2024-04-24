@@ -30,6 +30,9 @@
 <p><code>engine</code>：引擎</p>
 <h4 id="常用数据类型">常用数据类型</h4>
 <p><a href="https://www.runoob.com/mysql/mysql-data-types.html">MySQL 数据类型 | 菜鸟教程 (runoob.com)</a></p>
+<h3 id="修改表">修改表</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># 添加列</span><br><span class="line">ALTER TABLE tablename ADD (column datatype [DEFAULT expr] [, column datatype]...);</span><br><span class="line"></span><br><span class="line"># 修改列</span><br><span class="line">ALTER TABLE tablename MODIFY (column datatype [DEFAULT expr] [, column datatype]...);</span><br><span class="line"></span><br><span class="line"># 删除列</span><br><span class="line">ALTER TABLE tablename DROP (column);</span><br><span class="line"></span><br><span class="line"># 查看表的结构</span><br><span class="line">desc 表名;</span><br><span class="line"></span><br><span class="line"># 修改表名</span><br><span class="line">Rename table 表名 to 新表名</span><br><span class="line"></span><br><span class="line"># 修改字符集</span><br><span class="line">alter table 表名 character set 字符集;</span><br><span class="line"></span><br><span class="line"># 改变列名</span><br><span class="line">ALTER TABLE employee CHANGE `name` user_name VARCHAR(32) NOT NULL DEFAULT &#x27;&#x27;;</span><br></pre></td></tr></table></figure>
+<h3 id="CRUD语句">CRUD语句</h3>
 ]]></content>
       <categories>
         <category>开发</category>
