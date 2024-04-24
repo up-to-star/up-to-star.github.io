@@ -38,6 +38,33 @@
 <p>insert语句</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">INSERT INTO table_name [(column [, column...])] VALUES(value [,value...]), (...);</span><br></pre></td></tr></table></figure>
 </li>
+<li>
+<p>update语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> col_name1<span class="operator">=</span>expr1 [, col_name2<span class="operator">=</span>expr2 ...] [<span class="keyword">WHERE</span> where_definition]</span><br><span class="line"><span class="keyword">WHERE</span> 指定更新哪些行</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>delete语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tbl_name [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>select语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] <span class="operator">*</span><span class="operator">|</span>&#123;column1, column2, column3....&#125; <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用表达式对查询的列进行运算</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="operator">|</span>&#123;column1 <span class="operator">|</span> expression, column2 <span class="operator">|</span> expression,...&#125; <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用<span class="keyword">as</span>语句起别名</span><br><span class="line"><span class="keyword">SELECT</span> column_name <span class="keyword">as</span> 别名 <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用<span class="keyword">order</span> <span class="keyword">by</span>子句排序查询结果</span><br><span class="line"><span class="keyword">SELECT</span> column1, column2, ... <span class="keyword">FROM</span> tablename <span class="keyword">order</span> <span class="keyword">by</span> columnx <span class="keyword">asc</span><span class="operator">|</span><span class="keyword">desc</span>, ...</span><br></pre></td></tr></table></figure>
+<p>在<code>where</code>子句中经常使用的运算符</p>
+<ul>
+<li>
+<p>比较运算符</p>
+<p><code>&gt; &lt; &lt;= &gt;= = &lt;&gt; !=</code></p>
+<p><code>BETWEEN...AND...</code>显示在某一区间的值</p>
+<p><code>IN(set)</code>显示在in列表中的值，例如in(100,200)</p>
+<p><code>LIKE NOT LIKE</code>模糊查询</p>
+<p><code>IS NULL</code>判断是否为空</p>
+</li>
+<li>
+<p>逻辑运算符</p>
+<p><code>and or not</code></p>
+</li>
+</ul>
+</li>
 </ul>
 ]]></content>
       <categories>
