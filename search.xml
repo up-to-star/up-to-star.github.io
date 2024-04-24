@@ -64,6 +64,10 @@
 <p><code>and or not</code></p>
 </li>
 </ul>
+<p><strong>统计函数</strong><code>count</code>，返回行的总数</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="operator">|</span> <span class="built_in">count</span>(列名) <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br><span class="line"><span class="built_in">count</span>(列) 统计满足条件的某列有多少个，会排除<span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+<p><strong>合计函数</strong><code>sum</code>, 返回满足where条件的行的和</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">sum</span>(列名) &#123;, <span class="built_in">sum</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 ]]></content>
