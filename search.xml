@@ -1,6 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>MySQL学习</title>
+    <url>/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/</url>
+    <content><![CDATA[<h3 id="创建数据库">创建数据库</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] db_name [create_specification [, create_specification]...]</span><br></pre></td></tr></table></figure>
+<p>create_specification:
+默认<code>CHARACTER SET</code>指定数据集采用的字符集，如果不指定字符集，默认<code>utf8</code>;<code>COLLATE</code>指定数据库字符集的校对规则(常用的<code>utf8_bin</code>区分大小写、<code>utf8_general_ci</code>不区分大小写)</p>
+<h3 id="查看删除数据库">查看、删除数据库</h3>
+<ul>
+<li>显示数据库语句：<code>SHOW DATABASES</code></li>
+<li>显示数据库创建语句：<code>SHOWCREATE DATABASE db_name</code></li>
+<li>数据库删除语句：<code>DROP DATABASE [IF EXISTS] db_name</code></li>
+</ul>
+<h3 id="备份恢复数据库">备份恢复数据库</h3>
+<ul>
+<li><p>备份数据库</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysqldump -u 用户名 -p -B 数据库1 数据库2 数据库n &gt; 文件名.sql</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">备份库的表</span></span><br><span class="line">mysqldump -u 用户名 -p密码 数据库 表1 表2 表n &gt; 文件名.sql</span><br></pre></td></tr></table></figure></li>
+<li><p>恢复数据库</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">Source 文件名.<span class="keyword">sql</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="创建表">创建表</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">(</span><br><span class="line">    field1 datatype,</span><br><span class="line">    field2 datatype,</span><br><span class="line">    field3 datatype</span><br><span class="line">)<span class="type">character</span> <span class="keyword">set</span> 字符集 <span class="keyword">collate</span> 校对规则 engine 引擎</span><br><span class="line"></span><br><span class="line"># 创建<span class="keyword">user</span>表的指令</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line">	id <span class="type">INT</span>,</span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">255</span>),</span><br><span class="line">	`password` <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">	birthday <span class="type">DATE</span>)</span><br><span class="line">	<span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_bin ENGINE INNODB;</span><br></pre></td></tr></table></figure>
+<p><code>field</code>:
+指定列名，<code>collate</code>：如不指定则为所在数据库校对规则</p>
+<p><code>datatype</code>：指定列类型(字段类型),
+<code>character set</code>：如不指定则为所在数据库字符集</p>
+<p><code>engine</code>：引擎</p>
+<h4 id="常用数据类型">常用数据类型</h4>
+<p><a href="https://www.runoob.com/mysql/mysql-data-types.html">MySQL
+数据类型 | 菜鸟教程 (runoob.com)</a></p>
+<h3 id="修改表">修改表</h3>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 添加列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">ADD</span> (<span class="keyword">column</span> datatype [<span class="keyword">DEFAULT</span> expr] [, <span class="keyword">column</span> datatype]...);</span><br><span class="line"></span><br><span class="line"># 修改列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename MODIFY (<span class="keyword">column</span> datatype [<span class="keyword">DEFAULT</span> expr] [, <span class="keyword">column</span> datatype]...);</span><br><span class="line"></span><br><span class="line"># 删除列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">DROP</span> (<span class="keyword">column</span>);</span><br><span class="line"></span><br><span class="line"># 查看表的结构</span><br><span class="line"><span class="keyword">desc</span> 表名;</span><br><span class="line"></span><br><span class="line"># 修改表名</span><br><span class="line">Rename <span class="keyword">table</span> 表名 <span class="keyword">to</span> 新表名</span><br><span class="line"></span><br><span class="line"># 修改字符集</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="type">character</span> <span class="keyword">set</span> 字符集;</span><br><span class="line"></span><br><span class="line"># 改变列名</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employee CHANGE `name` user_name <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>
+<h3 id="crud语句">CRUD语句</h3>
+<ul>
+<li><p>insert语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name [(<span class="keyword">column</span> [, column...])] <span class="keyword">VALUES</span>(<span class="keyword">value</span> [,value...]), (...);</span><br></pre></td></tr></table></figure></li>
+<li><p>update语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> col_name1<span class="operator">=</span>expr1 [, col_name2<span class="operator">=</span>expr2 ...] [<span class="keyword">WHERE</span> where_definition]</span><br><span class="line"><span class="keyword">WHERE</span> 指定更新哪些行</span><br></pre></td></tr></table></figure></li>
+<li><p>delete语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tbl_name [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure></li>
+<li><p>select语句</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] <span class="operator">*</span><span class="operator">|</span>&#123;column1, column2, column3....&#125; <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用表达式对查询的列进行运算</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="operator">|</span>&#123;column1 <span class="operator">|</span> expression, column2 <span class="operator">|</span> expression,...&#125; <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用<span class="keyword">as</span>语句起别名</span><br><span class="line"><span class="keyword">SELECT</span> column_name <span class="keyword">as</span> 别名 <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用<span class="keyword">order</span> <span class="keyword">by</span>子句排序查询结果</span><br><span class="line"><span class="keyword">SELECT</span> column1, column2, ... <span class="keyword">FROM</span> tablename <span class="keyword">order</span> <span class="keyword">by</span> columnx <span class="keyword">asc</span><span class="operator">|</span><span class="keyword">desc</span>, ...</span><br></pre></td></tr></table></figure>
+<p>在<code>where</code>子句中经常使用的运算符</p>
+<ul>
+<li><p>比较运算符</p>
+<p><code>&gt; &lt; &lt;= &gt;= = &lt;&gt; !=</code></p>
+<p><code>BETWEEN...AND...</code>显示在某一区间的值</p>
+<p><code>IN(set)</code>显示在in列表中的值，例如in(100,200)</p>
+<p><code>LIKE NOT LIKE</code>模糊查询</p>
+<p><code>IS NULL</code>判断是否为空</p></li>
+<li><p>逻辑运算符</p>
+<p><code>and or not</code></p></li>
+</ul>
+<p><strong>统计函数</strong><code>count</code>，返回行的总数</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="operator">|</span> <span class="built_in">count</span>(列名) <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br><span class="line"><span class="built_in">count</span>(列) 统计满足条件的某列有多少个，会排除<span class="keyword">null</span></span><br></pre></td></tr></table></figure>
+<p><strong>合计函数</strong><code>sum</code>,
+返回满足where条件的行的和</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">sum</span>(列名) &#123;, <span class="built_in">sum</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
+<p><strong>合计函数</strong><code>avg</code>，返回满足where条件的一列的平均值</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">avg</span>(列名) &#123;, <span class="built_in">avg</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
+<p><strong>合计函数</strong><code>max/min</code>，返回满足where条件的一列d的最大值/最小值</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">max</span>(列名) &#123;, <span class="built_in">max</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
+<p><strong>分组统计</strong></p>
+<ul>
+<li><p>使用<code>group by</code>子句对列进行分组</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, column3 ...<span class="keyword">FROM</span> tablename <span class="keyword">group</span> <span class="keyword">by</span> columnx</span><br></pre></td></tr></table></figure></li>
+<li><p>使用<code>having</code>子句对分组后的结果进行过滤</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, column3,..., <span class="keyword">FROM</span> tablename <span class="keyword">group</span> <span class="keyword">by</span> columnx <span class="keyword">having</span> ...</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p><strong>字符串函数</strong></p>
+<p><code>CHARSET(str)</code>返回字符串的字符集</p>
+<p><code>CONCAT(s1,s2...)</code>拼接字符串</p>
+<p><code>INSTR(str, substr)</code>返回substr在str中出现的位置，没有返回0</p>
+<p><code>UCASE(str)</code>转换成大写</p>
+<p><code>LCASE(str)</code>转换成小写</p>
+<p><code>LEFT(str, len)</code>从str左起取len个字符</p>
+<p><code>LENGTH(str)</code>str的长度</p>
+<p><code>REPLACE(str, search_str, replace_str)</code>在str中替换字符串</p>
+<p><code>STRCMP(str1, str2)</code>比较两个字符的大小</p>
+<p><code>SUBSTRING(str, pos, len)</code>取子串</p>
+<p><code>LTRIM(str) RTRIM(str)</code>去除空格</p>
+<p><strong>数学函数</strong></p>
+<p><code>ABS(num)</code>绝对值</p>
+<p><code>BIN(num)</code>十进制转二进制</p>
+<p><code>CEILING(num)</code>向上取整</p>
+<p><code>CONV(num, from, to)</code>进制转换</p>
+<p><code>FLOOR(num)</code>向下取整</p>
+<p><code>FORMAT(num, decimal_places)</code>保留小数位</p>
+<p><code>HEX(num)</code>转十六进制</p>
+<p><code>LEAST(num1, num2,...)</code>求最小值</p>
+<p><code>MOD(num, den)</code>求余</p>
+<p><code>RAND([seed])</code>随机数</p>
+<p><strong>日期函数</strong></p>
+<p><code>CURRENT_DATE()</code>当前日期</p>
+<p><code>CURRENT_TIME()</code>当前时间</p>
+<p><code>CURRENT_TIMESTAMP()</code>当前时间戳</p>
+<p><code>DATE(datetime)</code>返回datetime的日期部分</p>
+<p><code>DATE_ADD(date, INTERVAL d_value d_type)</code>在date中加上日期或时间</p>
+<p><code>DATE_SUB(date, INTERVAL d_value d_type)</code>在date中减去一个时间</p>
+<p><code>DATEDIFF(date1, date2)</code>两个日期差(结果是天)</p>
+<p><code>TIMEDIFF(date1, date2)</code>两个时间差(多少小时多少分钟多少秒)</p>
+<p><code>NOW()</code>当前时间</p>
+<p><code>YEAR|Month|DATE(datetime) FROM_UNIXTIME() unix_timestamp()</code>年月日</p>
+<p><strong>加密和系统函数</strong></p>
+<p><code>USER()</code>查询用户</p>
+<p><code>DATABASE()</code>数据库名称</p>
+<p><code>MD5(str)</code>为字符串算出一个MD5 32的字符串，加密</p>
+<p><code>PASSWORD(str)</code>从原文密码str计算并返回密码字符串，通常用于对mysql数据库的用户密码加密</p>
+<p><strong>流程控制函数</strong></p>
+<p><code>IF(expr1, expr2, expr3)</code>如果expr1为True，则返回expr2,
+否则返回wxpr3</p>
+<p><code>IFNULL(expr1, expr2)</code>如果expr1不为NULL则返回expr1，否则返回expr2</p>
+<p><code>SELECT CASE WHEN expr1 THEN expr2 WHEN expr3 THEN expr4 ELSE expr5 END;</code>如果expr1为True，则返回expr2，如果expr3为True，则返回expr4，否则返回expr5。</p></li>
+<li><p><strong>分页查询</strong></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ... limit <span class="keyword">start</span>, <span class="keyword">rows</span> 表示从<span class="keyword">start</span><span class="operator">+</span><span class="number">1</span>行开始取，取出<span class="keyword">rows</span>行，<span class="keyword">start</span>从<span class="number">0</span>开始计算</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>多子句查询</strong></p>
+<p>顺序为：<code>group by</code>, <code>having</code>,
+<code>order by</code>, <code>limit</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c <span class="keyword">GROUP</span> <span class="keyword">BY</span> col <span class="keyword">HAVING</span> conditio <span class="keyword">order</span> <span class="keyword">by</span> col limit <span class="keyword">start</span>, <span class="keyword">rows</span></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="多表查询">多表查询</h3>
+]]></content>
+      <categories>
+        <category>开发</category>
+        <category>MySQL</category>
+      </categories>
+      <tags>
+        <tag>MySQL</tag>
+        <tag>数据库</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>408真题</title>
     <url>/2023/11/27/408%E7%9C%9F%E9%A2%98/</url>
     <content><![CDATA[<h2 id="边角知识">边角知识</h2>
@@ -1799,175 +1930,6 @@ Cache行大小为64B，一个Cache可存放数组元素16个，程序A按行优�
       </tags>
   </entry>
   <entry>
-    <title>async异步编程</title>
-    <url>/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="协程">协程</h2>
-<p>协程(Coroutine)，也称为微线程，是一种用户态内的上下文切换技术，就是通过一个线程实现代码块相互切换执行。</p>
-<p>Python实现协程的几种方法:</p>
-<ul>
-<li>greenlet, 早期的模块</li>
-<li>yield关键字</li>
-<li>asyncio装饰器(py3.4引入)</li>
-<li>async、await关键字(py3.5之后)</li>
-</ul>
-<h3 id="asyncio事件循环">asyncio事件循环</h3>
-<p>事件循环可以看做一个死循环，去检测并执行某些代码。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">任务列表 = [任务<span class="number">1</span>, 任务<span class="number">2</span>, 任务<span class="number">3</span>, ...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将<span class="string">&#x27;可执行&#x27;</span>和<span class="string">&#x27;已完成&#x27;</span>的任务返回</span><br><span class="line">    <span class="keyword">for</span> 就绪任务 <span class="keyword">in</span> 已准备就绪的任务列表:</span><br><span class="line">        执行已就绪的任务</span><br><span class="line">    <span class="keyword">for</span> 已完成的任务 <span class="keyword">in</span> 已完成的任务列表:</span><br><span class="line">        在任务列表中移除 已完成的任务</span><br><span class="line">    如果 任务列表 中的任务都已完成，则终止循环</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成或获取一个事件循环</span></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line"><span class="comment"># 将任务放到&quot;任务列表&quot;</span></span><br><span class="line">loop.run_until_complete(tasks)</span><br><span class="line">asyncio.run()</span><br></pre></td></tr></table></figure>
-<h3 id="await关键字">await关键字</h3>
-<p>用法: <code>await</code> +
-可等待的对象(协程对象、Future、Task对象)</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;world&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;return x&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main&quot;</span>)</span><br><span class="line">    res = <span class="keyword">await</span> func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;func return&quot;</span>, res)</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">main</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">world</span></span><br><span class="line"><span class="string">func return return x</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="task对象">task对象</h3>
-<p>实现在事件循环中添加多个任务</p>
-<p>创建 Task，意思就是把协程封装成 Task 实例，并追踪协程的 <strong>运行
-/ 完成状态</strong>，用于未来获取协程的结果。</p>
-<p>具体来说，是通过 <code>asyncio.create_task()</code> 创建
-Task，让协程对象加入时事件循环中，等待被调度执行。协程封装为 Task
-后不会立马启动，当某个代码 <code>await</code> 这个 Task
-的时候才会被执行。</p>
-<p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main start&quot;</span>)</span><br><span class="line"></span><br><span class="line">    task1 = asyncio.create_task(func(), name=<span class="string">&quot;n1&quot;</span>)</span><br><span class="line">    task2 = asyncio.create_task(func(), name=<span class="string">&#x27;n2&#x27;</span>)</span><br><span class="line">    task_list = [task1, task2]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main end&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># res1 = await task1</span></span><br><span class="line">    <span class="comment"># res2 = await task2</span></span><br><span class="line">    <span class="comment"># task列表等待</span></span><br><span class="line">    done, pending = <span class="keyword">await</span> asyncio.wait(task_list, timeout=<span class="literal">None</span>)</span><br><span class="line">    <span class="built_in">print</span>(done)</span><br><span class="line">    <span class="keyword">for</span> task_d <span class="keyword">in</span> done:</span><br><span class="line">        <span class="built_in">print</span>(task_d.get_name(),task_d.result())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure></p>
-<h3 id="future对象">Future对象</h3>
-<p>Future 相较于 Task 属于更底层的概念，在开发过程中用到的并不多。</p>
-<p>urture 对象内部封装了一个 <code>_state</code>，这个
-<code>_state</code>
-维护着四种状态：<strong>Pending</strong>、<strong>Running</strong>、<strong>Done</strong>，<strong>Cancelled</strong>，如果变成
-<code>Done</code>
-完成，就不再等待，而是往后执行，这四种状态的存在其实类似与进程的
-运行态、就绪态、阻塞态，事件循环凭借着四种状态对 Future进行调度。</p>
-<p>Task继承Future，task对象内部await结果的处理基于future对象</p>
-<h3 id="异步迭代器">异步迭代器</h3>
-<p><strong>迭代器：在其内部实现yield方法和next方法的对象。可迭代对象：在类内部实现一个iter方法，并返回一个迭代器。</strong></p>
-<p><strong>异步迭代器：实现了__aiter__()和__anext__()方法的对象，必须返回一个awaitable对象。sync_for支持处理异步迭代器的__anext__()方法返回的可等待对象，直到引发一个stopAsyncIteration异常</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Reader</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">readline</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># await asyncio.sleep(1)</span></span><br><span class="line">        self.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.count == <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> self.count</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__aiter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">__anext__</span>(<span class="params">self</span>):</span><br><span class="line">        val = <span class="keyword">await</span> self.readline()</span><br><span class="line">        <span class="keyword">if</span> val == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopAsyncIteration</span><br><span class="line">        <span class="keyword">return</span> val</span><br><span class="line">    </span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    obj = Reader()</span><br><span class="line">    <span class="comment"># async for 必须写在协程函数里边</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">for</span> item <span class="keyword">in</span> obj:</span><br><span class="line">        <span class="built_in">print</span>(item)</span><br><span class="line"></span><br><span class="line">asyncio.run(func())</span><br></pre></td></tr></table></figure>
-<h3 id="异步和非异步模块混合使用">异步和非异步模块混合使用</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requets</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">download_image</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading......&quot;</span>)</span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    future = loop.run_in_executor(<span class="literal">None</span>,requets.get,url)</span><br><span class="line">    response = <span class="keyword">await</span> future</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line">    filename=</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">        file_object.write(response.content)</span><br><span class="line"></span><br><span class="line">url_list = []</span><br><span class="line">tasks = [download_image(url) <span class="keyword">for</span> url <span class="keyword">in</span> url_list]</span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line">loop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>异步编程</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>asyncio</tag>
-        <tag>异步编程</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>MySQL学习</title>
-    <url>/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/</url>
-    <content><![CDATA[<h3 id="创建数据库">创建数据库</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> DATABASE [IF <span class="keyword">NOT</span> <span class="keyword">EXISTS</span>] db_name [create_specification [, create_specification]...]</span><br></pre></td></tr></table></figure>
-<p>create_specification:
-默认<code>CHARACTER SET</code>指定数据集采用的字符集，如果不指定字符集，默认<code>utf8</code>;<code>COLLATE</code>指定数据库字符集的校对规则(常用的<code>utf8_bin</code>区分大小写、<code>utf8_general_ci</code>不区分大小写)</p>
-<h3 id="查看删除数据库">查看、删除数据库</h3>
-<ul>
-<li>显示数据库语句：<code>SHOW DATABASES</code></li>
-<li>显示数据库创建语句：<code>SHOWCREATE DATABASE db_name</code></li>
-<li>数据库删除语句：<code>DROP DATABASE [IF EXISTS] db_name</code></li>
-</ul>
-<h3 id="备份恢复数据库">备份恢复数据库</h3>
-<ul>
-<li><p>备份数据库</p>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mysqldump -u 用户名 -p -B 数据库1 数据库2 数据库n &gt; 文件名.sql</span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">备份库的表</span></span><br><span class="line">mysqldump -u 用户名 -p密码 数据库 表1 表2 表n &gt; 文件名.sql</span><br></pre></td></tr></table></figure></li>
-<li><p>恢复数据库</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line">Source 文件名.<span class="keyword">sql</span></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="创建表">创建表</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name</span><br><span class="line">(</span><br><span class="line">    field1 datatype,</span><br><span class="line">    field2 datatype,</span><br><span class="line">    field3 datatype</span><br><span class="line">)<span class="type">character</span> <span class="keyword">set</span> 字符集 <span class="keyword">collate</span> 校对规则 engine 引擎</span><br><span class="line"></span><br><span class="line"># 创建<span class="keyword">user</span>表的指令</span><br><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> `<span class="keyword">user</span>` (</span><br><span class="line">	id <span class="type">INT</span>,</span><br><span class="line">	`name` <span class="type">VARCHAR</span>(<span class="number">255</span>),</span><br><span class="line">	`password` <span class="type">VARCHAR</span>(<span class="number">32</span>),</span><br><span class="line">	birthday <span class="type">DATE</span>)</span><br><span class="line">	<span class="type">CHARACTER</span> <span class="keyword">SET</span> utf8 <span class="keyword">COLLATE</span> utf8_bin ENGINE INNODB;</span><br></pre></td></tr></table></figure>
-<p><code>field</code>:
-指定列名，<code>collate</code>：如不指定则为所在数据库校对规则</p>
-<p><code>datatype</code>：指定列类型(字段类型),
-<code>character set</code>：如不指定则为所在数据库字符集</p>
-<p><code>engine</code>：引擎</p>
-<h4 id="常用数据类型">常用数据类型</h4>
-<p><a href="https://www.runoob.com/mysql/mysql-data-types.html">MySQL
-数据类型 | 菜鸟教程 (runoob.com)</a></p>
-<h3 id="修改表">修改表</h3>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 添加列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">ADD</span> (<span class="keyword">column</span> datatype [<span class="keyword">DEFAULT</span> expr] [, <span class="keyword">column</span> datatype]...);</span><br><span class="line"></span><br><span class="line"># 修改列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename MODIFY (<span class="keyword">column</span> datatype [<span class="keyword">DEFAULT</span> expr] [, <span class="keyword">column</span> datatype]...);</span><br><span class="line"></span><br><span class="line"># 删除列</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> tablename <span class="keyword">DROP</span> (<span class="keyword">column</span>);</span><br><span class="line"></span><br><span class="line"># 查看表的结构</span><br><span class="line"><span class="keyword">desc</span> 表名;</span><br><span class="line"></span><br><span class="line"># 修改表名</span><br><span class="line">Rename <span class="keyword">table</span> 表名 <span class="keyword">to</span> 新表名</span><br><span class="line"></span><br><span class="line"># 修改字符集</span><br><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> 表名 <span class="type">character</span> <span class="keyword">set</span> 字符集;</span><br><span class="line"></span><br><span class="line"># 改变列名</span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> employee CHANGE `name` user_name <span class="type">VARCHAR</span>(<span class="number">32</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span> <span class="keyword">DEFAULT</span> <span class="string">&#x27;&#x27;</span>;</span><br></pre></td></tr></table></figure>
-<h3 id="crud语句">CRUD语句</h3>
-<ul>
-<li><p>insert语句</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">INSERT</span> <span class="keyword">INTO</span> table_name [(<span class="keyword">column</span> [, column...])] <span class="keyword">VALUES</span>(<span class="keyword">value</span> [,value...]), (...);</span><br></pre></td></tr></table></figure></li>
-<li><p>update语句</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">UPDATE</span> table_name <span class="keyword">SET</span> col_name1<span class="operator">=</span>expr1 [, col_name2<span class="operator">=</span>expr2 ...] [<span class="keyword">WHERE</span> where_definition]</span><br><span class="line"><span class="keyword">WHERE</span> 指定更新哪些行</span><br></pre></td></tr></table></figure></li>
-<li><p>delete语句</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> tbl_name [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure></li>
-<li><p>select语句</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> [<span class="keyword">DISTINCT</span>] <span class="operator">*</span><span class="operator">|</span>&#123;column1, column2, column3....&#125; <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用表达式对查询的列进行运算</span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span><span class="operator">|</span>&#123;column1 <span class="operator">|</span> expression, column2 <span class="operator">|</span> expression,...&#125; <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用<span class="keyword">as</span>语句起别名</span><br><span class="line"><span class="keyword">SELECT</span> column_name <span class="keyword">as</span> 别名 <span class="keyword">FROM</span> tablename;</span><br><span class="line"></span><br><span class="line"># 使用<span class="keyword">order</span> <span class="keyword">by</span>子句排序查询结果</span><br><span class="line"><span class="keyword">SELECT</span> column1, column2, ... <span class="keyword">FROM</span> tablename <span class="keyword">order</span> <span class="keyword">by</span> columnx <span class="keyword">asc</span><span class="operator">|</span><span class="keyword">desc</span>, ...</span><br></pre></td></tr></table></figure>
-<p>在<code>where</code>子句中经常使用的运算符</p>
-<ul>
-<li><p>比较运算符</p>
-<p><code>&gt; &lt; &lt;= &gt;= = &lt;&gt; !=</code></p>
-<p><code>BETWEEN...AND...</code>显示在某一区间的值</p>
-<p><code>IN(set)</code>显示在in列表中的值，例如in(100,200)</p>
-<p><code>LIKE NOT LIKE</code>模糊查询</p>
-<p><code>IS NULL</code>判断是否为空</p></li>
-<li><p>逻辑运算符</p>
-<p><code>and or not</code></p></li>
-</ul>
-<p><strong>统计函数</strong><code>count</code>，返回行的总数</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="operator">|</span> <span class="built_in">count</span>(列名) <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br><span class="line"><span class="built_in">count</span>(列) 统计满足条件的某列有多少个，会排除<span class="keyword">null</span></span><br></pre></td></tr></table></figure>
-<p><strong>合计函数</strong><code>sum</code>,
-返回满足where条件的行的和</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">sum</span>(列名) &#123;, <span class="built_in">sum</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
-<p><strong>合计函数</strong><code>avg</code>，返回满足where条件的一列的平均值</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">avg</span>(列名) &#123;, <span class="built_in">avg</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
-<p><strong>合计函数</strong><code>max/min</code>，返回满足where条件的一列d的最大值/最小值</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="built_in">max</span>(列名) &#123;, <span class="built_in">max</span>(列名)...&#125; <span class="keyword">from</span> tablename [<span class="keyword">WHERE</span> where_definition]</span><br></pre></td></tr></table></figure>
-<p><strong>分组统计</strong></p>
-<ul>
-<li><p>使用<code>group by</code>子句对列进行分组</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, column3 ...<span class="keyword">FROM</span> tablename <span class="keyword">group</span> <span class="keyword">by</span> columnx</span><br></pre></td></tr></table></figure></li>
-<li><p>使用<code>having</code>子句对分组后的结果进行过滤</p>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> column1, column2, column3,..., <span class="keyword">FROM</span> tablename <span class="keyword">group</span> <span class="keyword">by</span> columnx <span class="keyword">having</span> ...</span><br></pre></td></tr></table></figure></li>
-</ul>
-<p><strong>字符串函数</strong></p>
-<p><code>CHARSET(str)</code>返回字符串的字符集</p>
-<p><code>CONCAT(s1,s2...)</code>拼接字符串</p>
-<p><code>INSTR(str, substr)</code>返回substr在str中出现的位置，没有返回0</p>
-<p><code>UCASE(str)</code>转换成大写</p>
-<p><code>LCASE(str)</code>转换成小写</p>
-<p><code>LEFT(str, len)</code>从str左起取len个字符</p>
-<p><code>LENGTH(str)</code>str的长度</p>
-<p><code>REPLACE(str, search_str, replace_str)</code>在str中替换字符串</p>
-<p><code>STRCMP(str1, str2)</code>比较两个字符的大小</p>
-<p><code>SUBSTRING(str, pos, len)</code>取子串</p>
-<p><code>LTRIM(str) RTRIM(str)</code>去除空格</p>
-<p><strong>数学函数</strong></p>
-<p><code>ABS(num)</code>绝对值</p>
-<p><code>BIN(num)</code>十进制转二进制</p>
-<p><code>CEILING(num)</code>向上取整</p>
-<p><code>CONV(num, from, to)</code>进制转换</p>
-<p><code>FLOOR(num)</code>向下取整</p>
-<p><code>FORMAT(num, decimal_places)</code>保留小数位</p>
-<p><code>HEX(num)</code>转十六进制</p>
-<p><code>LEAST(num1, num2,...)</code>求最小值</p>
-<p><code>MOD(num, den)</code>求余</p>
-<p><code>RAND([seed])</code>随机数</p>
-<p><strong>日期函数</strong></p>
-<p><code>CURRENT_DATE()</code>当前日期</p>
-<p><code>CURRENT_TIME()</code>当前时间</p>
-<p><code>CURRENT_TIMESTAMP()</code>当前时间戳</p>
-<p><code>DATE(datetime)</code>返回datetime的日期部分</p>
-<p><code>DATE_ADD(date, INTERVAL d_value d_type)</code>在date中加上日期或时间</p>
-<p><code>DATE_SUB(date, INTERVAL d_value d_type)</code>在date中减去一个时间</p>
-<p><code>DATEDIFF(date1, date2)</code>两个日期差(结果是天)</p>
-<p><code>TIMEDIFF(date1, date2)</code>两个时间差(多少小时多少分钟多少秒)</p>
-<p><code>NOW()</code>当前时间</p>
-<p><code>YEAR|Month|DATE(datetime) FROM_UNIXTIME()</code>年月日</p></li>
-</ul>
-]]></content>
-      <categories>
-        <category>开发</category>
-        <category>MySQL</category>
-      </categories>
-      <tags>
-        <tag>MySQL</tag>
-        <tag>数据库</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python补充</title>
     <url>/2024/04/18/Python%E8%A1%A5%E5%85%85/</url>
     <content><![CDATA[<h2 id="魔术方法">魔术方法</h2>
@@ -2080,6 +2042,61 @@ Task，让协程对象加入时事件循环中，等待被调度执行。协程�
         <tag>Python</tag>
         <tag>魔术方法</tag>
         <tag>设计模式</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>async异步编程</title>
+    <url>/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="协程">协程</h2>
+<p>协程(Coroutine)，也称为微线程，是一种用户态内的上下文切换技术，就是通过一个线程实现代码块相互切换执行。</p>
+<p>Python实现协程的几种方法:</p>
+<ul>
+<li>greenlet, 早期的模块</li>
+<li>yield关键字</li>
+<li>asyncio装饰器(py3.4引入)</li>
+<li>async、await关键字(py3.5之后)</li>
+</ul>
+<h3 id="asyncio事件循环">asyncio事件循环</h3>
+<p>事件循环可以看做一个死循环，去检测并执行某些代码。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">任务列表 = [任务<span class="number">1</span>, 任务<span class="number">2</span>, 任务<span class="number">3</span>, ...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将<span class="string">&#x27;可执行&#x27;</span>和<span class="string">&#x27;已完成&#x27;</span>的任务返回</span><br><span class="line">    <span class="keyword">for</span> 就绪任务 <span class="keyword">in</span> 已准备就绪的任务列表:</span><br><span class="line">        执行已就绪的任务</span><br><span class="line">    <span class="keyword">for</span> 已完成的任务 <span class="keyword">in</span> 已完成的任务列表:</span><br><span class="line">        在任务列表中移除 已完成的任务</span><br><span class="line">    如果 任务列表 中的任务都已完成，则终止循环</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成或获取一个事件循环</span></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line"><span class="comment"># 将任务放到&quot;任务列表&quot;</span></span><br><span class="line">loop.run_until_complete(tasks)</span><br><span class="line">asyncio.run()</span><br></pre></td></tr></table></figure>
+<h3 id="await关键字">await关键字</h3>
+<p>用法: <code>await</code> +
+可等待的对象(协程对象、Future、Task对象)</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;world&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;return x&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main&quot;</span>)</span><br><span class="line">    res = <span class="keyword">await</span> func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;func return&quot;</span>, res)</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">main</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">world</span></span><br><span class="line"><span class="string">func return return x</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="task对象">task对象</h3>
+<p>实现在事件循环中添加多个任务</p>
+<p>创建 Task，意思就是把协程封装成 Task 实例，并追踪协程的 <strong>运行
+/ 完成状态</strong>，用于未来获取协程的结果。</p>
+<p>具体来说，是通过 <code>asyncio.create_task()</code> 创建
+Task，让协程对象加入时事件循环中，等待被调度执行。协程封装为 Task
+后不会立马启动，当某个代码 <code>await</code> 这个 Task
+的时候才会被执行。</p>
+<p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main start&quot;</span>)</span><br><span class="line"></span><br><span class="line">    task1 = asyncio.create_task(func(), name=<span class="string">&quot;n1&quot;</span>)</span><br><span class="line">    task2 = asyncio.create_task(func(), name=<span class="string">&#x27;n2&#x27;</span>)</span><br><span class="line">    task_list = [task1, task2]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main end&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># res1 = await task1</span></span><br><span class="line">    <span class="comment"># res2 = await task2</span></span><br><span class="line">    <span class="comment"># task列表等待</span></span><br><span class="line">    done, pending = <span class="keyword">await</span> asyncio.wait(task_list, timeout=<span class="literal">None</span>)</span><br><span class="line">    <span class="built_in">print</span>(done)</span><br><span class="line">    <span class="keyword">for</span> task_d <span class="keyword">in</span> done:</span><br><span class="line">        <span class="built_in">print</span>(task_d.get_name(),task_d.result())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure></p>
+<h3 id="future对象">Future对象</h3>
+<p>Future 相较于 Task 属于更底层的概念，在开发过程中用到的并不多。</p>
+<p>urture 对象内部封装了一个 <code>_state</code>，这个
+<code>_state</code>
+维护着四种状态：<strong>Pending</strong>、<strong>Running</strong>、<strong>Done</strong>，<strong>Cancelled</strong>，如果变成
+<code>Done</code>
+完成，就不再等待，而是往后执行，这四种状态的存在其实类似与进程的
+运行态、就绪态、阻塞态，事件循环凭借着四种状态对 Future进行调度。</p>
+<p>Task继承Future，task对象内部await结果的处理基于future对象</p>
+<h3 id="异步迭代器">异步迭代器</h3>
+<p><strong>迭代器：在其内部实现yield方法和next方法的对象。可迭代对象：在类内部实现一个iter方法，并返回一个迭代器。</strong></p>
+<p><strong>异步迭代器：实现了__aiter__()和__anext__()方法的对象，必须返回一个awaitable对象。sync_for支持处理异步迭代器的__anext__()方法返回的可等待对象，直到引发一个stopAsyncIteration异常</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Reader</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">readline</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># await asyncio.sleep(1)</span></span><br><span class="line">        self.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.count == <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> self.count</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__aiter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">__anext__</span>(<span class="params">self</span>):</span><br><span class="line">        val = <span class="keyword">await</span> self.readline()</span><br><span class="line">        <span class="keyword">if</span> val == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopAsyncIteration</span><br><span class="line">        <span class="keyword">return</span> val</span><br><span class="line">    </span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    obj = Reader()</span><br><span class="line">    <span class="comment"># async for 必须写在协程函数里边</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">for</span> item <span class="keyword">in</span> obj:</span><br><span class="line">        <span class="built_in">print</span>(item)</span><br><span class="line"></span><br><span class="line">asyncio.run(func())</span><br></pre></td></tr></table></figure>
+<h3 id="异步和非异步模块混合使用">异步和非异步模块混合使用</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requets</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">download_image</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading......&quot;</span>)</span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    future = loop.run_in_executor(<span class="literal">None</span>,requets.get,url)</span><br><span class="line">    response = <span class="keyword">await</span> future</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line">    filename=</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">        file_object.write(response.content)</span><br><span class="line"></span><br><span class="line">url_list = []</span><br><span class="line">tasks = [download_image(url) <span class="keyword">for</span> url <span class="keyword">in</span> url_list]</span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line">loop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>Python</category>
+        <category>异步编程</category>
+      </categories>
+      <tags>
+        <tag>Python</tag>
+        <tag>asyncio</tag>
+        <tag>异步编程</tag>
       </tags>
   </entry>
   <entry>
@@ -2387,194 +2404,324 @@ Task，让协程对象加入时事件循环中，等待被调度执行。协程�
       </tags>
   </entry>
   <entry>
-    <title>计网每日一题</title>
-    <url>/2023/09/15/%E8%AE%A1%E7%BD%91%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</url>
-    <content><![CDATA[<h2 id="day1-9月6日">day1 9月6日</h2>
-<p><img src="https://p.sda1.dev/13/3826706c5f7f985eb5ed6a510916b81e/day1解析.png" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/13/ae27e446c4f39bcc62f7ce4bc0515d17/day1.png" style="zoom: 67%;"></p>
-<h2 id="day2-9月7日">day2 9月7日</h2>
-<p><img src="https://p.sda1.dev/13/e0f3b1cb6ef45301b3415298ebc46abc/day2.png" style="zoom: 67%;"></p>
-<p><img src="https://p.sda1.dev/13/26e84f1f12abcbea3879bb6719bd4969/day2解析.png" style="zoom:67%;"></p>
-<h2 id="day3-9月8日">day3 9月8日</h2>
-<p><img src="https://p.sda1.dev/13/13944e69af8e0ac63e42572e0552ce31/day3.png" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/13/bc78ef73a3c4ac8251d527a1ef68962c/day3解析.png" style="zoom:67%;"></p>
-<h2 id="day4-9月9日">day4 9月9日</h2>
-<p><img src="https://p.sda1.dev/13/245deb9873831f2a4f0a585d2d3316cb/day4.png" style="zoom: 67%;"></p>
-<p><img src="https://p.sda1.dev/13/439db40d097118747c5c994e60f8d8b4/day4解析.png" style="zoom:67%;"></p>
-<h2 id="day5-9月10日">day5 9月10日</h2>
-<p><img src="https://p.sda1.dev/13/b39ba3bc619ca86392120e5d8530f2ee/day5解析.png" style="zoom:80%;"></p>
-<h2 id="day6-9月11日">day6 9月11日</h2>
-<p><img src="https://p.sda1.dev/13/fd343bd932885d77cd993dda5a7fae04/day6.png" style="zoom:80%;"></p>
-<h2 id="day7-9月12日">day7 9月12日</h2>
-<p><img src="https://p.sda1.dev/13/c8b596cb4b5ba8c2122cb78265866996/day7.png" style="zoom:80%;"></p>
-<h2 id="day8-9月13日">day8 9月13日</h2>
-<p><img src="https://p.sda1.dev/13/efe3abf321337481d3abef8abf8e0fd9/da8.png" style="zoom:80%;"></p>
-<p>TTL字段经过一个路由器减一</p>
-<h2 id="day9-9月14日">day9 9月14日</h2>
-<p><img src="https://p.sda1.dev/13/567ed9cb6a590e40cc43471f53447edc/day9.png" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/13/d84e243dbd5cf4b1f4db5b736e75cc89/day9解析.png" style="zoom:80%;"></p>
-<h2 id="day10-9月15日">day10 9月15日</h2>
-<p><img src="https://p.sda1.dev/13/85c4ee948fc325f8ad2270269c5971ce/day10.png" style="zoom:80%;"></p>
-<h2 id="day11-9月16日">day11 9月16日</h2>
-<p><img src="https://p.sda1.dev/13/9d9cb429e857ca239214ee84e77b5541/day11.png" style="zoom:80%;"></p>
-<h2 id="day12-9月17日">day12 9月17日</h2>
-<p><img src="https://p.sda1.dev/13/e3257293467c30c53fd480ed2d3aed53/day12.png" alt="d" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/13/bb5efd370a561e13a608ef8d890d41f6/day12j.png" style="zoom:80%;"></p>
-<h2 id="day13-9月18日">day13 9月18日</h2>
-<p><img src="https://p.sda1.dev/13/e5cd6c8478656bd931331795623fe818/day13.png" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/13/d6fb806688c8268d94ef493babfca777/day13j.png" style="zoom:80%;"></p>
-<h2 id="day14-9月19日">day14 9月19日</h2>
-<p><img src="https://p.sda1.dev/13/2659f9e56b2fd8147367d5e219f20148/919.png" style="zoom:80%;"></p>
-<h2 id="day15-9月20日">day15 9月20日</h2>
-<p><img src="https://p.sda1.dev/13/bcb0657cbb838d7d5631721590f2861e/920.png" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/13/530c7f2761d190777c5beaeb9931a00f/9201.png" style="zoom:80%;"></p>
-<h2 id="day16-9月21日">day16 9月21日</h2>
-<p><img src="https://p.sda1.dev/14/217025d6633b49c8b1f0d9bbad5c2a47/16.jpg" style="zoom:80%;"></p>
-<h2 id="day17-9月22日">day17 9月22日</h2>
-<p><img src="https://p.sda1.dev/14/5f236e1bab95a73c7dab28fc2f76d38d/17.jpg" style="zoom:80%;"></p>
-<h2 id="day18-9月23日">day18 9月23日</h2>
-<p><img src="https://p.sda1.dev/14/fbaab7001a2e3136b971b2f92fc8a113/18.jpg" style="zoom:80%;"></p>
-<h2 id="day19-9月24日">day19 9月24日</h2>
-<p><img src="https://p.sda1.dev/14/357e5daa5ef7b1209eccd2c751c0b5d4/19.jpg" style="zoom:80%;"></p>
-<h2 id="day20-9月25日">day20 9月25日</h2>
-<p><img src="https://p.sda1.dev/14/765944aaa2126007a6f3c373a344d9e6/20.jpg" style="zoom:80%;"></p>
-<h2 id="day21-9月26日">day21 9月26日</h2>
-<p><img src="https://p.sda1.dev/14/491d9610790c10ccd8c6d7fd082f0e58/21.jpg" style="zoom:80%;"></p>
-<h2 id="day22-9月27日">day22 9月27日</h2>
-<p><img src="https://p.sda1.dev/14/3fa33aa6907222e389cb8d0675a41ed5/22.jpg" style="zoom:80%;"></p>
-<h2 id="day23-10月4日">day23 10月4日</h2>
-<p><img src="https://p.sda1.dev/14/142106b27b0ea40a68f2eb9106a204e6/23.jpg" style="zoom:50%;"></p>
-<p><img src="https://p.sda1.dev/14/8bfc27dd1dad0053ef61ec6023104bfa/22_.jpg" style="zoom: 80%;"></p>
-<h2 id="day24-10月5日">day24 10月5日</h2>
-<p><img src="https://p.sda1.dev/14/87af403f127657a2874a99786f9c7170/24.jpg" style="zoom:80%;"></p>
-<h2 id="day25-10月6日">day25 10月6日</h2>
-<p><img src="https://p.sda1.dev/14/7d554fdf639df33d83ed8fda0fcbe81d/25.jpg" style="zoom:80%;"></p>
-<h2 id="day26-10月7日">day26 10月7日</h2>
-<p><img src="https://p.sda1.dev/14/07c816c53d93d70f6ce0a66f81e7f998/26.jpg" style="zoom:67%;"></p>
-<p>IP地址的后23位与mac地址进行映射</p>
-<h2 id="day27-10月8日">day27 10月8日</h2>
-<p><img src="https://p.sda1.dev/14/1d21893a493c5712eefc02099887cf00/27.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/073cf5a5452688abb987f29fad6a91d9/27_.jpg" style="zoom:67%;"></p>
-<h2 id="day28-10月9日">day28 10月9日</h2>
-<p><img src="https://p.sda1.dev/14/6262dd16ce739522ba81220492abf41b/28.jpg" style="zoom:80%;"></p>
-<h2 id="day29-10月10日">day29 10月10日</h2>
-<p><img src="https://p.sda1.dev/14/e8aadbd1df089e9cde37fda08dfa0fdc/29.jpg" alt="29.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/cf800dfa0480c30ef23cc38435569b17/29_.jpg"></p>
-<h2 id="day30-10月11日">day30 10月11日</h2>
-<p><img src="https://p.sda1.dev/14/ee93c3965b4705f0a4b10bd6aa762bbf/30.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/49f1dc5411da92fe4eb44e683388a25a/30_.jpg" style="zoom:67%;"></p>
-<h2 id="day31-10月12日">day31 10月12日</h2>
-<p><img src="https://p.sda1.dev/14/55a3dcd1689747589b1fd1c2a0a38c56/31.jpg" style="zoom:80%;"></p>
-<h2 id="day32-10月13日">day32 10月13日</h2>
-<p><img src="https://p.sda1.dev/14/11c9f3d7e441725f09925dcde57a2a1e/32.jpg" alt="32.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/e50674b499bd486686fe9523c00a8fa2/32_.jpg" alt="32_.jpg" style="zoom:67%;"></p>
-<h2 id="day33-10月14日">day33 10月14日</h2>
-<p><img src="https://p.sda1.dev/14/1862a5b5ff535dc6ddaa97bba92be4c3/33.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/587cf00f90fc3ea0ce87ef94471c855c/33_.jpg" style="zoom:67%;"></p>
-<h2 id="day34-10月15日">day34 10月15日</h2>
-<p><img src="https://p.sda1.dev/14/458913835e5b433084b2fa2ba0f606de/34.jpg" alt="34.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/2e00d8c33c8341f882baa69a1999787a/34_.jpg" alt="34_.jpg" style="zoom:67%;"></p>
-<h2 id="day35-10月16日">day35 10月16日</h2>
-<p><img src="https://p.sda1.dev/14/3e91dfdf5a1ca7ef795d30ffaa03f70d/35.jpg" alt="35.jpg" style="zoom:80%;"></p>
-<h2 id="day36-10月17日">day36 10月17日</h2>
-<p><img src="https://p.sda1.dev/14/6fc22882b30b8e57c3df88c70e8cd0d8/36.jpg" alt="36.jpg" style="zoom:80%;"></p>
-<h2 id="day37-10月18日">day37 10月18日</h2>
-<p><img src="https://p.sda1.dev/14/274c423406a2daa981b34ff87b8248d2/37.jpg" alt="37.jpg" style="zoom:80%;"></p>
-<h2 id="day38-10月19日">day38 10月19日</h2>
-<p><img src="https://p.sda1.dev/14/7f3189db95699d2db85b60085624c7ad/38.jpg" alt="38.jpg" style="zoom:80%;"></p>
-<h2 id="day39-10月20日">day39 10月20日</h2>
-<p><img src="https://p.sda1.dev/14/7ace162519cb145633cba9605ba0f6d4/39.jpg" alt="39.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/22a37e27601f26a5bd80534330379ec6/39_.jpg" alt="39_.jpg" style="zoom:67%;"></p>
-<p><strong>第二段是带数据的报文段，但不叫数据报文段，所以必须从实际第三段算起。</strong></p>
-<h2 id="day40-10月21日">day40 10月21日</h2>
-<p><img src="https://p.sda1.dev/14/3aa110932043c6f8881d45f210a08093/40.jpg" alt="40.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/565c7d8411531209d4ce743fe95dbaba/40_.jpg" alt="40_.jpg" style="zoom:67%;"></p>
-<h2 id="day41-10月22日">day41 10月22日</h2>
-<p><img src="https://p.sda1.dev/14/c7a05b69ebc85459cfb73ce637019e78/41.jpg" alt="41.jpg" style="zoom:80%;"></p>
-<h2 id="day42-10月23日">day42 10月23日</h2>
-<p><img src="https://p.sda1.dev/14/0d812311329d4f2df53120f10ebf2beb/42.jpg" alt="42.jpg" style="zoom:80%;"></p>
-<h2 id="day43-10月24日">day43 10月24日</h2>
-<p><img src="https://p.sda1.dev/14/859bdbe767feed4010d31aa952bade1c/43.jpg" alt="43.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/777a757228b13522b114491578433220/43_.jpg" alt="43_.jpg" style="zoom:67%;"></p>
-<h2 id="day44-10月25日">day44 10月25日</h2>
-<p><img src="https://p.sda1.dev/14/4556237393eb499ff25a9863c7440d4b/44.jpg" alt="44.jpg" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/14/aab69db8120a69b6100947301cf16254/44_.jpg" alt="44_.jpg" style="zoom:80%;"></p>
-<h2 id="day45-10月26日">day45 10月26日</h2>
-<p><img src="https://p.sda1.dev/14/9fedbeb6e0d5dc1241ece81d6191548b/45.jpg" alt="45.jpg" style="zoom:80%;"></p>
-<h2 id="day46-10月27日">day46 10月27日</h2>
-<p><img src="https://p.sda1.dev/14/5ea5d1188d3123ef7e9f510b3ea0f87f/46.jpg" alt="46.jpg" style="zoom:80%;"></p>
-<h2 id="day47-10月28日">day47 10月28日</h2>
-<p><img src="https://p.sda1.dev/14/8b784202f47c7433fe3cf48730ffcb31/47.jpg" alt="47.jpg" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/14/70d9e71b255938bab8b7c24eb9f3b3e8/47_.jpg" alt="47_.jpg" style="zoom:80%;"></p>
-<h2 id="day48-10月29日">day48 10月29日</h2>
-<p><img src="https://p.sda1.dev/14/677d591e81e6562f1c739e26c1cf6ca7/48.jpg" alt="48.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/f6a63cd252d2f82213c870cc59617b41/48_.jpg" alt="48_.jpg" style="zoom:67%;"></p>
-<h2 id="day49-10月30日">day49 10月30日</h2>
-<p><img src="https://p.sda1.dev/14/3a0c7620fc215e4057cada613b27ffc5/49.jpg" alt="49.jpg" style="zoom:80%;"></p>
-<h2 id="day50-10月31日">day50 10月31日</h2>
-<p><img src="https://p.sda1.dev/14/862ecb947b9f8565f78537e889d6bc18/50.jpg" alt="50.jpg" style="zoom:80%;"></p>
-<h2 id="day51-11月1日">day51 11月1日</h2>
-<p><img src="https://p.sda1.dev/14/584d33a8c0efe6f6cb4820db63b2425e/51.jpg" alt="51.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/aad26e927ee04890a03d0d624e374778/51_.jpg" alt="51_.jpg" style="zoom:67%;"></p>
-<h2 id="day52-11月2日">day52 11月2日</h2>
-<p><img src="https://p.sda1.dev/14/b431628ddc3d1fc8d7096c669260779b/52.jpg" alt="52.jpg" style="zoom:67%;"></p>
-<h2 id="day53-11月10日">day53 11月10日</h2>
-<p><img src="https://p.sda1.dev/14/b2a891f970eb84d81348bdf9afe688ec/53.jpg" alt="53.jpg" style="zoom: 80%;"></p>
-<p><img src="https://p.sda1.dev/14/650a06cefaaadb531827f1a945193c12/53_.jpg" alt="53_.jpg" style="zoom: 80%;"></p>
-<h2 id="day54-11月11日">day54 11月11日</h2>
-<p><img src="https://p.sda1.dev/14/1e7550c607b29888545d2107690389e1/54.jpg" alt="54.jpg" style="zoom:80%;"></p>
-<h2 id="day55-11月12日">day55 11月12日</h2>
-<p><img src="https://p.sda1.dev/14/87826d73a831c73c757ea73c2c189ff9/55_.jpg" alt="55_.jpg" style="zoom:80%;"></p>
-<h2 id="day56-11月13日">day56 11月13日</h2>
-<p><img src="https://p.sda1.dev/14/07149ab2870b7aafb62cbe5e79db018e/56.jpg" alt="56.jpg" style="zoom:80%;"></p>
-<h2 id="day57-11月14日">day57 11月14日</h2>
-<p><img src="https://p.sda1.dev/14/4e78a8f3db14ef6c30bdb959741f3376/57.jpg" alt="57.jpg" style="zoom:80%;"></p>
-<h2 id="day58-11月15日">day58 11月15日</h2>
-<p><img src="https://p.sda1.dev/14/fb1cbdf9bb9fbafac2bd788f77601367/58.jpg" alt="58.jpg" style="zoom:80%;"></p>
-<h2 id="day59-11月16日">day59 11月16日</h2>
-<p><img src="https://p.sda1.dev/14/c733d55cea2cf91d2899dace34674f00/59.jpg" alt="59.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/e4015576d7573be9c591f57abb376bfd/59_.jpg" alt="59_.jpg" style="zoom:67%;"></p>
-<h2 id="day60-11月17日">day60 11月17日</h2>
-<p><img src="https://p.sda1.dev/14/70cdedfd3c93f9ba595c52c7d847a44a/60.jpg" alt="60.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/fb0b6a80eba884cf89bd89c802ee1b29/60_.jpg" alt="60_.jpg" style="zoom:67%;"></p>
-<h2 id="day61-11月18日">day61 11月18日</h2>
-<p><img src="https://p.sda1.dev/14/8310d54fb590c656f60233ec73804254/61.jpg" alt="61.jpg" style="zoom:80%;"></p>
-<p><img src="https://p.sda1.dev/14/01770f372f3d24494e159b7a956b6b02/61_.jpg" alt="61_.jpg" style="zoom:80%;"></p>
-<h2 id="day62-11月19日">day62 11月19日</h2>
-<p><img src="https://p.sda1.dev/14/50a413d62f5e99299d060be6f5c0d04a/62.jpg" alt="62.jpg" style="zoom:80%;"></p>
-<h2 id="day63-11月20日">day63 11月20日</h2>
-<p><img src="https://p.sda1.dev/14/687ab8528c889563b09c6deab31399f9/63.jpg" alt="63.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/2998adb431d10f06ef0f441c969ca0a3/63_.jpg" alt="63_.jpg" style="zoom:67%;"></p>
-<h2 id="day64-11月21日">day64 11月21日</h2>
-<p><img src="https://p.sda1.dev/14/b6ebeb3f8eed1f07df7f7107e6131d86/64.jpg" alt="64.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/a9a1a1f659139617d2009b4533a11606/64_.jpg" alt="64_.jpg" style="zoom:67%;"></p>
-<h2 id="day65-11月22日">day65 11月22日</h2>
-<p><img src="https://p.sda1.dev/14/ed86c0234fef7f41cfac0cbdcf7f2c17/65.jpg" alt="65.jpg" style="zoom:80%;"></p>
-<h2 id="day66-11月23日">day66 11月23日</h2>
-<p><img src="https://p.sda1.dev/14/e1e9415020eba265e4ff6f38dc80419a/66.jpg" alt="66.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/32deef7527ed159313f77ca3d893b94f/65_.jpg" alt="65_.jpg" style="zoom:67%;"></p>
-<h2 id="day67-11月24日">day67 11月24日</h2>
-<p><img src="https://p.sda1.dev/14/b3f100fc05f11d85aced0974ad63d7d2/67.jpg" alt="67.jpg" style="zoom:80%;"></p>
-<h2 id="day68-11月25日">day68 11月25日</h2>
-<p><img src="https://p.sda1.dev/14/1788afff6071f1a36594fe5205baaf91/68.jpg" alt="68.jpg" style="zoom:80%;"></p>
-<h2 id="day69-11月26日">day69 11月26日</h2>
-<p><img src="https://p.sda1.dev/14/8d7f2054913383661703c82a5d622218/69.jpg" alt="69.jpg" style="zoom:80%;"></p>
-<h2 id="day70-11月27日">day70 11月27日</h2>
-<p><img src="https://p.sda1.dev/14/33d924bbed9ea03024a06393e00f4444/70.jpg" alt="70.jpg" style="zoom:80%;"></p>
-<h2 id="day71-11月28日">day71 11月28日</h2>
-<p><img src="https://p.sda1.dev/14/7428a417684ac2c0493fb5351c558a9e/71.jpg" alt="71.jpg" style="zoom:67%;"></p>
-<p><img src="https://p.sda1.dev/14/ef67e821bd2175c1528897e5fb3a9dd5/71_.jpg" alt="71_.jpg" style="zoom:67%;"></p>
-<h2 id="day72-11月29日">day72 11月29日</h2>
-<p><img src="https://p.sda1.dev/14/6756dd0406633d59d806dab2e7e63b67/72.jpg" alt="72.jpg" style="zoom:80%;"></p>
-<h2 id="day73-11月30日">day73 11月30日</h2>
-<p><img src="https://p.sda1.dev/14/eb93cbaa09435df8b0010132069ff5b2/73.jpg" alt="73.jpg" style="zoom:80%;"></p>
+    <title>统计学习方法</title>
+    <url>/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="机器学习分类">机器学习分类</h2>
+<h3 id="监督学习">监督学习</h3>
+<p>监督学习(Supervised Learning)
+是指从<strong>标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习输入到输出的映射的统计规律</strong>。</p>
+<ul>
+<li>输入空间：输入的所有可能取值的集合</li>
+<li>实例：每一个具体的输入，通常由特征向量表示</li>
+<li>特征空间：所有特征向量存在的空间</li>
+<li>输出空间：输出的所有可能取值的集合</li>
+</ul>
+<p>根据变量类型不同，可分为不同的问题：</p>
+<ul>
+<li>回归问题：输入变量和输出变量均为连续变量的预测问题</li>
+<li>分类问题：输出变量为有限个离线变量的预测问题</li>
+<li>标注问题：输入变量与输出变量均为变量序列的预测问题</li>
+</ul>
+<p>监督学习流程图：</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419174842251.png" alt="image-20240419174842251" style="zoom:67%;"></p>
+<h3 id="无监督学习">无监督学习</h3>
+<p>无监督学习(Unsupervised
+Learning)是指从<strong>无标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习数据中的统计规律或潜在结构</strong>。</p>
+<p>无监督学习流程图：</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175607134.png" alt="image-20240419175607134" style="zoom:67%;"></p>
+<h3 id="强化学习">强化学习</h3>
+<p>强化学习流程图</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175722038.png" alt="image-20240419175722038" style="zoom:67%;"></p>
+<h3 id="统计学学习方法三要素">统计学学习方法三要素</h3>
+<p>三要素包括<strong>模型、策略和算法</strong></p>
+<h4 id="监督学习三要素">监督学习三要素</h4>
+<p><strong>假设空间</strong>：所有可能得条件概率分布或决策函数，用<span class="math inline">\(\mathcal{F}\)</span>表示。</p>
+<ul>
+<li><p>模型：监督学习模型可表示为条件概率分布或决策函数</p></li>
+<li><p>策略</p>
+<p>损失函数：度量模型一次预测的好坏，记作<span class="math inline">\(L(Y, f(X))\)</span></p>
+<p>风险函数：度量平均意义下模型预测的好坏，<span class="math inline">\(R_{exp}(f) = E_p[L(Y, f(X))]=\int_{x × y}L(y,
+f(x))P(x, y)dxdy\)</span></p>
+<p>经验风险：模型<span class="math inline">\(f(X)\)</span>关于训练集的平均损失，<span class="math inline">\(R_{emp}(f) =
+\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,f(x_i))\)</span></p>
+<p>在N趋向于无穷的时候，经验风险趋向于exp风险。但是在实际中，N的范围不可能趋向无穷，会出现过拟合的情况，因此引入惩罚项得到结构风险<span class="math inline">\(R_{srm}=\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,
+f(x_i)) + \lambda J(f)\)</span></p></li>
+<li><p>算法</p>
+<p>算法就是如何求解最优模型的问题。</p>
+<p>如果最优模型存在显式解析解，算法简单，通常不存在解析解，需要数值计算方法，比如梯度下降法。</p></li>
+</ul>
+<h4 id="无监督学习的三要素">无监督学习的三要素</h4>
+<ul>
+<li>模型：函数<span class="math inline">\(z=g_\theta
+(x)\)</span>，条件概率分布<span class="math inline">\(P_\theta(z|x)\)</span>或条件概率分布<span class="math inline">\(P_\theta(x|z)\)</span></li>
+<li>策略：优化目标函数</li>
+<li>算法：通常是迭代算法</li>
+</ul>
+<h3 id="泛化能力">泛化能力</h3>
+<ul>
+<li><p>泛化误差：如果学习到的模型是<span class="math inline">\(\hat{f}\)</span>，那么这个模型对于未知数据预测的误差即为泛化误差。<span class="math inline">\(R_{exp}(\hat{f}) = E_p[L(Y, \hat{f}(X))]=\int_{x ×
+y}L(y, \hat{f}(x))P(x, y)dxdy\)</span></p></li>
+<li><p>泛化误差上界：指泛化误差的概率上界。两种学习方法的优劣，通常通过它们的泛化误差上界进行比较。</p>
+<p>泛化误差上届具有的性质：</p>
+<ul>
+<li>样本容量的函数：当样本容量增加时，泛化上界趋于0</li>
+<li>假设空间容量的函数：假设空间容量越大，模型就越难学，泛化误差上界就越大。</li>
+</ul></li>
+</ul>
+<h2 id="感知机">感知机</h2>
+<h3 id="模型介绍">模型介绍</h3>
+<p>感知机是二分类的线性模型。</p>
+<ul>
+<li><p>输入空间：<span class="math inline">\(\mathcal{X} \subseteq
+R^n\)</span>；输入<span class="math inline">\(x=(x^{1},x^{2},...,
+x^{n})^T\in \mathcal{X}\)</span></p></li>
+<li><p>输出空间：<span class="math inline">\(\mathcal{Y}=\{+1,-1\}\)</span>; 输出<span class="math inline">\(y\in\mathcal{Y}\)</span></p></li>
+<li><p>感知机：<span class="math display">\[f(x)=sign(wx+b)=\begin{cases} +1, wx+b\ge0 \\ -1,
+wx+b &lt; 0 \end{cases}\]</span></p>
+<p>其中，<span class="math inline">\(w=(w^{1},w^{2},..., w^{n})\in
+R^n\)</span>称为权值，b称为偏置</p></li>
+<li><p>假设空间：<span class="math inline">\(\mathcal{F}=\{f|f(x)=wx+b\}\)</span></p></li>
+</ul>
+<p><span class="math inline">\(wx+b=0\)</span>是特征空间<span class="math inline">\(R^n\)</span>中的一个超平面S，法向量为w，
+截距为b。</p>
+<p><strong>超平面</strong>是指n维线性空间中维度为n-1的子空间。它可以把线性空间分割成不相交的两部分。比如二维空间中，一条直线是一维的，它把平面分成了两块；三维空间中，一个平面是二维的，它把空间分成了两块。</p>
+<p>模型流程图:</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240421211708923.png" alt="image-20240421211708923" style="zoom:67%;"></p>
+<h3 id="学习策略">学习策略</h3>
+<p>感知机模型的数据集要具有线性可分性。可分性即给定数据集，存在某个超平面可以将数据集的正负实例点完全正确的划分到超平面的两侧。</p>
+<ul>
+<li>误分类点<span class="math inline">\(x_i\)</span>到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}y_i(wx_i+b)\)</span></li>
+<li>所有误分类点到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}\sum\limits_{x_x\in M
+}y_i(wx_i+b)\)</span>,M代表所有误差分类点的集合。</li>
+<li>损失函数：<span class="math inline">\(L(w, b)=-\sum\limits_{x_i\in
+M}y_i(wx_i+b)\)</span></li>
+</ul>
+<h4 id="梯度下降法">梯度下降法</h4>
+<p><strong>相关概念</strong></p>
+<ul>
+<li>梯度：指某一函数在该点处最大的方向导数，沿着该方向可取得最大的变化率。<span class="math inline">\(\bigtriangledown = \frac{\partial
+f(\theta)}{\partial \theta}\)</span></li>
+<li>若<span class="math inline">\(f(\theta)\)</span>是凸函数，可通过梯度下降法进行优化：<span class="math inline">\(\theta^{(k+1)} = \theta^{(k)}-\eta
+\bigtriangledown f(\theta^{(k)})\)</span></li>
+</ul>
+<p><strong>算法</strong></p>
+<ul>
+<li><p>输入：目标函数<span class="math inline">\(f(\theta)\)</span>,
+步长<span class="math inline">\(\eta\)</span>，计算精度<span class="math inline">\(\varepsilon\)</span></p></li>
+<li><p>输出：<span class="math inline">\(f(\theta)\)</span>的极小值点<span class="math inline">\(\theta^{*}\)</span></p>
+<blockquote>
+<ol type="1">
+<li>选取初识值<span class="math inline">\(\theta^{(0)}\in
+R^n\)</span>，置k = 0</li>
+<li>计算<span class="math inline">\(f(\theta^{(k)})\)</span></li>
+<li>计算梯度<span class="math inline">\(\bigtriangledown
+f(\theta^{(k)})\)</span></li>
+<li>置<span class="math inline">\(\theta^{(k+1)}=\theta^{(k)}-\eta
+\bigtriangledown f(\theta^{(k)})\)</span>,计算<span class="math inline">\(f(\theta^{(k+1)})\)</span>，当<span class="math inline">\(||f(\theta^{(k+1)})- f(\theta^{(k)})|| &lt;
+\varepsilon\)</span>或者<span class="math inline">\(||\theta^{(k+1)}-\theta^{(k)}|| &lt;
+\varepsilon\)</span>时，停止迭代，令<span class="math inline">\(\theta^*=\theta^{(k+1)}\)</span></li>
+<li>否则，置k = k + 1， 转3执行。</li>
+</ol>
+</blockquote></li>
+</ul>
+<h4 id="原始形式学习算法">原始形式学习算法</h4>
+<p>训练数据集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
+y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p>
+<p>损失函数: <span class="math inline">\(L(w,b)=-\sum\limits_{x_i\in
+M}y_i(wx_i+b)\)</span></p>
+<p>模型参数估计：<span class="math inline">\(arg\  min
+_{w,b}L(w,b)\)</span></p>
+<p><strong>随机梯度下降法</strong></p>
+<ul>
+<li><p>梯度：<span class="math inline">\(\bigtriangledown _wL(w,
+b)=-\sum\limits_{x_i\in M}y_ix_i\)</span>, <span class="math inline">\(\bigtriangledown_bL(w,b)=-\sum\limits_{x_i\in
+M}y_i\)</span></p></li>
+<li><p>参数更新：批量梯度下降法，即每次迭代时使用所有误分类点来进行参数更新：</p>
+<p><span class="math inline">\(w \leftarrow w + \eta \sum\limits_{x_i\in
+M}y_ix_i, \ \ b \leftarrow b + \eta \sum\limits_{x_i\in
+M}y_i\)</span></p></li>
+<li><p>随机梯度下降法：每次随机选取一个误分类点进行参数更新：</p>
+<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
+\leftarrow b + \eta y_i\)</span></p></li>
+</ul>
+<p><strong>算法步骤</strong></p>
+<blockquote>
+<ol type="1">
+<li>选取 初始值<span class="math inline">\(w_0, b_0\)</span></li>
+<li>在数据集中随机选择数据<span class="math inline">\((x_i,
+y_i)\)</span></li>
+<li>若<span class="math inline">\(y_i(wx_i+n)\le 0\)</span>, <span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b \leftarrow b +
+\eta y_i\)</span></li>
+<li>转2，直到训练集中没有误分类点。</li>
+</ol>
+</blockquote>
+<h4 id="对偶形式学习算法">对偶形式学习算法</h4>
+<p><strong>对偶形式</strong></p>
+<p>在原始形式中，若<span class="math inline">\((x_i,
+y_i)\)</span>为误分类点，可如下更新参数</p>
+<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
+\leftarrow b + \eta y_i\)</span></p>
+<p>假设初始值<span class="math inline">\(w_0=0,b_0=0\)</span>，
+对误差分类点<span class="math inline">\((x_i,
+y_i)\)</span>通过上述公式更新参数，修改<span class="math inline">\(n_i\)</span>次之后，<span class="math inline">\(w,b\)</span>的增量分别为<span class="math inline">\(\alpha_iy_ix_i\)</span>和<span class="math inline">\(\alpha_iy_i\)</span>，其中<span class="math inline">\(\alpha_i=n_i\eta\)</span></p>
+<p>最后学习到的参数为，<span class="math inline">\(w=\sum\limits_{i=1}\limits^{N}\alpha_iy_ix_i;\
+\  \ b=\sum\limits_{i=1}\limits^{N}\alpha_iy_i\)</span></p>
+<p><strong>算法步骤</strong></p>
+<ul>
+<li><p>输入训练集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
+y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p></li>
+<li><p>输出：<span class="math inline">\(\alpha,
+b\)</span>；感知机模型<span class="math inline">\(f(x)=sign(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j
+\cdot x + b), \alpha=(\alpha_1,
+\alpha_2,...,\alpha_N)^T\)</span></p></li>
+</ul>
+<blockquote>
+<ol type="1">
+<li>选取初始值<span class="math inline">\(\alpha^{&lt;0&gt;}=(0, 0, ...,
+0), b^{&lt;0&gt;}=0\)</span>;</li>
+<li>在训练集中随机选取数据<span class="math inline">\((x_i,
+y_i)\)</span>；</li>
+<li>若<span class="math inline">\(y_i(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j \cdot
+x_i + b) \le 0\)</span>, <span class="math inline">\(\alpha_i \leftarrow
+\alpha_i + \eta;\ \ \ b \leftarrow b + \eta y_i\)</span></li>
+<li>转2，直到训练集中没有误分类点</li>
+</ol>
+</blockquote>
+<h2 id="k近邻法">k近邻法</h2>
+<h3 id="理解与相关概念">理解与相关概念</h3>
+<p>K近邻法(k-nearest neighbor, k-NN)是一种基本的分类与回归方法。</p>
+<p><strong>主要思想</strong>：假定给定一个训练数据集，其中实例标签已定，当输入新的实例时，可以根据其最近的k个训练实例的标签，预测新实例对应的标注信息。</p>
+<ul>
+<li>分类问题：对新的实例，根据与之相邻的k个训练实例的类别，通过多数表决等方式进行预测</li>
+<li>回归问题：对新的实例，根据与之相邻的k个训练实例的标签，通过均值计算进行预测</li>
+</ul>
+<p><strong>算法</strong></p>
+<ul>
+<li><p>输入训练集：<span class="math inline">\(T={(x_1, y_1), (x_2,
+y_2),...,(x_N, y_N)}\)</span>,其中<span class="math inline">\(x_i\in\mathcal{X}\subseteq R^n,
+y\in\mathcal{Y}=\{c_1, c_2,...,c_K\}\)</span>;输出为实例<span class="math inline">\(x\)</span>所属的类别y</p></li>
+<li><p>算法步骤：</p>
+<blockquote>
+<ol type="1">
+<li><p>根据给定的<strong>距离度量</strong>，计算x与T中点的距离；</p></li>
+<li><p>在T中找到与x最邻近的<em>k</em>个点，涵盖这k个点的x的邻域记作<span class="math inline">\(N_k(x)\)</span>；</p></li>
+<li><p>在<span class="math inline">\(N_k(x)\)</span>中根据<strong>决策规则</strong>（如多数表决）决定x的类别y。</p>
+<p><span class="math inline">\(y=arg \ \ max_{c_j} \sum\limits_{x_i\in
+N_k(x)}I(y_i=c_i), i=1, 2,...,N;j=1, 2,...,K\)</span></p></li>
+</ol>
+</blockquote></li>
+</ul>
+<h3 id="三要素">三要素</h3>
+<p><strong>模型</strong>：k近邻法不具有显性的学习过程，实际上利用训练数据集对特征向量空间进行划分，以其作为分类的“模型”。</p>
+<h4 id="距离度量">距离度量</h4>
+<p><strong><span class="math inline">\(L_p\)</span>距离</strong>：特征空间<span class="math inline">\(\mathcal{X}\)</span>假设为<span class="math inline">\(R^n\)</span>，<span class="math inline">\(\forall
+x_i, x_j\in \mathcal{X}, \  x_i=(x_i^{(1)}, x_i^{(2)}, ...,
+x_i^{(n)})^T, \ x_j=(x_j^{(1)}, x_j^{(2)}, ...,
+x_j^{(n)})^T\)</span>,则有</p>
+<p><span class="math inline">\(L_p(x_i, x_j) =
+(\sum\limits_{I=1}\limits^{n}|x_i^{(I)}-x_j^{(I)}|^p)^{\frac{1}{p}}, \ p
+\ge 1\)</span></p>
+<p>p取2时为<strong>欧氏距离</strong>。</p>
+<p>P取1时为<strong>曼哈顿距离</strong></p>
+<p>p为无穷大时为切<strong>比雪夫不距离</strong>：<span class="math inline">\(L_{\infty}=max_I|x_i^{(I)}-x_j^{(I)}|\)</span></p>
+<h4 id="k值的选择"><em>k</em>值的选择</h4>
+<ul>
+<li><p>较小的k值，学习的近似误差较小，但估计误差增大，敏感性增强，而且模型复杂，容易过拟合。</p></li>
+<li><p>较大的k值，减小学习的估计误差，但近似误差增大，而且模型简单。</p>
+<p>k的取值可以通过交叉验证来选择，一般低于训练集样本量的平方跟。</p></li>
+</ul>
+<h4 id="分类决策规则">分类决策规则</h4>
+<p><strong>多数表决规则</strong>：由输入实例的<em>k</em>个邻近的训练实例中的多数类决定输入实例的类。</p>
+<ul>
+<li>分裂函数: <span class="math inline">\(f:R^n \rightarrow {c_1, c_2,
+..., c_K}\)</span></li>
+<li>0-1损失函数：<span class="math display">\[L(Y, f(X))=\begin{cases}1,
+Y \ne f(X) \\ 0, Y = f(X) \end{cases}\]</span></li>
+<li>误分类概率：<span class="math inline">\(P(Y\ne
+f(X))=1-P(Y=f(X))\)</span></li>
+</ul>
+<p>对于给定实例<span class="math inline">\(x\in
+\mathcal{X}\)</span>，相应的<em>k</em>邻域<span class="math inline">\(N_k(x)\)</span>, 类别为<span class="math inline">\(c_j\)</span>，误分类率为<span class="math inline">\(\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i\ne
+c_j)=1-\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span>;
+最小化误分类率，等价于<span class="math inline">\(arg \ \ max \sum
+\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span></p>
+<h3 id="kd树"><em>kd</em>树</h3>
+<p><em>kd</em>树是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
+<p>本质是二叉树，表示对k维空间的一个划分</p>
+<p><strong>构造过程</strong>：不断地用垂直于坐标轴的超平面将k维空间切分，形成k维超矩形区域。<em>kd</em>树中的每一个结点对应于一个k维超矩形区域。</p>
+<p><strong>构造<em>kd</em>树算法</strong></p>
+<ul>
+<li><p>输入：<em>k</em>维空间数据集<span class="math inline">\(T=\{x_1,
+x_2,...,x_N\}\)</span>, 其中<span class="math inline">\(x_i=(x_i^{(1)}),
+x_i^{(2)}),...,x_i^{(k)})^T\)</span></p></li>
+<li><p>输出：<em>kd</em>树</p>
+<blockquote>
+<ol type="1">
+<li>开始，构造根节点。
+<ul>
+<li>选取<span class="math inline">\(x^{(1)}\)</span>为坐标轴，以训练集中的所有数据<span class="math inline">\(x^{(1)}\)</span>坐标中的中位数作为切分点，将超矩形区域切割成两个字区域，将该切分点作为根节点。</li>
+<li>由根节点生出深度为1的左右子节点，左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
+</ul></li>
+<li>重复
+<ul>
+<li>对深度为j的节点，选择<span class="math inline">\(x^{(I)}\)</span>为切分坐标轴，<span class="math inline">\(I=j( mod \ k) + 1\)</span>,
+以该节点区域中所有实例<span class="math inline">\(x^{(I)}\)</span>坐标的中位数作为切分点，将区域划分为两个子区域。</li>
+<li>生成深度为j+1的左右节点。左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
+</ul></li>
+<li>直到两个子区域没有实例时停止。</li>
+</ol>
+</blockquote></li>
+</ul>
+<p><strong>搜索<em>kd</em>树</strong></p>
+<ul>
+<li><strong>最近邻搜索算法</strong>
+<ul>
+<li>寻找<strong>当前最近点</strong>，从树根不停寻找下一级节点，最终找到离目标点最近的叶子节点作为<strong>当前最近点</strong></li>
+<li>回溯：以目标点和<strong>当前最近点</strong>的距离沿树根进行回溯和迭代</li>
+</ul></li>
+</ul>
+<p><strong>机器学习实战中的代码例子</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createDataSet</span>():</span><br><span class="line">    group = np.array([[<span class="number">1.0</span>, <span class="number">1.1</span>], [<span class="number">1.0</span>, <span class="number">1.0</span>], [<span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0.1</span>]])</span><br><span class="line">    labels = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">    <span class="keyword">return</span> group, labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">classify</span>(<span class="params">inX, dataSet, labels, k</span>):</span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    diffMat = np.tile(inX, (dataSetSize, <span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat ** <span class="number">2</span></span><br><span class="line">    sqDistances = sqDiffMat.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances ** <span class="number">0.5</span></span><br><span class="line">    sortedDistIndicies = distances.argsort()</span><br><span class="line">    classCount = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    sortedClassCount = <span class="built_in">sorted</span>(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file2matrix</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fr:</span><br><span class="line">        lines = fr.readlines()</span><br><span class="line">        len_lines = <span class="built_in">len</span>(lines)</span><br><span class="line">        res = np.zeros((len_lines, <span class="number">3</span>))</span><br><span class="line">        label_vector = []</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">            line = line.strip()</span><br><span class="line">            line_list = line.split(<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            res[index, :] = line_list[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">            label_vector.append(<span class="built_in">int</span>(line_list[-<span class="number">1</span>]))</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res, label_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">autoNorm</span>(<span class="params">dataset</span>):</span><br><span class="line">    minv = dataset.<span class="built_in">min</span>(<span class="number">0</span>)</span><br><span class="line">    maxv = dataset.<span class="built_in">max</span>(<span class="number">0</span>)</span><br><span class="line">    diff = maxv - minv</span><br><span class="line">    normdataset = np.zeros(np.shape(dataset))</span><br><span class="line">    m = dataset.shape[<span class="number">0</span>]</span><br><span class="line">    normdataset = dataset - np.tile(minv, (m, <span class="number">1</span>))</span><br><span class="line">    normdataset = normdataset / np.tile(diff, (m, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> normdataset, diff, minv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">datatest</span>():</span><br><span class="line">    r = <span class="number">0.1</span></span><br><span class="line">    data, label = file2matrix(<span class="string">&#x27;datingTestSet2.txt&#x27;</span>)</span><br><span class="line">    normdata, rang, minv = autoNorm(data)</span><br><span class="line">    m = normdata.shape[<span class="number">0</span>]</span><br><span class="line">    numtest = <span class="built_in">int</span>(m * r)</span><br><span class="line">    error_count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numtest):</span><br><span class="line">        class_res = classify(normdata[i, :], normdata[numtest:m, :], label[numtest:m], <span class="number">4</span>)</span><br><span class="line">        <span class="built_in">print</span>(class_res, label[i])</span><br><span class="line">        <span class="keyword">if</span> class_res != label[i]:</span><br><span class="line">            error_count += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(error_count / <span class="built_in">float</span>(numtest))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    group, labels = createDataSet()</span><br><span class="line">    res = classify([<span class="number">0</span>, <span class="number">0</span>], group, labels, <span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line">    dataset, labels = file2matrix(<span class="string">&quot;datingTestSet2.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># print(dataset, labels)</span></span><br><span class="line">    plt.scatter(dataset[:, <span class="number">0</span>], dataset[:, <span class="number">1</span>], <span class="number">15.0</span> * np.array(labels), <span class="number">15.0</span> * np.array(labels))</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    normdata, diff, minv = autoNorm(dataset)</span><br><span class="line">    <span class="comment"># print(normdata, diff, minv)</span></span><br><span class="line">    datatest()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="朴素贝叶斯法">朴素贝叶斯法</h2>
+<h3 id="贝叶斯定理">贝叶斯定理</h3>
+<p><strong>先验概率</strong>：基于统计的概率，是基于以往历史经验和分析得到的结果，不需要依赖当前发生的条件。</p>
+<p><strong>后验概率</strong>：从条件概率而来，由因推果，是基于当下发生了事件之后计算的概率，依赖于当前发生的条件。</p>
+<p><strong>条件概率</strong>：记事件A发生的概率为P(A),事件B发生的概率为P(B),则在B事件发生的前提下，A事件发生的概率即为条件概率，记为<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span>.</p>
+<p><strong>贝叶斯公式</strong>：基于条件概率，通过P(B|A)来求P(A|B).</p>
+<p><span class="math inline">\(P(B|A)=\frac{P(AB)}{P(A)} \rightarrow
+P(AB)=P(B|A)P(A)\)</span>,因此<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}=\frac{P(B|A)P(A)}{P(B)}\)</span></p>
+<p><strong>全概率公式</strong>：若事件<span class="math inline">\(A_1,A_2,...,A_n\)</span>构成一个完备事件组且都有正概率，则对任意一个事件B都有公式：</p>
+<p><span class="math inline">\(P(B)=\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)\)</span></p>
+<p>将全概率公式带入贝叶斯公式：<span class="math inline">\(P(A|B)=\frac{P(B|A)P(A)}{\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)}\)</span></p>
+<p><strong>贝叶斯分类</strong></p>
+<p>存在K类<span class="math inline">\(c_1,
+c_2,...,c_K\)</span>，给定一个新的实例<span class="math inline">\(x=(x^{(1)},
+x^{(2)},...,x^{(n)})\)</span>，求x应属于哪一类</p>
+<p><span class="math inline">\(P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(X=x|Y=c_i)P(Y=c_i)}\)</span></p>
+<p>最终求：<span class="math inline">\(arg\ \ max_{c_i}P(X=x|Y=c_i)\cdot
+P(Y=c_i)\)</span></p>
+<h3 id="朴素贝叶斯算法原理">朴素贝叶斯算法原理</h3>
+<p>假设实例特征之间相互独立</p>
+<p><span class="math inline">\(P(X=x_i|Y=c_i)=\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
+<p><span class="math inline">\(\Longrightarrow
+P(X=x)=\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
+<p><span class="math inline">\(\Longrightarrow
+P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
+<p><span class="math inline">\(\Longrightarrow
+P(Y=c_i|X=x)=\frac{P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
+<p>最终，朴素贝叶斯分类器只需要关注分子，即<span class="math inline">\(arg \ \ max_{c_i}
+P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span>，即<strong>后验概率最大化</strong>。</p>
+<h3 id="拉普拉斯平滑">拉普拉斯平滑</h3>
+<p>为了解决零概率的问题，法国数学家拉普拉斯最早提出用加1的方法估计没有出现过的现象的概率，所以加法平滑也叫做拉普拉斯平滑。</p>
+<p>先验概率的贝叶斯估计：<span class="math inline">\(P_\lambda(Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+\lambda}{N+K\lambda}\)</span></p>
+<p>条件概率的贝叶斯估计: <span class="math inline">\(P_\lambda(X^{(j)}=a_{jI}|Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(x_j^{(j)}=a_{iI},y_i=c_k)+\lambda}{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+S_j\lambda}\)</span></p>
 ]]></content>
       <categories>
-        <category>研究生入学考试</category>
-        <category>计算机网络</category>
+        <category>机器学习</category>
+        <category>统计学习方法</category>
       </categories>
       <tags>
-        <tag>计网</tag>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
@@ -3303,324 +3450,194 @@ C ）。</li>
       </tags>
   </entry>
   <entry>
-    <title>统计学习方法</title>
-    <url>/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="机器学习分类">机器学习分类</h2>
-<h3 id="监督学习">监督学习</h3>
-<p>监督学习(Supervised Learning)
-是指从<strong>标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习输入到输出的映射的统计规律</strong>。</p>
-<ul>
-<li>输入空间：输入的所有可能取值的集合</li>
-<li>实例：每一个具体的输入，通常由特征向量表示</li>
-<li>特征空间：所有特征向量存在的空间</li>
-<li>输出空间：输出的所有可能取值的集合</li>
-</ul>
-<p>根据变量类型不同，可分为不同的问题：</p>
-<ul>
-<li>回归问题：输入变量和输出变量均为连续变量的预测问题</li>
-<li>分类问题：输出变量为有限个离线变量的预测问题</li>
-<li>标注问题：输入变量与输出变量均为变量序列的预测问题</li>
-</ul>
-<p>监督学习流程图：</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419174842251.png" alt="image-20240419174842251" style="zoom:67%;"></p>
-<h3 id="无监督学习">无监督学习</h3>
-<p>无监督学习(Unsupervised
-Learning)是指从<strong>无标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习数据中的统计规律或潜在结构</strong>。</p>
-<p>无监督学习流程图：</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175607134.png" alt="image-20240419175607134" style="zoom:67%;"></p>
-<h3 id="强化学习">强化学习</h3>
-<p>强化学习流程图</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175722038.png" alt="image-20240419175722038" style="zoom:67%;"></p>
-<h3 id="统计学学习方法三要素">统计学学习方法三要素</h3>
-<p>三要素包括<strong>模型、策略和算法</strong></p>
-<h4 id="监督学习三要素">监督学习三要素</h4>
-<p><strong>假设空间</strong>：所有可能得条件概率分布或决策函数，用<span class="math inline">\(\mathcal{F}\)</span>表示。</p>
-<ul>
-<li><p>模型：监督学习模型可表示为条件概率分布或决策函数</p></li>
-<li><p>策略</p>
-<p>损失函数：度量模型一次预测的好坏，记作<span class="math inline">\(L(Y, f(X))\)</span></p>
-<p>风险函数：度量平均意义下模型预测的好坏，<span class="math inline">\(R_{exp}(f) = E_p[L(Y, f(X))]=\int_{x × y}L(y,
-f(x))P(x, y)dxdy\)</span></p>
-<p>经验风险：模型<span class="math inline">\(f(X)\)</span>关于训练集的平均损失，<span class="math inline">\(R_{emp}(f) =
-\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,f(x_i))\)</span></p>
-<p>在N趋向于无穷的时候，经验风险趋向于exp风险。但是在实际中，N的范围不可能趋向无穷，会出现过拟合的情况，因此引入惩罚项得到结构风险<span class="math inline">\(R_{srm}=\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,
-f(x_i)) + \lambda J(f)\)</span></p></li>
-<li><p>算法</p>
-<p>算法就是如何求解最优模型的问题。</p>
-<p>如果最优模型存在显式解析解，算法简单，通常不存在解析解，需要数值计算方法，比如梯度下降法。</p></li>
-</ul>
-<h4 id="无监督学习的三要素">无监督学习的三要素</h4>
-<ul>
-<li>模型：函数<span class="math inline">\(z=g_\theta
-(x)\)</span>，条件概率分布<span class="math inline">\(P_\theta(z|x)\)</span>或条件概率分布<span class="math inline">\(P_\theta(x|z)\)</span></li>
-<li>策略：优化目标函数</li>
-<li>算法：通常是迭代算法</li>
-</ul>
-<h3 id="泛化能力">泛化能力</h3>
-<ul>
-<li><p>泛化误差：如果学习到的模型是<span class="math inline">\(\hat{f}\)</span>，那么这个模型对于未知数据预测的误差即为泛化误差。<span class="math inline">\(R_{exp}(\hat{f}) = E_p[L(Y, \hat{f}(X))]=\int_{x ×
-y}L(y, \hat{f}(x))P(x, y)dxdy\)</span></p></li>
-<li><p>泛化误差上界：指泛化误差的概率上界。两种学习方法的优劣，通常通过它们的泛化误差上界进行比较。</p>
-<p>泛化误差上届具有的性质：</p>
-<ul>
-<li>样本容量的函数：当样本容量增加时，泛化上界趋于0</li>
-<li>假设空间容量的函数：假设空间容量越大，模型就越难学，泛化误差上界就越大。</li>
-</ul></li>
-</ul>
-<h2 id="感知机">感知机</h2>
-<h3 id="模型介绍">模型介绍</h3>
-<p>感知机是二分类的线性模型。</p>
-<ul>
-<li><p>输入空间：<span class="math inline">\(\mathcal{X} \subseteq
-R^n\)</span>；输入<span class="math inline">\(x=(x^{1},x^{2},...,
-x^{n})^T\in \mathcal{X}\)</span></p></li>
-<li><p>输出空间：<span class="math inline">\(\mathcal{Y}=\{+1,-1\}\)</span>; 输出<span class="math inline">\(y\in\mathcal{Y}\)</span></p></li>
-<li><p>感知机：<span class="math display">\[f(x)=sign(wx+b)=\begin{cases} +1, wx+b\ge0 \\ -1,
-wx+b &lt; 0 \end{cases}\]</span></p>
-<p>其中，<span class="math inline">\(w=(w^{1},w^{2},..., w^{n})\in
-R^n\)</span>称为权值，b称为偏置</p></li>
-<li><p>假设空间：<span class="math inline">\(\mathcal{F}=\{f|f(x)=wx+b\}\)</span></p></li>
-</ul>
-<p><span class="math inline">\(wx+b=0\)</span>是特征空间<span class="math inline">\(R^n\)</span>中的一个超平面S，法向量为w，
-截距为b。</p>
-<p><strong>超平面</strong>是指n维线性空间中维度为n-1的子空间。它可以把线性空间分割成不相交的两部分。比如二维空间中，一条直线是一维的，它把平面分成了两块；三维空间中，一个平面是二维的，它把空间分成了两块。</p>
-<p>模型流程图:</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240421211708923.png" alt="image-20240421211708923" style="zoom:67%;"></p>
-<h3 id="学习策略">学习策略</h3>
-<p>感知机模型的数据集要具有线性可分性。可分性即给定数据集，存在某个超平面可以将数据集的正负实例点完全正确的划分到超平面的两侧。</p>
-<ul>
-<li>误分类点<span class="math inline">\(x_i\)</span>到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}y_i(wx_i+b)\)</span></li>
-<li>所有误分类点到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}\sum\limits_{x_x\in M
-}y_i(wx_i+b)\)</span>,M代表所有误差分类点的集合。</li>
-<li>损失函数：<span class="math inline">\(L(w, b)=-\sum\limits_{x_i\in
-M}y_i(wx_i+b)\)</span></li>
-</ul>
-<h4 id="梯度下降法">梯度下降法</h4>
-<p><strong>相关概念</strong></p>
-<ul>
-<li>梯度：指某一函数在该点处最大的方向导数，沿着该方向可取得最大的变化率。<span class="math inline">\(\bigtriangledown = \frac{\partial
-f(\theta)}{\partial \theta}\)</span></li>
-<li>若<span class="math inline">\(f(\theta)\)</span>是凸函数，可通过梯度下降法进行优化：<span class="math inline">\(\theta^{(k+1)} = \theta^{(k)}-\eta
-\bigtriangledown f(\theta^{(k)})\)</span></li>
-</ul>
-<p><strong>算法</strong></p>
-<ul>
-<li><p>输入：目标函数<span class="math inline">\(f(\theta)\)</span>,
-步长<span class="math inline">\(\eta\)</span>，计算精度<span class="math inline">\(\varepsilon\)</span></p></li>
-<li><p>输出：<span class="math inline">\(f(\theta)\)</span>的极小值点<span class="math inline">\(\theta^{*}\)</span></p>
-<blockquote>
-<ol type="1">
-<li>选取初识值<span class="math inline">\(\theta^{(0)}\in
-R^n\)</span>，置k = 0</li>
-<li>计算<span class="math inline">\(f(\theta^{(k)})\)</span></li>
-<li>计算梯度<span class="math inline">\(\bigtriangledown
-f(\theta^{(k)})\)</span></li>
-<li>置<span class="math inline">\(\theta^{(k+1)}=\theta^{(k)}-\eta
-\bigtriangledown f(\theta^{(k)})\)</span>,计算<span class="math inline">\(f(\theta^{(k+1)})\)</span>，当<span class="math inline">\(||f(\theta^{(k+1)})- f(\theta^{(k)})|| &lt;
-\varepsilon\)</span>或者<span class="math inline">\(||\theta^{(k+1)}-\theta^{(k)}|| &lt;
-\varepsilon\)</span>时，停止迭代，令<span class="math inline">\(\theta^*=\theta^{(k+1)}\)</span></li>
-<li>否则，置k = k + 1， 转3执行。</li>
-</ol>
-</blockquote></li>
-</ul>
-<h4 id="原始形式学习算法">原始形式学习算法</h4>
-<p>训练数据集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
-y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p>
-<p>损失函数: <span class="math inline">\(L(w,b)=-\sum\limits_{x_i\in
-M}y_i(wx_i+b)\)</span></p>
-<p>模型参数估计：<span class="math inline">\(arg\  min
-_{w,b}L(w,b)\)</span></p>
-<p><strong>随机梯度下降法</strong></p>
-<ul>
-<li><p>梯度：<span class="math inline">\(\bigtriangledown _wL(w,
-b)=-\sum\limits_{x_i\in M}y_ix_i\)</span>, <span class="math inline">\(\bigtriangledown_bL(w,b)=-\sum\limits_{x_i\in
-M}y_i\)</span></p></li>
-<li><p>参数更新：批量梯度下降法，即每次迭代时使用所有误分类点来进行参数更新：</p>
-<p><span class="math inline">\(w \leftarrow w + \eta \sum\limits_{x_i\in
-M}y_ix_i, \ \ b \leftarrow b + \eta \sum\limits_{x_i\in
-M}y_i\)</span></p></li>
-<li><p>随机梯度下降法：每次随机选取一个误分类点进行参数更新：</p>
-<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
-\leftarrow b + \eta y_i\)</span></p></li>
-</ul>
-<p><strong>算法步骤</strong></p>
-<blockquote>
-<ol type="1">
-<li>选取 初始值<span class="math inline">\(w_0, b_0\)</span></li>
-<li>在数据集中随机选择数据<span class="math inline">\((x_i,
-y_i)\)</span></li>
-<li>若<span class="math inline">\(y_i(wx_i+n)\le 0\)</span>, <span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b \leftarrow b +
-\eta y_i\)</span></li>
-<li>转2，直到训练集中没有误分类点。</li>
-</ol>
-</blockquote>
-<h4 id="对偶形式学习算法">对偶形式学习算法</h4>
-<p><strong>对偶形式</strong></p>
-<p>在原始形式中，若<span class="math inline">\((x_i,
-y_i)\)</span>为误分类点，可如下更新参数</p>
-<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
-\leftarrow b + \eta y_i\)</span></p>
-<p>假设初始值<span class="math inline">\(w_0=0,b_0=0\)</span>，
-对误差分类点<span class="math inline">\((x_i,
-y_i)\)</span>通过上述公式更新参数，修改<span class="math inline">\(n_i\)</span>次之后，<span class="math inline">\(w,b\)</span>的增量分别为<span class="math inline">\(\alpha_iy_ix_i\)</span>和<span class="math inline">\(\alpha_iy_i\)</span>，其中<span class="math inline">\(\alpha_i=n_i\eta\)</span></p>
-<p>最后学习到的参数为，<span class="math inline">\(w=\sum\limits_{i=1}\limits^{N}\alpha_iy_ix_i;\
-\  \ b=\sum\limits_{i=1}\limits^{N}\alpha_iy_i\)</span></p>
-<p><strong>算法步骤</strong></p>
-<ul>
-<li><p>输入训练集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
-y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p></li>
-<li><p>输出：<span class="math inline">\(\alpha,
-b\)</span>；感知机模型<span class="math inline">\(f(x)=sign(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j
-\cdot x + b), \alpha=(\alpha_1,
-\alpha_2,...,\alpha_N)^T\)</span></p></li>
-</ul>
-<blockquote>
-<ol type="1">
-<li>选取初始值<span class="math inline">\(\alpha^{&lt;0&gt;}=(0, 0, ...,
-0), b^{&lt;0&gt;}=0\)</span>;</li>
-<li>在训练集中随机选取数据<span class="math inline">\((x_i,
-y_i)\)</span>；</li>
-<li>若<span class="math inline">\(y_i(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j \cdot
-x_i + b) \le 0\)</span>, <span class="math inline">\(\alpha_i \leftarrow
-\alpha_i + \eta;\ \ \ b \leftarrow b + \eta y_i\)</span></li>
-<li>转2，直到训练集中没有误分类点</li>
-</ol>
-</blockquote>
-<h2 id="k近邻法">k近邻法</h2>
-<h3 id="理解与相关概念">理解与相关概念</h3>
-<p>K近邻法(k-nearest neighbor, k-NN)是一种基本的分类与回归方法。</p>
-<p><strong>主要思想</strong>：假定给定一个训练数据集，其中实例标签已定，当输入新的实例时，可以根据其最近的k个训练实例的标签，预测新实例对应的标注信息。</p>
-<ul>
-<li>分类问题：对新的实例，根据与之相邻的k个训练实例的类别，通过多数表决等方式进行预测</li>
-<li>回归问题：对新的实例，根据与之相邻的k个训练实例的标签，通过均值计算进行预测</li>
-</ul>
-<p><strong>算法</strong></p>
-<ul>
-<li><p>输入训练集：<span class="math inline">\(T={(x_1, y_1), (x_2,
-y_2),...,(x_N, y_N)}\)</span>,其中<span class="math inline">\(x_i\in\mathcal{X}\subseteq R^n,
-y\in\mathcal{Y}=\{c_1, c_2,...,c_K\}\)</span>;输出为实例<span class="math inline">\(x\)</span>所属的类别y</p></li>
-<li><p>算法步骤：</p>
-<blockquote>
-<ol type="1">
-<li><p>根据给定的<strong>距离度量</strong>，计算x与T中点的距离；</p></li>
-<li><p>在T中找到与x最邻近的<em>k</em>个点，涵盖这k个点的x的邻域记作<span class="math inline">\(N_k(x)\)</span>；</p></li>
-<li><p>在<span class="math inline">\(N_k(x)\)</span>中根据<strong>决策规则</strong>（如多数表决）决定x的类别y。</p>
-<p><span class="math inline">\(y=arg \ \ max_{c_j} \sum\limits_{x_i\in
-N_k(x)}I(y_i=c_i), i=1, 2,...,N;j=1, 2,...,K\)</span></p></li>
-</ol>
-</blockquote></li>
-</ul>
-<h3 id="三要素">三要素</h3>
-<p><strong>模型</strong>：k近邻法不具有显性的学习过程，实际上利用训练数据集对特征向量空间进行划分，以其作为分类的“模型”。</p>
-<h4 id="距离度量">距离度量</h4>
-<p><strong><span class="math inline">\(L_p\)</span>距离</strong>：特征空间<span class="math inline">\(\mathcal{X}\)</span>假设为<span class="math inline">\(R^n\)</span>，<span class="math inline">\(\forall
-x_i, x_j\in \mathcal{X}, \  x_i=(x_i^{(1)}, x_i^{(2)}, ...,
-x_i^{(n)})^T, \ x_j=(x_j^{(1)}, x_j^{(2)}, ...,
-x_j^{(n)})^T\)</span>,则有</p>
-<p><span class="math inline">\(L_p(x_i, x_j) =
-(\sum\limits_{I=1}\limits^{n}|x_i^{(I)}-x_j^{(I)}|^p)^{\frac{1}{p}}, \ p
-\ge 1\)</span></p>
-<p>p取2时为<strong>欧氏距离</strong>。</p>
-<p>P取1时为<strong>曼哈顿距离</strong></p>
-<p>p为无穷大时为切<strong>比雪夫不距离</strong>：<span class="math inline">\(L_{\infty}=max_I|x_i^{(I)}-x_j^{(I)}|\)</span></p>
-<h4 id="k值的选择"><em>k</em>值的选择</h4>
-<ul>
-<li><p>较小的k值，学习的近似误差较小，但估计误差增大，敏感性增强，而且模型复杂，容易过拟合。</p></li>
-<li><p>较大的k值，减小学习的估计误差，但近似误差增大，而且模型简单。</p>
-<p>k的取值可以通过交叉验证来选择，一般低于训练集样本量的平方跟。</p></li>
-</ul>
-<h4 id="分类决策规则">分类决策规则</h4>
-<p><strong>多数表决规则</strong>：由输入实例的<em>k</em>个邻近的训练实例中的多数类决定输入实例的类。</p>
-<ul>
-<li>分裂函数: <span class="math inline">\(f:R^n \rightarrow {c_1, c_2,
-..., c_K}\)</span></li>
-<li>0-1损失函数：<span class="math display">\[L(Y, f(X))=\begin{cases}1,
-Y \ne f(X) \\ 0, Y = f(X) \end{cases}\]</span></li>
-<li>误分类概率：<span class="math inline">\(P(Y\ne
-f(X))=1-P(Y=f(X))\)</span></li>
-</ul>
-<p>对于给定实例<span class="math inline">\(x\in
-\mathcal{X}\)</span>，相应的<em>k</em>邻域<span class="math inline">\(N_k(x)\)</span>, 类别为<span class="math inline">\(c_j\)</span>，误分类率为<span class="math inline">\(\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i\ne
-c_j)=1-\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span>;
-最小化误分类率，等价于<span class="math inline">\(arg \ \ max \sum
-\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span></p>
-<h3 id="kd树"><em>kd</em>树</h3>
-<p><em>kd</em>树是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
-<p>本质是二叉树，表示对k维空间的一个划分</p>
-<p><strong>构造过程</strong>：不断地用垂直于坐标轴的超平面将k维空间切分，形成k维超矩形区域。<em>kd</em>树中的每一个结点对应于一个k维超矩形区域。</p>
-<p><strong>构造<em>kd</em>树算法</strong></p>
-<ul>
-<li><p>输入：<em>k</em>维空间数据集<span class="math inline">\(T=\{x_1,
-x_2,...,x_N\}\)</span>, 其中<span class="math inline">\(x_i=(x_i^{(1)}),
-x_i^{(2)}),...,x_i^{(k)})^T\)</span></p></li>
-<li><p>输出：<em>kd</em>树</p>
-<blockquote>
-<ol type="1">
-<li>开始，构造根节点。
-<ul>
-<li>选取<span class="math inline">\(x^{(1)}\)</span>为坐标轴，以训练集中的所有数据<span class="math inline">\(x^{(1)}\)</span>坐标中的中位数作为切分点，将超矩形区域切割成两个字区域，将该切分点作为根节点。</li>
-<li>由根节点生出深度为1的左右子节点，左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
-</ul></li>
-<li>重复
-<ul>
-<li>对深度为j的节点，选择<span class="math inline">\(x^{(I)}\)</span>为切分坐标轴，<span class="math inline">\(I=j( mod \ k) + 1\)</span>,
-以该节点区域中所有实例<span class="math inline">\(x^{(I)}\)</span>坐标的中位数作为切分点，将区域划分为两个子区域。</li>
-<li>生成深度为j+1的左右节点。左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
-</ul></li>
-<li>直到两个子区域没有实例时停止。</li>
-</ol>
-</blockquote></li>
-</ul>
-<p><strong>搜索<em>kd</em>树</strong></p>
-<ul>
-<li><strong>最近邻搜索算法</strong>
-<ul>
-<li>寻找<strong>当前最近点</strong>，从树根不停寻找下一级节点，最终找到离目标点最近的叶子节点作为<strong>当前最近点</strong></li>
-<li>回溯：以目标点和<strong>当前最近点</strong>的距离沿树根进行回溯和迭代</li>
-</ul></li>
-</ul>
-<p><strong>机器学习实战中的代码例子</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createDataSet</span>():</span><br><span class="line">    group = np.array([[<span class="number">1.0</span>, <span class="number">1.1</span>], [<span class="number">1.0</span>, <span class="number">1.0</span>], [<span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0.1</span>]])</span><br><span class="line">    labels = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">    <span class="keyword">return</span> group, labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">classify</span>(<span class="params">inX, dataSet, labels, k</span>):</span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    diffMat = np.tile(inX, (dataSetSize, <span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat ** <span class="number">2</span></span><br><span class="line">    sqDistances = sqDiffMat.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances ** <span class="number">0.5</span></span><br><span class="line">    sortedDistIndicies = distances.argsort()</span><br><span class="line">    classCount = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    sortedClassCount = <span class="built_in">sorted</span>(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file2matrix</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fr:</span><br><span class="line">        lines = fr.readlines()</span><br><span class="line">        len_lines = <span class="built_in">len</span>(lines)</span><br><span class="line">        res = np.zeros((len_lines, <span class="number">3</span>))</span><br><span class="line">        label_vector = []</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">            line = line.strip()</span><br><span class="line">            line_list = line.split(<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            res[index, :] = line_list[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">            label_vector.append(<span class="built_in">int</span>(line_list[-<span class="number">1</span>]))</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res, label_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">autoNorm</span>(<span class="params">dataset</span>):</span><br><span class="line">    minv = dataset.<span class="built_in">min</span>(<span class="number">0</span>)</span><br><span class="line">    maxv = dataset.<span class="built_in">max</span>(<span class="number">0</span>)</span><br><span class="line">    diff = maxv - minv</span><br><span class="line">    normdataset = np.zeros(np.shape(dataset))</span><br><span class="line">    m = dataset.shape[<span class="number">0</span>]</span><br><span class="line">    normdataset = dataset - np.tile(minv, (m, <span class="number">1</span>))</span><br><span class="line">    normdataset = normdataset / np.tile(diff, (m, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> normdataset, diff, minv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">datatest</span>():</span><br><span class="line">    r = <span class="number">0.1</span></span><br><span class="line">    data, label = file2matrix(<span class="string">&#x27;datingTestSet2.txt&#x27;</span>)</span><br><span class="line">    normdata, rang, minv = autoNorm(data)</span><br><span class="line">    m = normdata.shape[<span class="number">0</span>]</span><br><span class="line">    numtest = <span class="built_in">int</span>(m * r)</span><br><span class="line">    error_count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numtest):</span><br><span class="line">        class_res = classify(normdata[i, :], normdata[numtest:m, :], label[numtest:m], <span class="number">4</span>)</span><br><span class="line">        <span class="built_in">print</span>(class_res, label[i])</span><br><span class="line">        <span class="keyword">if</span> class_res != label[i]:</span><br><span class="line">            error_count += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(error_count / <span class="built_in">float</span>(numtest))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    group, labels = createDataSet()</span><br><span class="line">    res = classify([<span class="number">0</span>, <span class="number">0</span>], group, labels, <span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line">    dataset, labels = file2matrix(<span class="string">&quot;datingTestSet2.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># print(dataset, labels)</span></span><br><span class="line">    plt.scatter(dataset[:, <span class="number">0</span>], dataset[:, <span class="number">1</span>], <span class="number">15.0</span> * np.array(labels), <span class="number">15.0</span> * np.array(labels))</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    normdata, diff, minv = autoNorm(dataset)</span><br><span class="line">    <span class="comment"># print(normdata, diff, minv)</span></span><br><span class="line">    datatest()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="朴素贝叶斯法">朴素贝叶斯法</h2>
-<h3 id="贝叶斯定理">贝叶斯定理</h3>
-<p><strong>先验概率</strong>：基于统计的概率，是基于以往历史经验和分析得到的结果，不需要依赖当前发生的条件。</p>
-<p><strong>后验概率</strong>：从条件概率而来，由因推果，是基于当下发生了事件之后计算的概率，依赖于当前发生的条件。</p>
-<p><strong>条件概率</strong>：记事件A发生的概率为P(A),事件B发生的概率为P(B),则在B事件发生的前提下，A事件发生的概率即为条件概率，记为<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span>.</p>
-<p><strong>贝叶斯公式</strong>：基于条件概率，通过P(B|A)来求P(A|B).</p>
-<p><span class="math inline">\(P(B|A)=\frac{P(AB)}{P(A)} \rightarrow
-P(AB)=P(B|A)P(A)\)</span>,因此<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}=\frac{P(B|A)P(A)}{P(B)}\)</span></p>
-<p><strong>全概率公式</strong>：若事件<span class="math inline">\(A_1,A_2,...,A_n\)</span>构成一个完备事件组且都有正概率，则对任意一个事件B都有公式：</p>
-<p><span class="math inline">\(P(B)=\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)\)</span></p>
-<p>将全概率公式带入贝叶斯公式：<span class="math inline">\(P(A|B)=\frac{P(B|A)P(A)}{\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)}\)</span></p>
-<p><strong>贝叶斯分类</strong></p>
-<p>存在K类<span class="math inline">\(c_1,
-c_2,...,c_K\)</span>，给定一个新的实例<span class="math inline">\(x=(x^{(1)},
-x^{(2)},...,x^{(n)})\)</span>，求x应属于哪一类</p>
-<p><span class="math inline">\(P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(X=x|Y=c_i)P(Y=c_i)}\)</span></p>
-<p>最终求：<span class="math inline">\(arg\ \ max_{c_i}P(X=x|Y=c_i)\cdot
-P(Y=c_i)\)</span></p>
-<h3 id="朴素贝叶斯算法原理">朴素贝叶斯算法原理</h3>
-<p>假设实例特征之间相互独立</p>
-<p><span class="math inline">\(P(X=x_i|Y=c_i)=\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
-<p><span class="math inline">\(\Longrightarrow
-P(X=x)=\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
-<p><span class="math inline">\(\Longrightarrow
-P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
-<p><span class="math inline">\(\Longrightarrow
-P(Y=c_i|X=x)=\frac{P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
-<p>最终，朴素贝叶斯分类器只需要关注分子，即<span class="math inline">\(arg \ \ max_{c_i}
-P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span>，即<strong>后验概率最大化</strong>。</p>
-<h3 id="拉普拉斯平滑">拉普拉斯平滑</h3>
-<p>为了解决零概率的问题，法国数学家拉普拉斯最早提出用加1的方法估计没有出现过的现象的概率，所以加法平滑也叫做拉普拉斯平滑。</p>
-<p>先验概率的贝叶斯估计：<span class="math inline">\(P_\lambda(Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+\lambda}{N+K\lambda}\)</span></p>
-<p>条件概率的贝叶斯估计: <span class="math inline">\(P_\lambda(X^{(j)}=a_{jI}|Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(x_j^{(j)}=a_{iI},y_i=c_k)+\lambda}{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+S_j\lambda}\)</span></p>
+    <title>计网每日一题</title>
+    <url>/2023/09/15/%E8%AE%A1%E7%BD%91%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/</url>
+    <content><![CDATA[<h2 id="day1-9月6日">day1 9月6日</h2>
+<p><img src="https://p.sda1.dev/13/3826706c5f7f985eb5ed6a510916b81e/day1解析.png" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/13/ae27e446c4f39bcc62f7ce4bc0515d17/day1.png" style="zoom: 67%;"></p>
+<h2 id="day2-9月7日">day2 9月7日</h2>
+<p><img src="https://p.sda1.dev/13/e0f3b1cb6ef45301b3415298ebc46abc/day2.png" style="zoom: 67%;"></p>
+<p><img src="https://p.sda1.dev/13/26e84f1f12abcbea3879bb6719bd4969/day2解析.png" style="zoom:67%;"></p>
+<h2 id="day3-9月8日">day3 9月8日</h2>
+<p><img src="https://p.sda1.dev/13/13944e69af8e0ac63e42572e0552ce31/day3.png" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/13/bc78ef73a3c4ac8251d527a1ef68962c/day3解析.png" style="zoom:67%;"></p>
+<h2 id="day4-9月9日">day4 9月9日</h2>
+<p><img src="https://p.sda1.dev/13/245deb9873831f2a4f0a585d2d3316cb/day4.png" style="zoom: 67%;"></p>
+<p><img src="https://p.sda1.dev/13/439db40d097118747c5c994e60f8d8b4/day4解析.png" style="zoom:67%;"></p>
+<h2 id="day5-9月10日">day5 9月10日</h2>
+<p><img src="https://p.sda1.dev/13/b39ba3bc619ca86392120e5d8530f2ee/day5解析.png" style="zoom:80%;"></p>
+<h2 id="day6-9月11日">day6 9月11日</h2>
+<p><img src="https://p.sda1.dev/13/fd343bd932885d77cd993dda5a7fae04/day6.png" style="zoom:80%;"></p>
+<h2 id="day7-9月12日">day7 9月12日</h2>
+<p><img src="https://p.sda1.dev/13/c8b596cb4b5ba8c2122cb78265866996/day7.png" style="zoom:80%;"></p>
+<h2 id="day8-9月13日">day8 9月13日</h2>
+<p><img src="https://p.sda1.dev/13/efe3abf321337481d3abef8abf8e0fd9/da8.png" style="zoom:80%;"></p>
+<p>TTL字段经过一个路由器减一</p>
+<h2 id="day9-9月14日">day9 9月14日</h2>
+<p><img src="https://p.sda1.dev/13/567ed9cb6a590e40cc43471f53447edc/day9.png" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/13/d84e243dbd5cf4b1f4db5b736e75cc89/day9解析.png" style="zoom:80%;"></p>
+<h2 id="day10-9月15日">day10 9月15日</h2>
+<p><img src="https://p.sda1.dev/13/85c4ee948fc325f8ad2270269c5971ce/day10.png" style="zoom:80%;"></p>
+<h2 id="day11-9月16日">day11 9月16日</h2>
+<p><img src="https://p.sda1.dev/13/9d9cb429e857ca239214ee84e77b5541/day11.png" style="zoom:80%;"></p>
+<h2 id="day12-9月17日">day12 9月17日</h2>
+<p><img src="https://p.sda1.dev/13/e3257293467c30c53fd480ed2d3aed53/day12.png" alt="d" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/13/bb5efd370a561e13a608ef8d890d41f6/day12j.png" style="zoom:80%;"></p>
+<h2 id="day13-9月18日">day13 9月18日</h2>
+<p><img src="https://p.sda1.dev/13/e5cd6c8478656bd931331795623fe818/day13.png" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/13/d6fb806688c8268d94ef493babfca777/day13j.png" style="zoom:80%;"></p>
+<h2 id="day14-9月19日">day14 9月19日</h2>
+<p><img src="https://p.sda1.dev/13/2659f9e56b2fd8147367d5e219f20148/919.png" style="zoom:80%;"></p>
+<h2 id="day15-9月20日">day15 9月20日</h2>
+<p><img src="https://p.sda1.dev/13/bcb0657cbb838d7d5631721590f2861e/920.png" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/13/530c7f2761d190777c5beaeb9931a00f/9201.png" style="zoom:80%;"></p>
+<h2 id="day16-9月21日">day16 9月21日</h2>
+<p><img src="https://p.sda1.dev/14/217025d6633b49c8b1f0d9bbad5c2a47/16.jpg" style="zoom:80%;"></p>
+<h2 id="day17-9月22日">day17 9月22日</h2>
+<p><img src="https://p.sda1.dev/14/5f236e1bab95a73c7dab28fc2f76d38d/17.jpg" style="zoom:80%;"></p>
+<h2 id="day18-9月23日">day18 9月23日</h2>
+<p><img src="https://p.sda1.dev/14/fbaab7001a2e3136b971b2f92fc8a113/18.jpg" style="zoom:80%;"></p>
+<h2 id="day19-9月24日">day19 9月24日</h2>
+<p><img src="https://p.sda1.dev/14/357e5daa5ef7b1209eccd2c751c0b5d4/19.jpg" style="zoom:80%;"></p>
+<h2 id="day20-9月25日">day20 9月25日</h2>
+<p><img src="https://p.sda1.dev/14/765944aaa2126007a6f3c373a344d9e6/20.jpg" style="zoom:80%;"></p>
+<h2 id="day21-9月26日">day21 9月26日</h2>
+<p><img src="https://p.sda1.dev/14/491d9610790c10ccd8c6d7fd082f0e58/21.jpg" style="zoom:80%;"></p>
+<h2 id="day22-9月27日">day22 9月27日</h2>
+<p><img src="https://p.sda1.dev/14/3fa33aa6907222e389cb8d0675a41ed5/22.jpg" style="zoom:80%;"></p>
+<h2 id="day23-10月4日">day23 10月4日</h2>
+<p><img src="https://p.sda1.dev/14/142106b27b0ea40a68f2eb9106a204e6/23.jpg" style="zoom:50%;"></p>
+<p><img src="https://p.sda1.dev/14/8bfc27dd1dad0053ef61ec6023104bfa/22_.jpg" style="zoom: 80%;"></p>
+<h2 id="day24-10月5日">day24 10月5日</h2>
+<p><img src="https://p.sda1.dev/14/87af403f127657a2874a99786f9c7170/24.jpg" style="zoom:80%;"></p>
+<h2 id="day25-10月6日">day25 10月6日</h2>
+<p><img src="https://p.sda1.dev/14/7d554fdf639df33d83ed8fda0fcbe81d/25.jpg" style="zoom:80%;"></p>
+<h2 id="day26-10月7日">day26 10月7日</h2>
+<p><img src="https://p.sda1.dev/14/07c816c53d93d70f6ce0a66f81e7f998/26.jpg" style="zoom:67%;"></p>
+<p>IP地址的后23位与mac地址进行映射</p>
+<h2 id="day27-10月8日">day27 10月8日</h2>
+<p><img src="https://p.sda1.dev/14/1d21893a493c5712eefc02099887cf00/27.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/073cf5a5452688abb987f29fad6a91d9/27_.jpg" style="zoom:67%;"></p>
+<h2 id="day28-10月9日">day28 10月9日</h2>
+<p><img src="https://p.sda1.dev/14/6262dd16ce739522ba81220492abf41b/28.jpg" style="zoom:80%;"></p>
+<h2 id="day29-10月10日">day29 10月10日</h2>
+<p><img src="https://p.sda1.dev/14/e8aadbd1df089e9cde37fda08dfa0fdc/29.jpg" alt="29.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/cf800dfa0480c30ef23cc38435569b17/29_.jpg"></p>
+<h2 id="day30-10月11日">day30 10月11日</h2>
+<p><img src="https://p.sda1.dev/14/ee93c3965b4705f0a4b10bd6aa762bbf/30.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/49f1dc5411da92fe4eb44e683388a25a/30_.jpg" style="zoom:67%;"></p>
+<h2 id="day31-10月12日">day31 10月12日</h2>
+<p><img src="https://p.sda1.dev/14/55a3dcd1689747589b1fd1c2a0a38c56/31.jpg" style="zoom:80%;"></p>
+<h2 id="day32-10月13日">day32 10月13日</h2>
+<p><img src="https://p.sda1.dev/14/11c9f3d7e441725f09925dcde57a2a1e/32.jpg" alt="32.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/e50674b499bd486686fe9523c00a8fa2/32_.jpg" alt="32_.jpg" style="zoom:67%;"></p>
+<h2 id="day33-10月14日">day33 10月14日</h2>
+<p><img src="https://p.sda1.dev/14/1862a5b5ff535dc6ddaa97bba92be4c3/33.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/587cf00f90fc3ea0ce87ef94471c855c/33_.jpg" style="zoom:67%;"></p>
+<h2 id="day34-10月15日">day34 10月15日</h2>
+<p><img src="https://p.sda1.dev/14/458913835e5b433084b2fa2ba0f606de/34.jpg" alt="34.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/2e00d8c33c8341f882baa69a1999787a/34_.jpg" alt="34_.jpg" style="zoom:67%;"></p>
+<h2 id="day35-10月16日">day35 10月16日</h2>
+<p><img src="https://p.sda1.dev/14/3e91dfdf5a1ca7ef795d30ffaa03f70d/35.jpg" alt="35.jpg" style="zoom:80%;"></p>
+<h2 id="day36-10月17日">day36 10月17日</h2>
+<p><img src="https://p.sda1.dev/14/6fc22882b30b8e57c3df88c70e8cd0d8/36.jpg" alt="36.jpg" style="zoom:80%;"></p>
+<h2 id="day37-10月18日">day37 10月18日</h2>
+<p><img src="https://p.sda1.dev/14/274c423406a2daa981b34ff87b8248d2/37.jpg" alt="37.jpg" style="zoom:80%;"></p>
+<h2 id="day38-10月19日">day38 10月19日</h2>
+<p><img src="https://p.sda1.dev/14/7f3189db95699d2db85b60085624c7ad/38.jpg" alt="38.jpg" style="zoom:80%;"></p>
+<h2 id="day39-10月20日">day39 10月20日</h2>
+<p><img src="https://p.sda1.dev/14/7ace162519cb145633cba9605ba0f6d4/39.jpg" alt="39.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/22a37e27601f26a5bd80534330379ec6/39_.jpg" alt="39_.jpg" style="zoom:67%;"></p>
+<p><strong>第二段是带数据的报文段，但不叫数据报文段，所以必须从实际第三段算起。</strong></p>
+<h2 id="day40-10月21日">day40 10月21日</h2>
+<p><img src="https://p.sda1.dev/14/3aa110932043c6f8881d45f210a08093/40.jpg" alt="40.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/565c7d8411531209d4ce743fe95dbaba/40_.jpg" alt="40_.jpg" style="zoom:67%;"></p>
+<h2 id="day41-10月22日">day41 10月22日</h2>
+<p><img src="https://p.sda1.dev/14/c7a05b69ebc85459cfb73ce637019e78/41.jpg" alt="41.jpg" style="zoom:80%;"></p>
+<h2 id="day42-10月23日">day42 10月23日</h2>
+<p><img src="https://p.sda1.dev/14/0d812311329d4f2df53120f10ebf2beb/42.jpg" alt="42.jpg" style="zoom:80%;"></p>
+<h2 id="day43-10月24日">day43 10月24日</h2>
+<p><img src="https://p.sda1.dev/14/859bdbe767feed4010d31aa952bade1c/43.jpg" alt="43.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/777a757228b13522b114491578433220/43_.jpg" alt="43_.jpg" style="zoom:67%;"></p>
+<h2 id="day44-10月25日">day44 10月25日</h2>
+<p><img src="https://p.sda1.dev/14/4556237393eb499ff25a9863c7440d4b/44.jpg" alt="44.jpg" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/14/aab69db8120a69b6100947301cf16254/44_.jpg" alt="44_.jpg" style="zoom:80%;"></p>
+<h2 id="day45-10月26日">day45 10月26日</h2>
+<p><img src="https://p.sda1.dev/14/9fedbeb6e0d5dc1241ece81d6191548b/45.jpg" alt="45.jpg" style="zoom:80%;"></p>
+<h2 id="day46-10月27日">day46 10月27日</h2>
+<p><img src="https://p.sda1.dev/14/5ea5d1188d3123ef7e9f510b3ea0f87f/46.jpg" alt="46.jpg" style="zoom:80%;"></p>
+<h2 id="day47-10月28日">day47 10月28日</h2>
+<p><img src="https://p.sda1.dev/14/8b784202f47c7433fe3cf48730ffcb31/47.jpg" alt="47.jpg" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/14/70d9e71b255938bab8b7c24eb9f3b3e8/47_.jpg" alt="47_.jpg" style="zoom:80%;"></p>
+<h2 id="day48-10月29日">day48 10月29日</h2>
+<p><img src="https://p.sda1.dev/14/677d591e81e6562f1c739e26c1cf6ca7/48.jpg" alt="48.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/f6a63cd252d2f82213c870cc59617b41/48_.jpg" alt="48_.jpg" style="zoom:67%;"></p>
+<h2 id="day49-10月30日">day49 10月30日</h2>
+<p><img src="https://p.sda1.dev/14/3a0c7620fc215e4057cada613b27ffc5/49.jpg" alt="49.jpg" style="zoom:80%;"></p>
+<h2 id="day50-10月31日">day50 10月31日</h2>
+<p><img src="https://p.sda1.dev/14/862ecb947b9f8565f78537e889d6bc18/50.jpg" alt="50.jpg" style="zoom:80%;"></p>
+<h2 id="day51-11月1日">day51 11月1日</h2>
+<p><img src="https://p.sda1.dev/14/584d33a8c0efe6f6cb4820db63b2425e/51.jpg" alt="51.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/aad26e927ee04890a03d0d624e374778/51_.jpg" alt="51_.jpg" style="zoom:67%;"></p>
+<h2 id="day52-11月2日">day52 11月2日</h2>
+<p><img src="https://p.sda1.dev/14/b431628ddc3d1fc8d7096c669260779b/52.jpg" alt="52.jpg" style="zoom:67%;"></p>
+<h2 id="day53-11月10日">day53 11月10日</h2>
+<p><img src="https://p.sda1.dev/14/b2a891f970eb84d81348bdf9afe688ec/53.jpg" alt="53.jpg" style="zoom: 80%;"></p>
+<p><img src="https://p.sda1.dev/14/650a06cefaaadb531827f1a945193c12/53_.jpg" alt="53_.jpg" style="zoom: 80%;"></p>
+<h2 id="day54-11月11日">day54 11月11日</h2>
+<p><img src="https://p.sda1.dev/14/1e7550c607b29888545d2107690389e1/54.jpg" alt="54.jpg" style="zoom:80%;"></p>
+<h2 id="day55-11月12日">day55 11月12日</h2>
+<p><img src="https://p.sda1.dev/14/87826d73a831c73c757ea73c2c189ff9/55_.jpg" alt="55_.jpg" style="zoom:80%;"></p>
+<h2 id="day56-11月13日">day56 11月13日</h2>
+<p><img src="https://p.sda1.dev/14/07149ab2870b7aafb62cbe5e79db018e/56.jpg" alt="56.jpg" style="zoom:80%;"></p>
+<h2 id="day57-11月14日">day57 11月14日</h2>
+<p><img src="https://p.sda1.dev/14/4e78a8f3db14ef6c30bdb959741f3376/57.jpg" alt="57.jpg" style="zoom:80%;"></p>
+<h2 id="day58-11月15日">day58 11月15日</h2>
+<p><img src="https://p.sda1.dev/14/fb1cbdf9bb9fbafac2bd788f77601367/58.jpg" alt="58.jpg" style="zoom:80%;"></p>
+<h2 id="day59-11月16日">day59 11月16日</h2>
+<p><img src="https://p.sda1.dev/14/c733d55cea2cf91d2899dace34674f00/59.jpg" alt="59.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/e4015576d7573be9c591f57abb376bfd/59_.jpg" alt="59_.jpg" style="zoom:67%;"></p>
+<h2 id="day60-11月17日">day60 11月17日</h2>
+<p><img src="https://p.sda1.dev/14/70cdedfd3c93f9ba595c52c7d847a44a/60.jpg" alt="60.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/fb0b6a80eba884cf89bd89c802ee1b29/60_.jpg" alt="60_.jpg" style="zoom:67%;"></p>
+<h2 id="day61-11月18日">day61 11月18日</h2>
+<p><img src="https://p.sda1.dev/14/8310d54fb590c656f60233ec73804254/61.jpg" alt="61.jpg" style="zoom:80%;"></p>
+<p><img src="https://p.sda1.dev/14/01770f372f3d24494e159b7a956b6b02/61_.jpg" alt="61_.jpg" style="zoom:80%;"></p>
+<h2 id="day62-11月19日">day62 11月19日</h2>
+<p><img src="https://p.sda1.dev/14/50a413d62f5e99299d060be6f5c0d04a/62.jpg" alt="62.jpg" style="zoom:80%;"></p>
+<h2 id="day63-11月20日">day63 11月20日</h2>
+<p><img src="https://p.sda1.dev/14/687ab8528c889563b09c6deab31399f9/63.jpg" alt="63.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/2998adb431d10f06ef0f441c969ca0a3/63_.jpg" alt="63_.jpg" style="zoom:67%;"></p>
+<h2 id="day64-11月21日">day64 11月21日</h2>
+<p><img src="https://p.sda1.dev/14/b6ebeb3f8eed1f07df7f7107e6131d86/64.jpg" alt="64.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/a9a1a1f659139617d2009b4533a11606/64_.jpg" alt="64_.jpg" style="zoom:67%;"></p>
+<h2 id="day65-11月22日">day65 11月22日</h2>
+<p><img src="https://p.sda1.dev/14/ed86c0234fef7f41cfac0cbdcf7f2c17/65.jpg" alt="65.jpg" style="zoom:80%;"></p>
+<h2 id="day66-11月23日">day66 11月23日</h2>
+<p><img src="https://p.sda1.dev/14/e1e9415020eba265e4ff6f38dc80419a/66.jpg" alt="66.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/32deef7527ed159313f77ca3d893b94f/65_.jpg" alt="65_.jpg" style="zoom:67%;"></p>
+<h2 id="day67-11月24日">day67 11月24日</h2>
+<p><img src="https://p.sda1.dev/14/b3f100fc05f11d85aced0974ad63d7d2/67.jpg" alt="67.jpg" style="zoom:80%;"></p>
+<h2 id="day68-11月25日">day68 11月25日</h2>
+<p><img src="https://p.sda1.dev/14/1788afff6071f1a36594fe5205baaf91/68.jpg" alt="68.jpg" style="zoom:80%;"></p>
+<h2 id="day69-11月26日">day69 11月26日</h2>
+<p><img src="https://p.sda1.dev/14/8d7f2054913383661703c82a5d622218/69.jpg" alt="69.jpg" style="zoom:80%;"></p>
+<h2 id="day70-11月27日">day70 11月27日</h2>
+<p><img src="https://p.sda1.dev/14/33d924bbed9ea03024a06393e00f4444/70.jpg" alt="70.jpg" style="zoom:80%;"></p>
+<h2 id="day71-11月28日">day71 11月28日</h2>
+<p><img src="https://p.sda1.dev/14/7428a417684ac2c0493fb5351c558a9e/71.jpg" alt="71.jpg" style="zoom:67%;"></p>
+<p><img src="https://p.sda1.dev/14/ef67e821bd2175c1528897e5fb3a9dd5/71_.jpg" alt="71_.jpg" style="zoom:67%;"></p>
+<h2 id="day72-11月29日">day72 11月29日</h2>
+<p><img src="https://p.sda1.dev/14/6756dd0406633d59d806dab2e7e63b67/72.jpg" alt="72.jpg" style="zoom:80%;"></p>
+<h2 id="day73-11月30日">day73 11月30日</h2>
+<p><img src="https://p.sda1.dev/14/eb93cbaa09435df8b0010132069ff5b2/73.jpg" alt="73.jpg" style="zoom:80%;"></p>
 ]]></content>
       <categories>
-        <category>机器学习</category>
-        <category>统计学习方法</category>
+        <category>研究生入学考试</category>
+        <category>计算机网络</category>
       </categories>
       <tags>
-        <tag>机器学习</tag>
+        <tag>计网</tag>
       </tags>
   </entry>
 </search>
