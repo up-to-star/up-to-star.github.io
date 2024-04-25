@@ -121,6 +121,24 @@
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> c <span class="keyword">GROUP</span> <span class="keyword">BY</span> col <span class="keyword">HAVING</span> conditio <span class="keyword">order</span> <span class="keyword">by</span> col limit <span class="keyword">start</span>, <span class="keyword">rows</span></span><br></pre></td></tr></table></figure></li>
 </ul>
 <h3 id="多表查询">多表查询</h3>
+<p><strong>笛卡尔积</strong>：两个集合A集合和B集合的所有组合情况（在多表查询时，需要消除无效的笛卡尔积）</p>
+<ul>
+<li><p>自连接：在同一张表连接查询，将同一张表看做两张表。表取别名实现</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	worker.ename <span class="keyword">AS</span> <span class="string">&#x27;职员名&#x27;</span>, boss.ename <span class="keyword">AS</span> <span class="string">&#x27;上级名&#x27;</span></span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	emp worker, emp boss</span><br><span class="line"><span class="keyword">WHERE</span> </span><br><span class="line">	worker.mgr <span class="operator">=</span> boss.empno;</span><br></pre></td></tr></table></figure></li>
+<li><p>多行子查询</p>
+<p>子查询是指嵌入在其他sql语句中的select语句，也叫嵌套查询</p>
+<p>单行子查询：只返回一行数据的子查询语句</p>
+<p>多行子查询：返回多行数据的子查询，使用关键字<code>in</code></p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 单行子查询</span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	<span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span></span><br><span class="line">	emp</span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	deptno <span class="operator">=</span> (<span class="keyword">SELECT</span></span><br><span class="line">                deptno</span><br><span class="line">            <span class="keyword">FROM</span></span><br><span class="line">                emp</span><br><span class="line">            <span class="keyword">WHERE</span></span><br><span class="line">                ename <span class="operator">=</span> <span class="string">&#x27;SMITH&#x27;</span>);</span><br><span class="line">                </span><br><span class="line"># 多行子查询</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> job <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> deptno <span class="operator">=</span> <span class="number">10</span>; # 返回多行数据</span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	ename, job, sal, deptno </span><br><span class="line"><span class="keyword">FROM</span> </span><br><span class="line">	emp </span><br><span class="line"><span class="keyword">WHERE</span></span><br><span class="line">	job <span class="keyword">IN</span> (<span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> job <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> deptno <span class="operator">=</span> <span class="number">10</span>) <span class="keyword">AND</span> deptno <span class="operator">!=</span> <span class="number">10</span>;</span><br></pre></td></tr></table></figure></li>
+<li><p>子查询临时表</p>
+<p>子查询当做临时表来使用</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="operator">-</span> 子查询当做临时表使用练习题subquery.sql</span><br><span class="line"><span class="comment">-- 查询ecshop中各个类别中，价格最高的商品.</span></span><br><span class="line"><span class="comment">-- 老韩提示，可以将子查询当做一张临时表使用</span></span><br><span class="line"><span class="keyword">SELECT</span> goods_id, cat_id,goods_name,shop_price <span class="keyword">FROM</span> ecs_goods</span><br><span class="line">#查询最高的商品价格,把商品价格和源表对照获取其中商品信息</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> goods_id, cat_id,goods_name,<span class="built_in">MAX</span>(shop_price)</span><br><span class="line"> <span class="keyword">FROM</span> ecs_goods <span class="keyword">GROUP</span> <span class="keyword">BY</span> cat_id</span><br><span class="line"> #细节:有个错误就是以为上面这样子查询就得到结果</span><br><span class="line"> #    但是货物的名字和货物id是对照不上的</span><br><span class="line"> #    原因是goods_name没有进行筛选,返回的是表中cat_id对应最先出现的数据</span><br><span class="line"> #所以要进行条件匹配,匹配到每一个要查询的字段</span><br><span class="line"> </span><br><span class="line"><span class="comment">-- 查询最高价格和cat_id</span></span><br><span class="line"><span class="keyword">SELECT</span> cat_id,<span class="built_in">MAX</span>(shop_price)</span><br><span class="line"> <span class="keyword">FROM</span> ecs_goods <span class="keyword">GROUP</span> <span class="keyword">BY</span> cat_id</span><br><span class="line"> </span><br><span class="line"> #思路:</span><br><span class="line"> #就是把要查询的两个东西查出来再和原表匹配即可</span><br><span class="line"> #在获得最高价格的的查询结果当做临时表,然后作为被查询的表的之一</span><br><span class="line"> #同时查询两个表就可以获取两个表的信息</span><br><span class="line"> #通过<span class="keyword">where</span>子句进行条件判断匹配原表数据</span><br><span class="line"> #temp.cat_id <span class="operator">=</span> ecs_goods.cat_id ,查到临时表的id和原表的id进行匹配</span><br><span class="line"> #max_price<span class="operator">=</span>ecs_goods.shop_price ,临时表的最高价格和原表的价格进行匹配</span><br><span class="line"> #细节:<span class="keyword">select</span> 的字段要清晰写明是哪个表的<span class="operator">!</span></span><br><span class="line"> <span class="keyword">SELECT</span> goods_id, ecs_goods.cat_id,goods_name,max_price <span class="keyword">FROM</span> (</span><br><span class="line"> <span class="keyword">SELECT</span> cat_id,<span class="built_in">MAX</span>(shop_price) <span class="keyword">AS</span> max_price</span><br><span class="line"> <span class="keyword">FROM</span> ecs_goods <span class="keyword">GROUP</span> <span class="keyword">BY</span> cat_id) temp,ecs_goods</span><br><span class="line"> <span class="keyword">WHERE</span> temp.cat_id <span class="operator">=</span> ecs_goods.cat_id <span class="keyword">AND</span> max_price<span class="operator">=</span>ecs_goods.shop_price</span><br></pre></td></tr></table></figure></li>
+<li><p><code>all</code>和<code>any</code>操作符</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"># 显示工资比部门<span class="number">30</span>的所有员工的工资高的员工的姓名、工资和部门号</span><br><span class="line"><span class="keyword">SELECT</span> ename, sal, deptno <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> sal <span class="operator">&gt;</span> <span class="keyword">ALL</span>(<span class="keyword">SELECT</span> sal <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> deptno <span class="operator">=</span> <span class="number">30</span>);</span><br><span class="line"></span><br><span class="line"># 显示工资比部门<span class="number">30</span>的其中一个员工的工资高的员工的姓名、工资和部门号</span><br><span class="line"><span class="keyword">SELECT</span> ename, sal, deptno <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> sal <span class="operator">&gt;</span> <span class="keyword">ANY</span>(<span class="keyword">SELECT</span> sal <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> deptno <span class="operator">=</span> <span class="number">30</span>);</span><br><span class="line"># 等价于</span><br><span class="line"><span class="keyword">SELECT</span> ename, sal, deptno <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> sal <span class="operator">&gt;</span> (<span class="keyword">SELECT</span> <span class="built_in">MIN</span>(sal) <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> deptno <span class="operator">=</span> <span class="number">30</span>);</span><br></pre></td></tr></table></figure></li>
+<li><p>多列子查询</p>
+<p>查询<strong>返回多个列</strong>数据的子查询语句。</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span> <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> (deptno, job) <span class="operator">=</span> (<span class="keyword">SELECT</span> deptno, job <span class="keyword">FROM</span> emp <span class="keyword">WHERE</span> ename <span class="operator">=</span> <span class="string">&#x27;ALLEN&#x27;</span>) <span class="keyword">AND</span> ename <span class="operator">!=</span> <span class="string">&#x27;ALLEN&#x27;</span>;</span><br></pre></td></tr></table></figure></li>
+</ul>
 ]]></content>
       <categories>
         <category>开发</category>
@@ -2404,327 +2422,6 @@ Task，让协程对象加入时事件循环中，等待被调度执行。协程�
       </tags>
   </entry>
   <entry>
-    <title>统计学习方法</title>
-    <url>/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
-    <content><![CDATA[<h2 id="机器学习分类">机器学习分类</h2>
-<h3 id="监督学习">监督学习</h3>
-<p>监督学习(Supervised Learning)
-是指从<strong>标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习输入到输出的映射的统计规律</strong>。</p>
-<ul>
-<li>输入空间：输入的所有可能取值的集合</li>
-<li>实例：每一个具体的输入，通常由特征向量表示</li>
-<li>特征空间：所有特征向量存在的空间</li>
-<li>输出空间：输出的所有可能取值的集合</li>
-</ul>
-<p>根据变量类型不同，可分为不同的问题：</p>
-<ul>
-<li>回归问题：输入变量和输出变量均为连续变量的预测问题</li>
-<li>分类问题：输出变量为有限个离线变量的预测问题</li>
-<li>标注问题：输入变量与输出变量均为变量序列的预测问题</li>
-</ul>
-<p>监督学习流程图：</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419174842251.png" alt="image-20240419174842251" style="zoom:67%;"></p>
-<h3 id="无监督学习">无监督学习</h3>
-<p>无监督学习(Unsupervised
-Learning)是指从<strong>无标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习数据中的统计规律或潜在结构</strong>。</p>
-<p>无监督学习流程图：</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175607134.png" alt="image-20240419175607134" style="zoom:67%;"></p>
-<h3 id="强化学习">强化学习</h3>
-<p>强化学习流程图</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175722038.png" alt="image-20240419175722038" style="zoom:67%;"></p>
-<h3 id="统计学学习方法三要素">统计学学习方法三要素</h3>
-<p>三要素包括<strong>模型、策略和算法</strong></p>
-<h4 id="监督学习三要素">监督学习三要素</h4>
-<p><strong>假设空间</strong>：所有可能得条件概率分布或决策函数，用<span class="math inline">\(\mathcal{F}\)</span>表示。</p>
-<ul>
-<li><p>模型：监督学习模型可表示为条件概率分布或决策函数</p></li>
-<li><p>策略</p>
-<p>损失函数：度量模型一次预测的好坏，记作<span class="math inline">\(L(Y, f(X))\)</span></p>
-<p>风险函数：度量平均意义下模型预测的好坏，<span class="math inline">\(R_{exp}(f) = E_p[L(Y, f(X))]=\int_{x × y}L(y,
-f(x))P(x, y)dxdy\)</span></p>
-<p>经验风险：模型<span class="math inline">\(f(X)\)</span>关于训练集的平均损失，<span class="math inline">\(R_{emp}(f) =
-\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,f(x_i))\)</span></p>
-<p>在N趋向于无穷的时候，经验风险趋向于exp风险。但是在实际中，N的范围不可能趋向无穷，会出现过拟合的情况，因此引入惩罚项得到结构风险<span class="math inline">\(R_{srm}=\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,
-f(x_i)) + \lambda J(f)\)</span></p></li>
-<li><p>算法</p>
-<p>算法就是如何求解最优模型的问题。</p>
-<p>如果最优模型存在显式解析解，算法简单，通常不存在解析解，需要数值计算方法，比如梯度下降法。</p></li>
-</ul>
-<h4 id="无监督学习的三要素">无监督学习的三要素</h4>
-<ul>
-<li>模型：函数<span class="math inline">\(z=g_\theta
-(x)\)</span>，条件概率分布<span class="math inline">\(P_\theta(z|x)\)</span>或条件概率分布<span class="math inline">\(P_\theta(x|z)\)</span></li>
-<li>策略：优化目标函数</li>
-<li>算法：通常是迭代算法</li>
-</ul>
-<h3 id="泛化能力">泛化能力</h3>
-<ul>
-<li><p>泛化误差：如果学习到的模型是<span class="math inline">\(\hat{f}\)</span>，那么这个模型对于未知数据预测的误差即为泛化误差。<span class="math inline">\(R_{exp}(\hat{f}) = E_p[L(Y, \hat{f}(X))]=\int_{x ×
-y}L(y, \hat{f}(x))P(x, y)dxdy\)</span></p></li>
-<li><p>泛化误差上界：指泛化误差的概率上界。两种学习方法的优劣，通常通过它们的泛化误差上界进行比较。</p>
-<p>泛化误差上届具有的性质：</p>
-<ul>
-<li>样本容量的函数：当样本容量增加时，泛化上界趋于0</li>
-<li>假设空间容量的函数：假设空间容量越大，模型就越难学，泛化误差上界就越大。</li>
-</ul></li>
-</ul>
-<h2 id="感知机">感知机</h2>
-<h3 id="模型介绍">模型介绍</h3>
-<p>感知机是二分类的线性模型。</p>
-<ul>
-<li><p>输入空间：<span class="math inline">\(\mathcal{X} \subseteq
-R^n\)</span>；输入<span class="math inline">\(x=(x^{1},x^{2},...,
-x^{n})^T\in \mathcal{X}\)</span></p></li>
-<li><p>输出空间：<span class="math inline">\(\mathcal{Y}=\{+1,-1\}\)</span>; 输出<span class="math inline">\(y\in\mathcal{Y}\)</span></p></li>
-<li><p>感知机：<span class="math display">\[f(x)=sign(wx+b)=\begin{cases} +1, wx+b\ge0 \\ -1,
-wx+b &lt; 0 \end{cases}\]</span></p>
-<p>其中，<span class="math inline">\(w=(w^{1},w^{2},..., w^{n})\in
-R^n\)</span>称为权值，b称为偏置</p></li>
-<li><p>假设空间：<span class="math inline">\(\mathcal{F}=\{f|f(x)=wx+b\}\)</span></p></li>
-</ul>
-<p><span class="math inline">\(wx+b=0\)</span>是特征空间<span class="math inline">\(R^n\)</span>中的一个超平面S，法向量为w，
-截距为b。</p>
-<p><strong>超平面</strong>是指n维线性空间中维度为n-1的子空间。它可以把线性空间分割成不相交的两部分。比如二维空间中，一条直线是一维的，它把平面分成了两块；三维空间中，一个平面是二维的，它把空间分成了两块。</p>
-<p>模型流程图:</p>
-<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240421211708923.png" alt="image-20240421211708923" style="zoom:67%;"></p>
-<h3 id="学习策略">学习策略</h3>
-<p>感知机模型的数据集要具有线性可分性。可分性即给定数据集，存在某个超平面可以将数据集的正负实例点完全正确的划分到超平面的两侧。</p>
-<ul>
-<li>误分类点<span class="math inline">\(x_i\)</span>到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}y_i(wx_i+b)\)</span></li>
-<li>所有误分类点到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}\sum\limits_{x_x\in M
-}y_i(wx_i+b)\)</span>,M代表所有误差分类点的集合。</li>
-<li>损失函数：<span class="math inline">\(L(w, b)=-\sum\limits_{x_i\in
-M}y_i(wx_i+b)\)</span></li>
-</ul>
-<h4 id="梯度下降法">梯度下降法</h4>
-<p><strong>相关概念</strong></p>
-<ul>
-<li>梯度：指某一函数在该点处最大的方向导数，沿着该方向可取得最大的变化率。<span class="math inline">\(\bigtriangledown = \frac{\partial
-f(\theta)}{\partial \theta}\)</span></li>
-<li>若<span class="math inline">\(f(\theta)\)</span>是凸函数，可通过梯度下降法进行优化：<span class="math inline">\(\theta^{(k+1)} = \theta^{(k)}-\eta
-\bigtriangledown f(\theta^{(k)})\)</span></li>
-</ul>
-<p><strong>算法</strong></p>
-<ul>
-<li><p>输入：目标函数<span class="math inline">\(f(\theta)\)</span>,
-步长<span class="math inline">\(\eta\)</span>，计算精度<span class="math inline">\(\varepsilon\)</span></p></li>
-<li><p>输出：<span class="math inline">\(f(\theta)\)</span>的极小值点<span class="math inline">\(\theta^{*}\)</span></p>
-<blockquote>
-<ol type="1">
-<li>选取初识值<span class="math inline">\(\theta^{(0)}\in
-R^n\)</span>，置k = 0</li>
-<li>计算<span class="math inline">\(f(\theta^{(k)})\)</span></li>
-<li>计算梯度<span class="math inline">\(\bigtriangledown
-f(\theta^{(k)})\)</span></li>
-<li>置<span class="math inline">\(\theta^{(k+1)}=\theta^{(k)}-\eta
-\bigtriangledown f(\theta^{(k)})\)</span>,计算<span class="math inline">\(f(\theta^{(k+1)})\)</span>，当<span class="math inline">\(||f(\theta^{(k+1)})- f(\theta^{(k)})|| &lt;
-\varepsilon\)</span>或者<span class="math inline">\(||\theta^{(k+1)}-\theta^{(k)}|| &lt;
-\varepsilon\)</span>时，停止迭代，令<span class="math inline">\(\theta^*=\theta^{(k+1)}\)</span></li>
-<li>否则，置k = k + 1， 转3执行。</li>
-</ol>
-</blockquote></li>
-</ul>
-<h4 id="原始形式学习算法">原始形式学习算法</h4>
-<p>训练数据集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
-y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p>
-<p>损失函数: <span class="math inline">\(L(w,b)=-\sum\limits_{x_i\in
-M}y_i(wx_i+b)\)</span></p>
-<p>模型参数估计：<span class="math inline">\(arg\  min
-_{w,b}L(w,b)\)</span></p>
-<p><strong>随机梯度下降法</strong></p>
-<ul>
-<li><p>梯度：<span class="math inline">\(\bigtriangledown _wL(w,
-b)=-\sum\limits_{x_i\in M}y_ix_i\)</span>, <span class="math inline">\(\bigtriangledown_bL(w,b)=-\sum\limits_{x_i\in
-M}y_i\)</span></p></li>
-<li><p>参数更新：批量梯度下降法，即每次迭代时使用所有误分类点来进行参数更新：</p>
-<p><span class="math inline">\(w \leftarrow w + \eta \sum\limits_{x_i\in
-M}y_ix_i, \ \ b \leftarrow b + \eta \sum\limits_{x_i\in
-M}y_i\)</span></p></li>
-<li><p>随机梯度下降法：每次随机选取一个误分类点进行参数更新：</p>
-<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
-\leftarrow b + \eta y_i\)</span></p></li>
-</ul>
-<p><strong>算法步骤</strong></p>
-<blockquote>
-<ol type="1">
-<li>选取 初始值<span class="math inline">\(w_0, b_0\)</span></li>
-<li>在数据集中随机选择数据<span class="math inline">\((x_i,
-y_i)\)</span></li>
-<li>若<span class="math inline">\(y_i(wx_i+n)\le 0\)</span>, <span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b \leftarrow b +
-\eta y_i\)</span></li>
-<li>转2，直到训练集中没有误分类点。</li>
-</ol>
-</blockquote>
-<h4 id="对偶形式学习算法">对偶形式学习算法</h4>
-<p><strong>对偶形式</strong></p>
-<p>在原始形式中，若<span class="math inline">\((x_i,
-y_i)\)</span>为误分类点，可如下更新参数</p>
-<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
-\leftarrow b + \eta y_i\)</span></p>
-<p>假设初始值<span class="math inline">\(w_0=0,b_0=0\)</span>，
-对误差分类点<span class="math inline">\((x_i,
-y_i)\)</span>通过上述公式更新参数，修改<span class="math inline">\(n_i\)</span>次之后，<span class="math inline">\(w,b\)</span>的增量分别为<span class="math inline">\(\alpha_iy_ix_i\)</span>和<span class="math inline">\(\alpha_iy_i\)</span>，其中<span class="math inline">\(\alpha_i=n_i\eta\)</span></p>
-<p>最后学习到的参数为，<span class="math inline">\(w=\sum\limits_{i=1}\limits^{N}\alpha_iy_ix_i;\
-\  \ b=\sum\limits_{i=1}\limits^{N}\alpha_iy_i\)</span></p>
-<p><strong>算法步骤</strong></p>
-<ul>
-<li><p>输入训练集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
-y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p></li>
-<li><p>输出：<span class="math inline">\(\alpha,
-b\)</span>；感知机模型<span class="math inline">\(f(x)=sign(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j
-\cdot x + b), \alpha=(\alpha_1,
-\alpha_2,...,\alpha_N)^T\)</span></p></li>
-</ul>
-<blockquote>
-<ol type="1">
-<li>选取初始值<span class="math inline">\(\alpha^{&lt;0&gt;}=(0, 0, ...,
-0), b^{&lt;0&gt;}=0\)</span>;</li>
-<li>在训练集中随机选取数据<span class="math inline">\((x_i,
-y_i)\)</span>；</li>
-<li>若<span class="math inline">\(y_i(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j \cdot
-x_i + b) \le 0\)</span>, <span class="math inline">\(\alpha_i \leftarrow
-\alpha_i + \eta;\ \ \ b \leftarrow b + \eta y_i\)</span></li>
-<li>转2，直到训练集中没有误分类点</li>
-</ol>
-</blockquote>
-<h2 id="k近邻法">k近邻法</h2>
-<h3 id="理解与相关概念">理解与相关概念</h3>
-<p>K近邻法(k-nearest neighbor, k-NN)是一种基本的分类与回归方法。</p>
-<p><strong>主要思想</strong>：假定给定一个训练数据集，其中实例标签已定，当输入新的实例时，可以根据其最近的k个训练实例的标签，预测新实例对应的标注信息。</p>
-<ul>
-<li>分类问题：对新的实例，根据与之相邻的k个训练实例的类别，通过多数表决等方式进行预测</li>
-<li>回归问题：对新的实例，根据与之相邻的k个训练实例的标签，通过均值计算进行预测</li>
-</ul>
-<p><strong>算法</strong></p>
-<ul>
-<li><p>输入训练集：<span class="math inline">\(T={(x_1, y_1), (x_2,
-y_2),...,(x_N, y_N)}\)</span>,其中<span class="math inline">\(x_i\in\mathcal{X}\subseteq R^n,
-y\in\mathcal{Y}=\{c_1, c_2,...,c_K\}\)</span>;输出为实例<span class="math inline">\(x\)</span>所属的类别y</p></li>
-<li><p>算法步骤：</p>
-<blockquote>
-<ol type="1">
-<li><p>根据给定的<strong>距离度量</strong>，计算x与T中点的距离；</p></li>
-<li><p>在T中找到与x最邻近的<em>k</em>个点，涵盖这k个点的x的邻域记作<span class="math inline">\(N_k(x)\)</span>；</p></li>
-<li><p>在<span class="math inline">\(N_k(x)\)</span>中根据<strong>决策规则</strong>（如多数表决）决定x的类别y。</p>
-<p><span class="math inline">\(y=arg \ \ max_{c_j} \sum\limits_{x_i\in
-N_k(x)}I(y_i=c_i), i=1, 2,...,N;j=1, 2,...,K\)</span></p></li>
-</ol>
-</blockquote></li>
-</ul>
-<h3 id="三要素">三要素</h3>
-<p><strong>模型</strong>：k近邻法不具有显性的学习过程，实际上利用训练数据集对特征向量空间进行划分，以其作为分类的“模型”。</p>
-<h4 id="距离度量">距离度量</h4>
-<p><strong><span class="math inline">\(L_p\)</span>距离</strong>：特征空间<span class="math inline">\(\mathcal{X}\)</span>假设为<span class="math inline">\(R^n\)</span>，<span class="math inline">\(\forall
-x_i, x_j\in \mathcal{X}, \  x_i=(x_i^{(1)}, x_i^{(2)}, ...,
-x_i^{(n)})^T, \ x_j=(x_j^{(1)}, x_j^{(2)}, ...,
-x_j^{(n)})^T\)</span>,则有</p>
-<p><span class="math inline">\(L_p(x_i, x_j) =
-(\sum\limits_{I=1}\limits^{n}|x_i^{(I)}-x_j^{(I)}|^p)^{\frac{1}{p}}, \ p
-\ge 1\)</span></p>
-<p>p取2时为<strong>欧氏距离</strong>。</p>
-<p>P取1时为<strong>曼哈顿距离</strong></p>
-<p>p为无穷大时为切<strong>比雪夫不距离</strong>：<span class="math inline">\(L_{\infty}=max_I|x_i^{(I)}-x_j^{(I)}|\)</span></p>
-<h4 id="k值的选择"><em>k</em>值的选择</h4>
-<ul>
-<li><p>较小的k值，学习的近似误差较小，但估计误差增大，敏感性增强，而且模型复杂，容易过拟合。</p></li>
-<li><p>较大的k值，减小学习的估计误差，但近似误差增大，而且模型简单。</p>
-<p>k的取值可以通过交叉验证来选择，一般低于训练集样本量的平方跟。</p></li>
-</ul>
-<h4 id="分类决策规则">分类决策规则</h4>
-<p><strong>多数表决规则</strong>：由输入实例的<em>k</em>个邻近的训练实例中的多数类决定输入实例的类。</p>
-<ul>
-<li>分裂函数: <span class="math inline">\(f:R^n \rightarrow {c_1, c_2,
-..., c_K}\)</span></li>
-<li>0-1损失函数：<span class="math display">\[L(Y, f(X))=\begin{cases}1,
-Y \ne f(X) \\ 0, Y = f(X) \end{cases}\]</span></li>
-<li>误分类概率：<span class="math inline">\(P(Y\ne
-f(X))=1-P(Y=f(X))\)</span></li>
-</ul>
-<p>对于给定实例<span class="math inline">\(x\in
-\mathcal{X}\)</span>，相应的<em>k</em>邻域<span class="math inline">\(N_k(x)\)</span>, 类别为<span class="math inline">\(c_j\)</span>，误分类率为<span class="math inline">\(\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i\ne
-c_j)=1-\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span>;
-最小化误分类率，等价于<span class="math inline">\(arg \ \ max \sum
-\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span></p>
-<h3 id="kd树"><em>kd</em>树</h3>
-<p><em>kd</em>树是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
-<p>本质是二叉树，表示对k维空间的一个划分</p>
-<p><strong>构造过程</strong>：不断地用垂直于坐标轴的超平面将k维空间切分，形成k维超矩形区域。<em>kd</em>树中的每一个结点对应于一个k维超矩形区域。</p>
-<p><strong>构造<em>kd</em>树算法</strong></p>
-<ul>
-<li><p>输入：<em>k</em>维空间数据集<span class="math inline">\(T=\{x_1,
-x_2,...,x_N\}\)</span>, 其中<span class="math inline">\(x_i=(x_i^{(1)}),
-x_i^{(2)}),...,x_i^{(k)})^T\)</span></p></li>
-<li><p>输出：<em>kd</em>树</p>
-<blockquote>
-<ol type="1">
-<li>开始，构造根节点。
-<ul>
-<li>选取<span class="math inline">\(x^{(1)}\)</span>为坐标轴，以训练集中的所有数据<span class="math inline">\(x^{(1)}\)</span>坐标中的中位数作为切分点，将超矩形区域切割成两个字区域，将该切分点作为根节点。</li>
-<li>由根节点生出深度为1的左右子节点，左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
-</ul></li>
-<li>重复
-<ul>
-<li>对深度为j的节点，选择<span class="math inline">\(x^{(I)}\)</span>为切分坐标轴，<span class="math inline">\(I=j( mod \ k) + 1\)</span>,
-以该节点区域中所有实例<span class="math inline">\(x^{(I)}\)</span>坐标的中位数作为切分点，将区域划分为两个子区域。</li>
-<li>生成深度为j+1的左右节点。左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
-</ul></li>
-<li>直到两个子区域没有实例时停止。</li>
-</ol>
-</blockquote></li>
-</ul>
-<p><strong>搜索<em>kd</em>树</strong></p>
-<ul>
-<li><strong>最近邻搜索算法</strong>
-<ul>
-<li>寻找<strong>当前最近点</strong>，从树根不停寻找下一级节点，最终找到离目标点最近的叶子节点作为<strong>当前最近点</strong></li>
-<li>回溯：以目标点和<strong>当前最近点</strong>的距离沿树根进行回溯和迭代</li>
-</ul></li>
-</ul>
-<p><strong>机器学习实战中的代码例子</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createDataSet</span>():</span><br><span class="line">    group = np.array([[<span class="number">1.0</span>, <span class="number">1.1</span>], [<span class="number">1.0</span>, <span class="number">1.0</span>], [<span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0.1</span>]])</span><br><span class="line">    labels = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">    <span class="keyword">return</span> group, labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">classify</span>(<span class="params">inX, dataSet, labels, k</span>):</span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    diffMat = np.tile(inX, (dataSetSize, <span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat ** <span class="number">2</span></span><br><span class="line">    sqDistances = sqDiffMat.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances ** <span class="number">0.5</span></span><br><span class="line">    sortedDistIndicies = distances.argsort()</span><br><span class="line">    classCount = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    sortedClassCount = <span class="built_in">sorted</span>(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file2matrix</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fr:</span><br><span class="line">        lines = fr.readlines()</span><br><span class="line">        len_lines = <span class="built_in">len</span>(lines)</span><br><span class="line">        res = np.zeros((len_lines, <span class="number">3</span>))</span><br><span class="line">        label_vector = []</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">            line = line.strip()</span><br><span class="line">            line_list = line.split(<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            res[index, :] = line_list[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">            label_vector.append(<span class="built_in">int</span>(line_list[-<span class="number">1</span>]))</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res, label_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">autoNorm</span>(<span class="params">dataset</span>):</span><br><span class="line">    minv = dataset.<span class="built_in">min</span>(<span class="number">0</span>)</span><br><span class="line">    maxv = dataset.<span class="built_in">max</span>(<span class="number">0</span>)</span><br><span class="line">    diff = maxv - minv</span><br><span class="line">    normdataset = np.zeros(np.shape(dataset))</span><br><span class="line">    m = dataset.shape[<span class="number">0</span>]</span><br><span class="line">    normdataset = dataset - np.tile(minv, (m, <span class="number">1</span>))</span><br><span class="line">    normdataset = normdataset / np.tile(diff, (m, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> normdataset, diff, minv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">datatest</span>():</span><br><span class="line">    r = <span class="number">0.1</span></span><br><span class="line">    data, label = file2matrix(<span class="string">&#x27;datingTestSet2.txt&#x27;</span>)</span><br><span class="line">    normdata, rang, minv = autoNorm(data)</span><br><span class="line">    m = normdata.shape[<span class="number">0</span>]</span><br><span class="line">    numtest = <span class="built_in">int</span>(m * r)</span><br><span class="line">    error_count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numtest):</span><br><span class="line">        class_res = classify(normdata[i, :], normdata[numtest:m, :], label[numtest:m], <span class="number">4</span>)</span><br><span class="line">        <span class="built_in">print</span>(class_res, label[i])</span><br><span class="line">        <span class="keyword">if</span> class_res != label[i]:</span><br><span class="line">            error_count += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(error_count / <span class="built_in">float</span>(numtest))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    group, labels = createDataSet()</span><br><span class="line">    res = classify([<span class="number">0</span>, <span class="number">0</span>], group, labels, <span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line">    dataset, labels = file2matrix(<span class="string">&quot;datingTestSet2.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># print(dataset, labels)</span></span><br><span class="line">    plt.scatter(dataset[:, <span class="number">0</span>], dataset[:, <span class="number">1</span>], <span class="number">15.0</span> * np.array(labels), <span class="number">15.0</span> * np.array(labels))</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    normdata, diff, minv = autoNorm(dataset)</span><br><span class="line">    <span class="comment"># print(normdata, diff, minv)</span></span><br><span class="line">    datatest()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="朴素贝叶斯法">朴素贝叶斯法</h2>
-<h3 id="贝叶斯定理">贝叶斯定理</h3>
-<p><strong>先验概率</strong>：基于统计的概率，是基于以往历史经验和分析得到的结果，不需要依赖当前发生的条件。</p>
-<p><strong>后验概率</strong>：从条件概率而来，由因推果，是基于当下发生了事件之后计算的概率，依赖于当前发生的条件。</p>
-<p><strong>条件概率</strong>：记事件A发生的概率为P(A),事件B发生的概率为P(B),则在B事件发生的前提下，A事件发生的概率即为条件概率，记为<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span>.</p>
-<p><strong>贝叶斯公式</strong>：基于条件概率，通过P(B|A)来求P(A|B).</p>
-<p><span class="math inline">\(P(B|A)=\frac{P(AB)}{P(A)} \rightarrow
-P(AB)=P(B|A)P(A)\)</span>,因此<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}=\frac{P(B|A)P(A)}{P(B)}\)</span></p>
-<p><strong>全概率公式</strong>：若事件<span class="math inline">\(A_1,A_2,...,A_n\)</span>构成一个完备事件组且都有正概率，则对任意一个事件B都有公式：</p>
-<p><span class="math inline">\(P(B)=\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)\)</span></p>
-<p>将全概率公式带入贝叶斯公式：<span class="math inline">\(P(A|B)=\frac{P(B|A)P(A)}{\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)}\)</span></p>
-<p><strong>贝叶斯分类</strong></p>
-<p>存在K类<span class="math inline">\(c_1,
-c_2,...,c_K\)</span>，给定一个新的实例<span class="math inline">\(x=(x^{(1)},
-x^{(2)},...,x^{(n)})\)</span>，求x应属于哪一类</p>
-<p><span class="math inline">\(P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(X=x|Y=c_i)P(Y=c_i)}\)</span></p>
-<p>最终求：<span class="math inline">\(arg\ \ max_{c_i}P(X=x|Y=c_i)\cdot
-P(Y=c_i)\)</span></p>
-<h3 id="朴素贝叶斯算法原理">朴素贝叶斯算法原理</h3>
-<p>假设实例特征之间相互独立</p>
-<p><span class="math inline">\(P(X=x_i|Y=c_i)=\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
-<p><span class="math inline">\(\Longrightarrow
-P(X=x)=\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
-<p><span class="math inline">\(\Longrightarrow
-P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
-<p><span class="math inline">\(\Longrightarrow
-P(Y=c_i|X=x)=\frac{P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
-<p>最终，朴素贝叶斯分类器只需要关注分子，即<span class="math inline">\(arg \ \ max_{c_i}
-P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span>，即<strong>后验概率最大化</strong>。</p>
-<h3 id="拉普拉斯平滑">拉普拉斯平滑</h3>
-<p>为了解决零概率的问题，法国数学家拉普拉斯最早提出用加1的方法估计没有出现过的现象的概率，所以加法平滑也叫做拉普拉斯平滑。</p>
-<p>先验概率的贝叶斯估计：<span class="math inline">\(P_\lambda(Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+\lambda}{N+K\lambda}\)</span></p>
-<p>条件概率的贝叶斯估计: <span class="math inline">\(P_\lambda(X^{(j)}=a_{jI}|Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(x_j^{(j)}=a_{iI},y_i=c_k)+\lambda}{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+S_j\lambda}\)</span></p>
-]]></content>
-      <categories>
-        <category>机器学习</category>
-        <category>统计学习方法</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>计网模拟题</title>
     <url>/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/</url>
     <content><![CDATA[<h2 id="年全国硕士研究生入学统一考试模拟题01"><strong>2024
@@ -3447,6 +3144,329 @@ C ）。</li>
       </categories>
       <tags>
         <tag>计网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>统计学习方法</title>
+    <url>/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<h2 id="机器学习分类">机器学习分类</h2>
+<h3 id="监督学习">监督学习</h3>
+<p>监督学习(Supervised Learning)
+是指从<strong>标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习输入到输出的映射的统计规律</strong>。</p>
+<ul>
+<li>输入空间：输入的所有可能取值的集合</li>
+<li>实例：每一个具体的输入，通常由特征向量表示</li>
+<li>特征空间：所有特征向量存在的空间</li>
+<li>输出空间：输出的所有可能取值的集合</li>
+</ul>
+<p>根据变量类型不同，可分为不同的问题：</p>
+<ul>
+<li>回归问题：输入变量和输出变量均为连续变量的预测问题</li>
+<li>分类问题：输出变量为有限个离线变量的预测问题</li>
+<li>标注问题：输入变量与输出变量均为变量序列的预测问题</li>
+</ul>
+<p>监督学习流程图：</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419174842251.png" alt="image-20240419174842251" style="zoom:67%;"></p>
+<h3 id="无监督学习">无监督学习</h3>
+<p>无监督学习(Unsupervised
+Learning)是指从<strong>无标注数据</strong>中学习<strong>预测模型</strong>的机器学习问题，<strong>本质是学习数据中的统计规律或潜在结构</strong>。</p>
+<p>无监督学习流程图：</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175607134.png" alt="image-20240419175607134" style="zoom:67%;"></p>
+<h3 id="强化学习">强化学习</h3>
+<p>强化学习流程图</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240419175722038.png" alt="image-20240419175722038" style="zoom:67%;"></p>
+<h3 id="统计学学习方法三要素">统计学学习方法三要素</h3>
+<p>三要素包括<strong>模型、策略和算法</strong></p>
+<h4 id="监督学习三要素">监督学习三要素</h4>
+<p><strong>假设空间</strong>：所有可能得条件概率分布或决策函数，用<span class="math inline">\(\mathcal{F}\)</span>表示。</p>
+<ul>
+<li><p>模型：监督学习模型可表示为条件概率分布或决策函数</p></li>
+<li><p>策略</p>
+<p>损失函数：度量模型一次预测的好坏，记作<span class="math inline">\(L(Y, f(X))\)</span></p>
+<p>风险函数：度量平均意义下模型预测的好坏，<span class="math inline">\(R_{exp}(f) = E_p[L(Y, f(X))]=\int_{x × y}L(y,
+f(x))P(x, y)dxdy\)</span></p>
+<p>经验风险：模型<span class="math inline">\(f(X)\)</span>关于训练集的平均损失，<span class="math inline">\(R_{emp}(f) =
+\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,f(x_i))\)</span></p>
+<p>在N趋向于无穷的时候，经验风险趋向于exp风险。但是在实际中，N的范围不可能趋向无穷，会出现过拟合的情况，因此引入惩罚项得到结构风险<span class="math inline">\(R_{srm}=\frac{1}{N}\sum\limits_{i=1}\limits^{N}L(y_i,
+f(x_i)) + \lambda J(f)\)</span></p></li>
+<li><p>算法</p>
+<p>算法就是如何求解最优模型的问题。</p>
+<p>如果最优模型存在显式解析解，算法简单，通常不存在解析解，需要数值计算方法，比如梯度下降法。</p></li>
+</ul>
+<h4 id="无监督学习的三要素">无监督学习的三要素</h4>
+<ul>
+<li>模型：函数<span class="math inline">\(z=g_\theta
+(x)\)</span>，条件概率分布<span class="math inline">\(P_\theta(z|x)\)</span>或条件概率分布<span class="math inline">\(P_\theta(x|z)\)</span></li>
+<li>策略：优化目标函数</li>
+<li>算法：通常是迭代算法</li>
+</ul>
+<h3 id="泛化能力">泛化能力</h3>
+<ul>
+<li><p>泛化误差：如果学习到的模型是<span class="math inline">\(\hat{f}\)</span>，那么这个模型对于未知数据预测的误差即为泛化误差。<span class="math inline">\(R_{exp}(\hat{f}) = E_p[L(Y, \hat{f}(X))]=\int_{x ×
+y}L(y, \hat{f}(x))P(x, y)dxdy\)</span></p></li>
+<li><p>泛化误差上界：指泛化误差的概率上界。两种学习方法的优劣，通常通过它们的泛化误差上界进行比较。</p>
+<p>泛化误差上届具有的性质：</p>
+<ul>
+<li>样本容量的函数：当样本容量增加时，泛化上界趋于0</li>
+<li>假设空间容量的函数：假设空间容量越大，模型就越难学，泛化误差上界就越大。</li>
+</ul></li>
+</ul>
+<h2 id="感知机">感知机</h2>
+<h3 id="模型介绍">模型介绍</h3>
+<p>感知机是二分类的线性模型。</p>
+<ul>
+<li><p>输入空间：<span class="math inline">\(\mathcal{X} \subseteq
+R^n\)</span>；输入<span class="math inline">\(x=(x^{1},x^{2},...,
+x^{n})^T\in \mathcal{X}\)</span></p></li>
+<li><p>输出空间：<span class="math inline">\(\mathcal{Y}=\{+1,-1\}\)</span>; 输出<span class="math inline">\(y\in\mathcal{Y}\)</span></p></li>
+<li><p>感知机：<span class="math display">\[f(x)=sign(wx+b)=\begin{cases} +1, wx+b\ge0 \\ -1,
+wx+b &lt; 0 \end{cases}\]</span></p>
+<p>其中，<span class="math inline">\(w=(w^{1},w^{2},..., w^{n})\in
+R^n\)</span>称为权值，b称为偏置</p></li>
+<li><p>假设空间：<span class="math inline">\(\mathcal{F}=\{f|f(x)=wx+b\}\)</span></p></li>
+</ul>
+<p><span class="math inline">\(wx+b=0\)</span>是特征空间<span class="math inline">\(R^n\)</span>中的一个超平面S，法向量为w，
+截距为b。</p>
+<p><strong>超平面</strong>是指n维线性空间中维度为n-1的子空间。它可以把线性空间分割成不相交的两部分。比如二维空间中，一条直线是一维的，它把平面分成了两块；三维空间中，一个平面是二维的，它把空间分成了两块。</p>
+<p>模型流程图:</p>
+<p><img src="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/image-20240421211708923.png" alt="image-20240421211708923" style="zoom:67%;"></p>
+<h3 id="学习策略">学习策略</h3>
+<p>感知机模型的数据集要具有线性可分性。可分性即给定数据集，存在某个超平面可以将数据集的正负实例点完全正确的划分到超平面的两侧。</p>
+<ul>
+<li>误分类点<span class="math inline">\(x_i\)</span>到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}y_i(wx_i+b)\)</span></li>
+<li>所有误分类点到<strong>S</strong>的距离：<span class="math inline">\(-\frac{1}{||w||}\sum\limits_{x_x\in M
+}y_i(wx_i+b)\)</span>,M代表所有误差分类点的集合。</li>
+<li>损失函数：<span class="math inline">\(L(w, b)=-\sum\limits_{x_i\in
+M}y_i(wx_i+b)\)</span></li>
+</ul>
+<h4 id="梯度下降法">梯度下降法</h4>
+<p><strong>相关概念</strong></p>
+<ul>
+<li>梯度：指某一函数在该点处最大的方向导数，沿着该方向可取得最大的变化率。<span class="math inline">\(\bigtriangledown = \frac{\partial
+f(\theta)}{\partial \theta}\)</span></li>
+<li>若<span class="math inline">\(f(\theta)\)</span>是凸函数，可通过梯度下降法进行优化：<span class="math inline">\(\theta^{(k+1)} = \theta^{(k)}-\eta
+\bigtriangledown f(\theta^{(k)})\)</span></li>
+</ul>
+<p><strong>算法</strong></p>
+<ul>
+<li><p>输入：目标函数<span class="math inline">\(f(\theta)\)</span>,
+步长<span class="math inline">\(\eta\)</span>，计算精度<span class="math inline">\(\varepsilon\)</span></p></li>
+<li><p>输出：<span class="math inline">\(f(\theta)\)</span>的极小值点<span class="math inline">\(\theta^{*}\)</span></p>
+<blockquote>
+<ol type="1">
+<li>选取初识值<span class="math inline">\(\theta^{(0)}\in
+R^n\)</span>，置k = 0</li>
+<li>计算<span class="math inline">\(f(\theta^{(k)})\)</span></li>
+<li>计算梯度<span class="math inline">\(\bigtriangledown
+f(\theta^{(k)})\)</span></li>
+<li>置<span class="math inline">\(\theta^{(k+1)}=\theta^{(k)}-\eta
+\bigtriangledown f(\theta^{(k)})\)</span>,计算<span class="math inline">\(f(\theta^{(k+1)})\)</span>，当<span class="math inline">\(||f(\theta^{(k+1)})- f(\theta^{(k)})|| &lt;
+\varepsilon\)</span>或者<span class="math inline">\(||\theta^{(k+1)}-\theta^{(k)}|| &lt;
+\varepsilon\)</span>时，停止迭代，令<span class="math inline">\(\theta^*=\theta^{(k+1)}\)</span></li>
+<li>否则，置k = k + 1， 转3执行。</li>
+</ol>
+</blockquote></li>
+</ul>
+<h4 id="原始形式学习算法">原始形式学习算法</h4>
+<p>训练数据集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
+y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p>
+<p>损失函数: <span class="math inline">\(L(w,b)=-\sum\limits_{x_i\in
+M}y_i(wx_i+b)\)</span></p>
+<p>模型参数估计：<span class="math inline">\(arg\  min
+_{w,b}L(w,b)\)</span></p>
+<p><strong>随机梯度下降法</strong></p>
+<ul>
+<li><p>梯度：<span class="math inline">\(\bigtriangledown _wL(w,
+b)=-\sum\limits_{x_i\in M}y_ix_i\)</span>, <span class="math inline">\(\bigtriangledown_bL(w,b)=-\sum\limits_{x_i\in
+M}y_i\)</span></p></li>
+<li><p>参数更新：批量梯度下降法，即每次迭代时使用所有误分类点来进行参数更新：</p>
+<p><span class="math inline">\(w \leftarrow w + \eta \sum\limits_{x_i\in
+M}y_ix_i, \ \ b \leftarrow b + \eta \sum\limits_{x_i\in
+M}y_i\)</span></p></li>
+<li><p>随机梯度下降法：每次随机选取一个误分类点进行参数更新：</p>
+<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
+\leftarrow b + \eta y_i\)</span></p></li>
+</ul>
+<p><strong>算法步骤</strong></p>
+<blockquote>
+<ol type="1">
+<li>选取 初始值<span class="math inline">\(w_0, b_0\)</span></li>
+<li>在数据集中随机选择数据<span class="math inline">\((x_i,
+y_i)\)</span></li>
+<li>若<span class="math inline">\(y_i(wx_i+n)\le 0\)</span>, <span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b \leftarrow b +
+\eta y_i\)</span></li>
+<li>转2，直到训练集中没有误分类点。</li>
+</ol>
+</blockquote>
+<h4 id="对偶形式学习算法">对偶形式学习算法</h4>
+<p><strong>对偶形式</strong></p>
+<p>在原始形式中，若<span class="math inline">\((x_i,
+y_i)\)</span>为误分类点，可如下更新参数</p>
+<p><span class="math inline">\(w \leftarrow w + \eta y_ix_i, \ \ b
+\leftarrow b + \eta y_i\)</span></p>
+<p>假设初始值<span class="math inline">\(w_0=0,b_0=0\)</span>，
+对误差分类点<span class="math inline">\((x_i,
+y_i)\)</span>通过上述公式更新参数，修改<span class="math inline">\(n_i\)</span>次之后，<span class="math inline">\(w,b\)</span>的增量分别为<span class="math inline">\(\alpha_iy_ix_i\)</span>和<span class="math inline">\(\alpha_iy_i\)</span>，其中<span class="math inline">\(\alpha_i=n_i\eta\)</span></p>
+<p>最后学习到的参数为，<span class="math inline">\(w=\sum\limits_{i=1}\limits^{N}\alpha_iy_ix_i;\
+\  \ b=\sum\limits_{i=1}\limits^{N}\alpha_iy_i\)</span></p>
+<p><strong>算法步骤</strong></p>
+<ul>
+<li><p>输入训练集：<span class="math inline">\(T=\{(x_1, y_1),(x_2,
+y_2),(x_3, y_3),...,(x_N, y_N)\}\)</span>,其中<span class="math inline">\(x_i\in \mathcal{X} \subseteq R^n\)</span>，<span class="math inline">\(y_i\in\mathcal{Y}=\{+1, -1\}\)</span></p></li>
+<li><p>输出：<span class="math inline">\(\alpha,
+b\)</span>；感知机模型<span class="math inline">\(f(x)=sign(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j
+\cdot x + b), \alpha=(\alpha_1,
+\alpha_2,...,\alpha_N)^T\)</span></p></li>
+</ul>
+<blockquote>
+<ol type="1">
+<li>选取初始值<span class="math inline">\(\alpha^{&lt;0&gt;}=(0, 0, ...,
+0), b^{&lt;0&gt;}=0\)</span>;</li>
+<li>在训练集中随机选取数据<span class="math inline">\((x_i,
+y_i)\)</span>；</li>
+<li>若<span class="math inline">\(y_i(\sum\limits_{j=1}\limits^N\alpha_jy_jx_j \cdot
+x_i + b) \le 0\)</span>, <span class="math inline">\(\alpha_i \leftarrow
+\alpha_i + \eta;\ \ \ b \leftarrow b + \eta y_i\)</span></li>
+<li>转2，直到训练集中没有误分类点</li>
+</ol>
+</blockquote>
+<h2 id="k近邻法">k近邻法</h2>
+<h3 id="理解与相关概念">理解与相关概念</h3>
+<p>K近邻法(k-nearest neighbor, k-NN)是一种基本的分类与回归方法。</p>
+<p><strong>主要思想</strong>：假定给定一个训练数据集，其中实例标签已定，当输入新的实例时，可以根据其最近的k个训练实例的标签，预测新实例对应的标注信息。</p>
+<ul>
+<li>分类问题：对新的实例，根据与之相邻的k个训练实例的类别，通过多数表决等方式进行预测</li>
+<li>回归问题：对新的实例，根据与之相邻的k个训练实例的标签，通过均值计算进行预测</li>
+</ul>
+<p><strong>算法</strong></p>
+<ul>
+<li><p>输入训练集：<span class="math inline">\(T={(x_1, y_1), (x_2,
+y_2),...,(x_N, y_N)}\)</span>,其中<span class="math inline">\(x_i\in\mathcal{X}\subseteq R^n,
+y\in\mathcal{Y}=\{c_1, c_2,...,c_K\}\)</span>;输出为实例<span class="math inline">\(x\)</span>所属的类别y</p></li>
+<li><p>算法步骤：</p>
+<blockquote>
+<ol type="1">
+<li><p>根据给定的<strong>距离度量</strong>，计算x与T中点的距离；</p></li>
+<li><p>在T中找到与x最邻近的<em>k</em>个点，涵盖这k个点的x的邻域记作<span class="math inline">\(N_k(x)\)</span>；</p></li>
+<li><p>在<span class="math inline">\(N_k(x)\)</span>中根据<strong>决策规则</strong>（如多数表决）决定x的类别y。</p>
+<p><span class="math inline">\(y=arg \ \ max_{c_j} \sum\limits_{x_i\in
+N_k(x)}I(y_i=c_i), i=1, 2,...,N;j=1, 2,...,K\)</span></p></li>
+</ol>
+</blockquote></li>
+</ul>
+<h3 id="三要素">三要素</h3>
+<p><strong>模型</strong>：k近邻法不具有显性的学习过程，实际上利用训练数据集对特征向量空间进行划分，以其作为分类的“模型”。</p>
+<h4 id="距离度量">距离度量</h4>
+<p><strong><span class="math inline">\(L_p\)</span>距离</strong>：特征空间<span class="math inline">\(\mathcal{X}\)</span>假设为<span class="math inline">\(R^n\)</span>，<span class="math inline">\(\forall
+x_i, x_j\in \mathcal{X}, \  x_i=(x_i^{(1)}, x_i^{(2)}, ...,
+x_i^{(n)})^T, \ x_j=(x_j^{(1)}, x_j^{(2)}, ...,
+x_j^{(n)})^T\)</span>,则有</p>
+<p><span class="math inline">\(L_p(x_i, x_j) =
+(\sum\limits_{I=1}\limits^{n}|x_i^{(I)}-x_j^{(I)}|^p)^{\frac{1}{p}}, \ p
+\ge 1\)</span></p>
+<p>p取2时为<strong>欧氏距离</strong>。</p>
+<p>P取1时为<strong>曼哈顿距离</strong></p>
+<p>p为无穷大时为切<strong>比雪夫不距离</strong>：<span class="math inline">\(L_{\infty}=max_I|x_i^{(I)}-x_j^{(I)}|\)</span></p>
+<h4 id="k值的选择"><em>k</em>值的选择</h4>
+<ul>
+<li><p>较小的k值，学习的近似误差较小，但估计误差增大，敏感性增强，而且模型复杂，容易过拟合。</p></li>
+<li><p>较大的k值，减小学习的估计误差，但近似误差增大，而且模型简单。</p>
+<p>k的取值可以通过交叉验证来选择，一般低于训练集样本量的平方跟。</p></li>
+</ul>
+<h4 id="分类决策规则">分类决策规则</h4>
+<p><strong>多数表决规则</strong>：由输入实例的<em>k</em>个邻近的训练实例中的多数类决定输入实例的类。</p>
+<ul>
+<li>分裂函数: <span class="math inline">\(f:R^n \rightarrow {c_1, c_2,
+..., c_K}\)</span></li>
+<li>0-1损失函数：<span class="math display">\[L(Y, f(X))=\begin{cases}1,
+Y \ne f(X) \\ 0, Y = f(X) \end{cases}\]</span></li>
+<li>误分类概率：<span class="math inline">\(P(Y\ne
+f(X))=1-P(Y=f(X))\)</span></li>
+</ul>
+<p>对于给定实例<span class="math inline">\(x\in
+\mathcal{X}\)</span>，相应的<em>k</em>邻域<span class="math inline">\(N_k(x)\)</span>, 类别为<span class="math inline">\(c_j\)</span>，误分类率为<span class="math inline">\(\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i\ne
+c_j)=1-\frac{1}{k}\sum\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span>;
+最小化误分类率，等价于<span class="math inline">\(arg \ \ max \sum
+\limits_{x_i\in N_k(x)}I(y_i=c_j)\)</span></p>
+<h3 id="kd树"><em>kd</em>树</h3>
+<p><em>kd</em>树是一种对k维空间中的实例点进行存储以便对其进行快速检索的树形数据结构。</p>
+<p>本质是二叉树，表示对k维空间的一个划分</p>
+<p><strong>构造过程</strong>：不断地用垂直于坐标轴的超平面将k维空间切分，形成k维超矩形区域。<em>kd</em>树中的每一个结点对应于一个k维超矩形区域。</p>
+<p><strong>构造<em>kd</em>树算法</strong></p>
+<ul>
+<li><p>输入：<em>k</em>维空间数据集<span class="math inline">\(T=\{x_1,
+x_2,...,x_N\}\)</span>, 其中<span class="math inline">\(x_i=(x_i^{(1)}),
+x_i^{(2)}),...,x_i^{(k)})^T\)</span></p></li>
+<li><p>输出：<em>kd</em>树</p>
+<blockquote>
+<ol type="1">
+<li>开始，构造根节点。
+<ul>
+<li>选取<span class="math inline">\(x^{(1)}\)</span>为坐标轴，以训练集中的所有数据<span class="math inline">\(x^{(1)}\)</span>坐标中的中位数作为切分点，将超矩形区域切割成两个字区域，将该切分点作为根节点。</li>
+<li>由根节点生出深度为1的左右子节点，左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
+</ul></li>
+<li>重复
+<ul>
+<li>对深度为j的节点，选择<span class="math inline">\(x^{(I)}\)</span>为切分坐标轴，<span class="math inline">\(I=j( mod \ k) + 1\)</span>,
+以该节点区域中所有实例<span class="math inline">\(x^{(I)}\)</span>坐标的中位数作为切分点，将区域划分为两个子区域。</li>
+<li>生成深度为j+1的左右节点。左节点对应坐标小于切分点，右节点对应坐标大于切分点。</li>
+</ul></li>
+<li>直到两个子区域没有实例时停止。</li>
+</ol>
+</blockquote></li>
+</ul>
+<p><strong>搜索<em>kd</em>树</strong></p>
+<ul>
+<li><strong>最近邻搜索算法</strong>
+<ul>
+<li>寻找<strong>当前最近点</strong>，从树根不停寻找下一级节点，最终找到离目标点最近的叶子节点作为<strong>当前最近点</strong></li>
+<li>回溯：以目标点和<strong>当前最近点</strong>的距离沿树根进行回溯和迭代</li>
+</ul></li>
+</ul>
+<p><strong>机器学习实战中的代码例子</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> operator</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createDataSet</span>():</span><br><span class="line">    group = np.array([[<span class="number">1.0</span>, <span class="number">1.1</span>], [<span class="number">1.0</span>, <span class="number">1.0</span>], [<span class="number">0</span>, <span class="number">0</span>], [<span class="number">0</span>, <span class="number">0.1</span>]])</span><br><span class="line">    labels = [<span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;A&#x27;</span>, <span class="string">&#x27;B&#x27;</span>, <span class="string">&#x27;B&#x27;</span>]</span><br><span class="line">    <span class="keyword">return</span> group, labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">classify</span>(<span class="params">inX, dataSet, labels, k</span>):</span><br><span class="line">    dataSetSize = dataSet.shape[<span class="number">0</span>]</span><br><span class="line">    diffMat = np.tile(inX, (dataSetSize, <span class="number">1</span>)) - dataSet</span><br><span class="line">    sqDiffMat = diffMat ** <span class="number">2</span></span><br><span class="line">    sqDistances = sqDiffMat.<span class="built_in">sum</span>(axis=<span class="number">1</span>)</span><br><span class="line">    distances = sqDistances ** <span class="number">0.5</span></span><br><span class="line">    sortedDistIndicies = distances.argsort()</span><br><span class="line">    classCount = &#123;&#125;</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(k):</span><br><span class="line">        voteIlabel = labels[sortedDistIndicies[i]]</span><br><span class="line">        classCount[voteIlabel] = classCount.get(voteIlabel, <span class="number">0</span>) + <span class="number">1</span></span><br><span class="line">    sortedClassCount = <span class="built_in">sorted</span>(classCount.items(), key=operator.itemgetter(<span class="number">1</span>), reverse=<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">return</span> sortedClassCount[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">file2matrix</span>(<span class="params">filename</span>):</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename, <span class="string">&#x27;r&#x27;</span>) <span class="keyword">as</span> fr:</span><br><span class="line">        lines = fr.readlines()</span><br><span class="line">        len_lines = <span class="built_in">len</span>(lines)</span><br><span class="line">        res = np.zeros((len_lines, <span class="number">3</span>))</span><br><span class="line">        label_vector = []</span><br><span class="line">        index = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> line <span class="keyword">in</span> lines:</span><br><span class="line">            line = line.strip()</span><br><span class="line">            line_list = line.split(<span class="string">&quot;\t&quot;</span>)</span><br><span class="line">            res[index, :] = line_list[<span class="number">0</span>:<span class="number">3</span>]</span><br><span class="line">            label_vector.append(<span class="built_in">int</span>(line_list[-<span class="number">1</span>]))</span><br><span class="line">            index += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> res, label_vector</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">autoNorm</span>(<span class="params">dataset</span>):</span><br><span class="line">    minv = dataset.<span class="built_in">min</span>(<span class="number">0</span>)</span><br><span class="line">    maxv = dataset.<span class="built_in">max</span>(<span class="number">0</span>)</span><br><span class="line">    diff = maxv - minv</span><br><span class="line">    normdataset = np.zeros(np.shape(dataset))</span><br><span class="line">    m = dataset.shape[<span class="number">0</span>]</span><br><span class="line">    normdataset = dataset - np.tile(minv, (m, <span class="number">1</span>))</span><br><span class="line">    normdataset = normdataset / np.tile(diff, (m, <span class="number">1</span>))</span><br><span class="line">    <span class="keyword">return</span> normdataset, diff, minv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">datatest</span>():</span><br><span class="line">    r = <span class="number">0.1</span></span><br><span class="line">    data, label = file2matrix(<span class="string">&#x27;datingTestSet2.txt&#x27;</span>)</span><br><span class="line">    normdata, rang, minv = autoNorm(data)</span><br><span class="line">    m = normdata.shape[<span class="number">0</span>]</span><br><span class="line">    numtest = <span class="built_in">int</span>(m * r)</span><br><span class="line">    error_count = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(numtest):</span><br><span class="line">        class_res = classify(normdata[i, :], normdata[numtest:m, :], label[numtest:m], <span class="number">4</span>)</span><br><span class="line">        <span class="built_in">print</span>(class_res, label[i])</span><br><span class="line">        <span class="keyword">if</span> class_res != label[i]:</span><br><span class="line">            error_count += <span class="number">1</span></span><br><span class="line">    <span class="built_in">print</span>(error_count / <span class="built_in">float</span>(numtest))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    group, labels = createDataSet()</span><br><span class="line">    res = classify([<span class="number">0</span>, <span class="number">0</span>], group, labels, <span class="number">3</span>)</span><br><span class="line">    <span class="built_in">print</span>(res)</span><br><span class="line"></span><br><span class="line">    dataset, labels = file2matrix(<span class="string">&quot;datingTestSet2.txt&quot;</span>)</span><br><span class="line">    <span class="comment"># print(dataset, labels)</span></span><br><span class="line">    plt.scatter(dataset[:, <span class="number">0</span>], dataset[:, <span class="number">1</span>], <span class="number">15.0</span> * np.array(labels), <span class="number">15.0</span> * np.array(labels))</span><br><span class="line">    plt.show()</span><br><span class="line"></span><br><span class="line">    normdata, diff, minv = autoNorm(dataset)</span><br><span class="line">    <span class="comment"># print(normdata, diff, minv)</span></span><br><span class="line">    datatest()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="朴素贝叶斯法">朴素贝叶斯法</h2>
+<h3 id="贝叶斯定理">贝叶斯定理</h3>
+<p><strong>先验概率</strong>：基于统计的概率，是基于以往历史经验和分析得到的结果，不需要依赖当前发生的条件。</p>
+<p><strong>后验概率</strong>：从条件概率而来，由因推果，是基于当下发生了事件之后计算的概率，依赖于当前发生的条件。</p>
+<p><strong>条件概率</strong>：记事件A发生的概率为P(A),事件B发生的概率为P(B),则在B事件发生的前提下，A事件发生的概率即为条件概率，记为<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}\)</span>.</p>
+<p><strong>贝叶斯公式</strong>：基于条件概率，通过P(B|A)来求P(A|B).</p>
+<p><span class="math inline">\(P(B|A)=\frac{P(AB)}{P(A)} \rightarrow
+P(AB)=P(B|A)P(A)\)</span>,因此<span class="math inline">\(P(A|B)=\frac{P(AB)}{P(B)}=\frac{P(B|A)P(A)}{P(B)}\)</span></p>
+<p><strong>全概率公式</strong>：若事件<span class="math inline">\(A_1,A_2,...,A_n\)</span>构成一个完备事件组且都有正概率，则对任意一个事件B都有公式：</p>
+<p><span class="math inline">\(P(B)=\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)\)</span></p>
+<p>将全概率公式带入贝叶斯公式：<span class="math inline">\(P(A|B)=\frac{P(B|A)P(A)}{\sum\limits_{i=1}\limits^{n}P(B|A_i)P(A_i)}\)</span></p>
+<p><strong>贝叶斯分类</strong></p>
+<p>存在K类<span class="math inline">\(c_1,
+c_2,...,c_K\)</span>，给定一个新的实例<span class="math inline">\(x=(x^{(1)},
+x^{(2)},...,x^{(n)})\)</span>，求x应属于哪一类</p>
+<p><span class="math inline">\(P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(X=x|Y=c_i)P(Y=c_i)}\)</span></p>
+<p>最终求：<span class="math inline">\(arg\ \ max_{c_i}P(X=x|Y=c_i)\cdot
+P(Y=c_i)\)</span></p>
+<h3 id="朴素贝叶斯算法原理">朴素贝叶斯算法原理</h3>
+<p>假设实例特征之间相互独立</p>
+<p><span class="math inline">\(P(X=x_i|Y=c_i)=\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
+<p><span class="math inline">\(\Longrightarrow
+P(X=x)=\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span></p>
+<p><span class="math inline">\(\Longrightarrow
+P(Y=c_i|X=x)=\frac{P(X=x|Y=c_i)P(Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
+<p><span class="math inline">\(\Longrightarrow
+P(Y=c_i|X=x)=\frac{P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}{\sum\limits_{i=1}\limits^{K}P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)}\)</span></p>
+<p>最终，朴素贝叶斯分类器只需要关注分子，即<span class="math inline">\(arg \ \ max_{c_i}
+P(Y=c_i)\prod\limits_{j=1}\limits^{n}P(X^{(j)}=x^{(j)}|Y=c_i)\)</span>，即<strong>后验概率最大化</strong>。</p>
+<h3 id="拉普拉斯平滑">拉普拉斯平滑</h3>
+<p>为了解决零概率的问题，法国数学家拉普拉斯最早提出用加1的方法估计没有出现过的现象的概率，所以加法平滑也叫做拉普拉斯平滑。</p>
+<p>先验概率的贝叶斯估计：<span class="math inline">\(P_\lambda(Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+\lambda}{N+K\lambda}\)</span></p>
+<p>条件概率的贝叶斯估计: <span class="math inline">\(P_\lambda(X^{(j)}=a_{jI}|Y=c_k)=\frac{\sum\limits_{i=1}\limits^{N}I(x_j^{(j)}=a_{iI},y_i=c_k)+\lambda}{\sum\limits_{i=1}\limits^{N}I(y_i=c_k)+S_j\lambda}\)</span></p>
+<p>机器学习实战上的一个简单的实例：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">loadDataSet</span>():</span><br><span class="line">    posting_list = [[<span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;has&#x27;</span>, <span class="string">&#x27;flea&#x27;</span>, <span class="string">&#x27;problems&#x27;</span>, <span class="string">&#x27;help&#x27;</span>, <span class="string">&#x27;please&#x27;</span>],</span><br><span class="line">                    [<span class="string">&#x27;maybe&#x27;</span>, <span class="string">&#x27;not&#x27;</span>, <span class="string">&#x27;take&#x27;</span>, <span class="string">&#x27;him&#x27;</span>, <span class="string">&#x27;to&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;park&#x27;</span>, <span class="string">&#x27;stupid&#x27;</span>],</span><br><span class="line">                    [<span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;dalmation&#x27;</span>, <span class="string">&#x27;is&#x27;</span>, <span class="string">&#x27;so&#x27;</span>, <span class="string">&#x27;cute&#x27;</span>, <span class="string">&#x27;I&#x27;</span>, <span class="string">&#x27;love&#x27;</span>, <span class="string">&#x27;him&#x27;</span>],</span><br><span class="line">                    [<span class="string">&#x27;stop&#x27;</span>, <span class="string">&#x27;posting&#x27;</span>, <span class="string">&#x27;stupid&#x27;</span>, <span class="string">&#x27;worthless&#x27;</span>, <span class="string">&#x27;garbage&#x27;</span>],</span><br><span class="line">                    [<span class="string">&#x27;mr&#x27;</span>, <span class="string">&#x27;licks&#x27;</span>, <span class="string">&#x27;ate&#x27;</span>, <span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;steak&#x27;</span>, <span class="string">&#x27;how&#x27;</span>, <span class="string">&#x27;to&#x27;</span>, <span class="string">&#x27;stop&#x27;</span>, <span class="string">&#x27;him&#x27;</span>],</span><br><span class="line">                    [<span class="string">&#x27;quit&#x27;</span>, <span class="string">&#x27;buying&#x27;</span>, <span class="string">&#x27;worthless&#x27;</span>, <span class="string">&#x27;dog&#x27;</span>, <span class="string">&#x27;food&#x27;</span>, <span class="string">&#x27;stupid&#x27;</span>]]</span><br><span class="line">    class_vec = [<span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> posting_list, class_vec</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">createVocabList</span>(<span class="params">dataset</span>):</span><br><span class="line">    vocab_set = <span class="built_in">set</span>([])</span><br><span class="line">    <span class="keyword">for</span> document <span class="keyword">in</span> dataset:</span><br><span class="line">        vocab_set = vocab_set | <span class="built_in">set</span>(document)</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">list</span>(vocab_set)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 将输入词特征向量转换成数字特征向量</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">setOfWords2Vec</span>(<span class="params">vocab_list, input_set</span>):</span><br><span class="line">    return_vec = [<span class="number">0</span>] * <span class="built_in">len</span>(vocab_list)</span><br><span class="line">    <span class="keyword">for</span> word <span class="keyword">in</span> input_set:</span><br><span class="line">        <span class="keyword">if</span> word <span class="keyword">in</span> vocab_list:</span><br><span class="line">            return_vec[vocab_list.index(word)] = <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="built_in">print</span>(<span class="string">&quot;the word: &#123;&#125; is not in my vocabulary&quot;</span>.<span class="built_in">format</span>(word))</span><br><span class="line">    <span class="keyword">return</span> return_vec</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">trainNB0</span>(<span class="params">train_matrix, train_category</span>):</span><br><span class="line">    len_train_doc = <span class="built_in">len</span>(train_matrix)</span><br><span class="line">    num_words = <span class="built_in">len</span>(train_matrix[<span class="number">0</span>])</span><br><span class="line">    p_busive = <span class="built_in">sum</span>(train_category) / <span class="built_in">float</span>(len_train_doc)</span><br><span class="line">    p0_num, p1_num = np.ones(num_words), np.ones(num_words)</span><br><span class="line">    p0_den, p1_den = <span class="number">2.0</span>, <span class="number">2.0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(len_train_doc):</span><br><span class="line">        <span class="keyword">if</span> train_category[i] == <span class="number">1</span>:</span><br><span class="line">            p1_num += train_matrix[i]</span><br><span class="line">            p1_den += <span class="built_in">sum</span>(train_matrix[i])</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            p0_num += train_matrix[i]</span><br><span class="line">            p0_den += <span class="built_in">sum</span>(train_matrix[i])</span><br><span class="line">    p1_vect = np.log(p1_num / p1_den)</span><br><span class="line">    p0_vect = np.log(p0_num / p0_den)</span><br><span class="line">    <span class="keyword">return</span> p0_vect, p1_vect, p_busive</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">calssifyNB</span>(<span class="params">vec2calssify, p0_vec, p1_vec, p_class1</span>):</span><br><span class="line">    p1 = <span class="built_in">sum</span>(vec2calssify * p1_vec) + np.log(p_class1)</span><br><span class="line">    p0 = <span class="built_in">sum</span>(vec2calssify * p0_vec) + np.log(<span class="number">1.0</span> - p_class1)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">1</span> <span class="keyword">if</span> p1 &gt; p0 <span class="keyword">else</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    posts, label = loadDataSet()</span><br><span class="line">    my_vocab_list = createVocabList(posts)</span><br><span class="line">    <span class="comment"># print(my_vocab_list)</span></span><br><span class="line">    <span class="comment"># print(setOfWords2Vec(my_vocab_list, posts[0]))</span></span><br><span class="line">    train = []</span><br><span class="line">    <span class="keyword">for</span> p <span class="keyword">in</span> posts:</span><br><span class="line">        train.append(setOfWords2Vec(my_vocab_list, p))</span><br><span class="line">    p0, p1, pab = trainNB0(train, label)</span><br><span class="line">    test_words = [<span class="string">&#x27;love&#x27;</span>, <span class="string">&#x27;my&#x27;</span>, <span class="string">&#x27;dalmation&#x27;</span>]</span><br><span class="line">    test_doc = np.array(setOfWords2Vec(my_vocab_list, test_words))</span><br><span class="line">    <span class="comment"># print(test_doc)</span></span><br><span class="line">    <span class="built_in">print</span>(calssifyNB(test_doc, p0, p1, pab))</span><br><span class="line">    test_words = [<span class="string">&#x27;stupid&#x27;</span>, <span class="string">&#x27;garbage&#x27;</span>]</span><br><span class="line">    test_doc = np.array(setOfWords2Vec(my_vocab_list, test_words))</span><br><span class="line">    <span class="built_in">print</span>(calssifyNB(test_doc, p0, p1, pab))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>机器学习</category>
+        <category>统计学习方法</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
       </tags>
   </entry>
   <entry>
