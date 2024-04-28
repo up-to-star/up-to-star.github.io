@@ -53,7 +53,7 @@
   isHome: true,
   isHighlightShrink: false,
   isToc: false,
-  postUpdate: '2024-04-28 22:00:18'
+  postUpdate: '2024-04-28 23:32:21'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -180,7 +180,8 @@
   }
 })()</script><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/3.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="full_page fixed" id="page-header" style="background-image: url('/img/2.jpg')"><nav id="nav"><span id="blog-info"><a href="/" title="上山的路"><span class="site-name">上山的路</span></a></span><div id="weather"> <div id="tp-weather-widget"></div></div><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="site-info"><h1 id="site-title">上山的路</h1><div id="site-subtitle"><span id="subtitle"></span></div><div id="site_social_icons"><a class="social-icon" href="https://github.com/up-to-star" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2200316527@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div id="scroll-down"><i class="fas fa-angle-down scroll-down-effects"></i></div></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">MySQL学习</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-22T12:22:08.000Z" title="发表于 2024-04-22 20:22:08">2024-04-22</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T04:26:43.630Z" title="更新于 2024-04-28 12:26:43">2024-04-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91/">开发</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91/MySQL/">MySQL</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/MySQL/">MySQL</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a></span></div><div class="content">创建数据库
 1CREATE DATABASE [IF NOT EXISTS] db_name [create_specification [, create_specification]...]
-create_specification: 默认CHARACTER SET指定数据集采用的字符集，如果不指定字符集，默认utf8;COLLATE指定数据库字符集的校对规则(常用的utf8_bin区分大小写、utf8_general_ci不区分大小写)
+create_specification:
+默认CHARACTER SET指定数据集采用的字符集，如果不指定字符集，默认utf8;COLLATE指定数据库字符集的校对规则(常用的utf8_bin区分大小写、utf8_general_ci不区分大小写)
 查看、删除数据库
 
 显示数据库语句：SHOW DATABASES
@@ -189,19 +190,14 @@ create_specification: 默认CHARACTER SET指定数据集采用的字符集，如
 
 备份恢复数据库
 
-
 备份数据库
 1234mysqldump -u 用户名 -p -B 数据库1 数据库2 数据库n &gt; 文件名.sql# 备份库的表mysqldump -u 用户名 -p密码 数据库 表1 表2 表n &gt; 文件名.sql
-
-
 恢复数据库
 1Source 文件名.sql
-
-
-创建表
-1234567 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="统计学习方法">统计学习方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-19T09:32:31.000Z" title="发表于 2024-04-19 17:32:31">2024-04-19</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T13:59:31.526Z" title="更新于 2024-04-28 21:59:31">2024-04-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">机器学习分类
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="统计学习方法">统计学习方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-19T09:32:31.000Z" title="发表于 2024-04-19 17:32:31">2024-04-19</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-28T15:32:01.774Z" title="更新于 2024-04-28 23:32:01">2024-04-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/">统计学习方法</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></span></div><div class="content">机器学习分类
 监督学习
-监督学习(Supervised Learning) 是指从标注数据中学习预测模型的机器学习问题，本质是学习输入到输出的映射的统计规律。
+监督学习(Supervised Learning)
+是指从标注数据中学习预测模型的机器学习问题，本质是学习输入到输出的映射的统计规律。
 
 输入空间：输入的所有可能取值的集合
 实例：每一个具体的输入，通常由特征向量表示
@@ -217,7 +213,8 @@ create_specification: 默认CHARACTER SET指定数据集采用的字符集，如
 监督学习流程图：
 
 无监督学习
-无监督学习(Unsupervised Learning)是指从无标注数据中学习预测模型的机器学习问题，本质是学习数据中的统计规律或潜在结构。
+无监督学习(Unsupervised
+Learning)是指从无标注数据中学习预测模型的机器学习问题，本质是学习数据中的统计规律或潜在结构。
 无监督学习流程图：
 
 强化学习
@@ -226,25 +223,27 @@ create_specification: 默认CHARACTER SET指定数据集采用的字符集，如
 统计学学习方法三要素
 三要素包括模型、策略和算法
 监督学习三要素
-假设空间：所有可能得条件概率分布或决策函数，用F\mathcal{F}F表示。
-
+假设空间：所有可能得条件概率分布或决策函数，用\(\mathcal{F}\)表示。
 
 模型：监督学习模型可表示为条件概率分布或决策函数
-
-
-策略
-损失函数：度量模型一次预测的好坏，记作L(Y,f(X))L( ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/18/Python%E8%A1%A5%E5%85%85/" title="Python补充">Python补充</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-18T14:12:56.000Z" title="发表于 2024-04-18 22:12:56">2024-04-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-22T12:24:25.447Z" title="更新于 2024-04-22 20:24:25">2024-04-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91/">开发</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91/Python/">Python</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/">魔术方法</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">魔术方法
+策略 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/18/Python%E8%A1%A5%E5%85%85/" title="Python补充">Python补充</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-18T14:12:56.000Z" title="发表于 2024-04-18 22:12:56">2024-04-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-22T12:24:25.447Z" title="更新于 2024-04-22 20:24:25">2024-04-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91/">开发</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E5%BC%80%E5%8F%91/Python/">Python</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/">魔术方法</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a></span></div><div class="content">魔术方法
 
 __getattr__与__getattribute__对属性进行拦截
 
-​	当我们访问一个不存在的属性的时候，会抛出异常，提示我们不存在这个属性。而这个异常就是__getattr__方法抛出的，其原因在于他是访问一个不存在的属性的最后落脚点。Python 解释器会首先调用__getattribute__, 如果该实例中有需要获取的属性值, 就返回属性值, 如果没有, 则会抛出 AttributeError，如果在定义类的时候实现了 __getattr__方法, 那么在 __getattribute__ 抛出 AttributeError 后, 就会执行 __getattr__，如果 __getattribute__ 获取到了属性值, __ getattr__ 就不会被调用.
-
+​
+当我们访问一个不存在的属性的时候，会抛出异常，提示我们不存在这个属性。而这个异常就是__getattr__方法抛出的，其原因在于他是访问一个不存在的属性的最后落脚点。Python
+解释器会首先调用__getattribute__,
+如果该实例中有需要获取的属性值, 就返回属性值, 如果没有, 则会抛出
+AttributeError，如果在定义类的时候实现了
+__getattr__方法, 那么在 __getattribute__ 抛出
+AttributeError 后, 就会执行 __getattr__，如果
+__getattribute__ 获取到了属性值, __ getattr__
+就不会被调用.
 
 __setattr__
 在对一个属性设置值的时候，会调用到这个函数，每个设置值的方式都会进入这个方法。
 在实例化的时候，会进行初始化，在__init__里，对value的属性值进行了设置，这时候会调用__setattr__方法。
-在重写__setattr__的方法的时候要避免重复调用，避免死循环
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="async异步编程">async异步编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-18T05:18:29.000Z" title="发表于 2024-04-18 13:18:29">2024-04-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-22T12:24:39.708Z" title="更新于 2024-04-22 20:24:39">2024-04-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/asyncio/">asyncio</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a></span></div><div class="content">协程
+在重写__setattr__的方法的 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="async异步编程">async异步编程</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-18T05:18:29.000Z" title="发表于 2024-04-18 13:18:29">2024-04-18</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-22T12:24:39.708Z" title="更新于 2024-04-22 20:24:39">2024-04-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/Python/">Python</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/Python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/Python/">Python</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/asyncio/">asyncio</a><span class="article-meta-link">•</span><a class="article-meta__tags" href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/">异步编程</a></span></div><div class="content">协程
 协程(Coroutine)，也称为微线程，是一种用户态内的上下文切换技术，就是通过一个线程实现代码块相互切换执行。
 Python实现协程的几种方法:
 
@@ -256,73 +255,76 @@ async、await关键字(py3.5之后)
 asyncio事件循环
 事件循环可以看做一个死循环，去检测并执行某些代码。
 123456789任务列表 = [任务1, 任务2, 任务3, ...]while True:    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将&#x27;可执行&#x27;和&#x27;已完成&#x27;的任务返回    for 就绪任务 in 已准备就绪的任务列表:        执行已就绪的任务    for 已完成的任务 in 已完成的任务列表:        在任务列表中移除 已完成的任务    如果 任务列表 中的任务都已完成，则终止循环
-1234567import asyncio# 生成或获取一个事件循环loop = asyncio.get_event_loop()# 将任 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/17/%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="一些数学知识">一些数学知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-17T13:55:53.000Z" title="发表于 2024-04-17 21:55:53">2024-04-17</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-17T14:06:02.295Z" title="更新于 2024-04-17 22:06:02">2024-04-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%B4%A7/">杂货</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%B4%A7/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">数学知识</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">数学知识</a></span></div><div class="content">矩阵求导
+1234567import asyncio# 生成或获取一个事件循环loop = asyncio.get_even ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/17/%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="一些数学知识">一些数学知识</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-17T13:55:53.000Z" title="发表于 2024-04-17 21:55:53">2024-04-17</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-17T14:06:02.295Z" title="更新于 2024-04-17 22:06:02">2024-04-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%B4%A7/">杂货</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E6%9D%82%E8%B4%A7/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">数学知识</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/">数学知识</a></span></div><div class="content">矩阵求导
 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2024/04/04/%E7%BB%8F%E9%AA%8C%E8%B4%B4/" title="经验贴">经验贴</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2024-04-04T05:15:48.000Z" title="发表于 2024-04-04 13:15:48">2024-04-04</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-04T09:53:23.250Z" title="更新于 2024-04-04 17:53:23">2024-04-04</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E8%AE%B0%E5%BD%95%E8%B4%B4/">记录贴</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%80%83%E7%A0%94%E7%9A%84%E5%8F%A5%E5%8F%B7/">考研的句号</a></span></div><div class="content">首先挂一个我拉的QQ考研交流群433955962，想接点答疑赚点零花钱。
 
 </div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/12/08/%E6%94%BF%E6%B2%BB%E9%80%89%E6%8B%A9%E9%A2%98/" title="政治选择题">政治选择题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-08T14:25:05.000Z" title="发表于 2023-12-08 22:25:05">2023-12-08</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-18T14:23:37.569Z" title="更新于 2023-12-18 22:23:37">2023-12-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E6%94%BF%E6%B2%BB%E9%80%89%E6%8B%A9%E9%A2%98/">政治选择题</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%94%BF%E6%B2%BB/">政治</a></span></div><div class="content">
-
 《论十大关系》是以毛泽东为主要代表的中国共产党人开始探索适合中国国情的社会主义建设道路的标志，在新的历史条件下从经济方面和政治方面提出了新的指导方针，为中共八大的召开做了理论准备。
-
-
 《关于正确处理人民内部矛盾的问题》
 
 
-
 提出了中国工业化道路问题，主要是重工业和轻工业、农业的发展关系问题，强调走一条有别与苏联的中国工业化道路。
-所谓专政方式，就是运用人民民主专政的国家机器 ，对于国家内部那些反抗社会主义改造、破坏社会主义建设的敌对分子和严重犯罪分子依法治罪，剥夺他们的政治权利，强迫他们从事劳动，并在劳动中尽量使他们改造成为新人
+所谓专政方式，就是运用人民民主专政的国家机器
+，对于国家内部那些反抗社会主义改造、破坏社会主义建设的敌对分子和严重犯罪分子依法治罪，剥夺他们的政治权利，强迫他们从事劳动，并在劳动中尽量使他们改造成为新人
 所谓民主方法，就是讨论的方法、批评的方法、说服教育的方法。
 
 
-
 军政军民团结是实现富国和强军相统一的重要政治保障。
-
-
 矛盾的统一性规定着事物转化和发展的趋势
-
-
-中国革命必须走农村包围城市、武装夺取政权的道路，是由中国所处的时代特点和具体国情决定的。一方面，在半殖民地半封建的中国社会，内无民主制度而受封建主义的压迫，外无民族独立而受帝国主义压迫。另一方面，近代中国是一个农业大国，农民占全国人口的绝大多数，是无产阶级可靠的同盟军和革命的主力军。（双选 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/" title="计网模拟题">计网模拟题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-01T08:27:20.000Z" title="发表于 2023-12-01 16:27:20">2023-12-01</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-15T06:12:06.888Z" title="更新于 2023-12-15 14:12:06">2023-12-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%BD%91/">计网</a></span></div><div class="content">2024 年全国硕士研究生入学统一考试模拟题01
+中国革命必须走农村包围城市、武装夺取政权的道路，是由中国所处的时代特点和具体国情决定的。一方面，在半殖民地半封建的中国社会，内无民主制度而受封建主义的压迫，外无民族独立而受帝国主义压迫。另一方面，近代中国是一个农业大国，农民占全国人口的绝大多数，是无产阶级可靠的同盟军和革命的主力军 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/12/01/%E8%AE%A1%E7%BD%91%E6%A8%A1%E6%8B%9F%E9%A2%98/" title="计网模拟题">计网模拟题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-12-01T08:27:20.000Z" title="发表于 2023-12-01 16:27:20">2023-12-01</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-15T06:12:06.888Z" title="更新于 2023-12-15 14:12:06">2023-12-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%BD%91/">计网</a></span></div><div class="content">2024
+年全国硕士研究生入学统一考试模拟题01
 一、单项选择题：第1~40小题，每小题2分，共80分。下列每题给出的四个选项中，只有一个选项最符合试题要求。
 
 
-
-在OSI/RM中，不属于网络层相邻下层涉及的范畴是（  ）。
+在OSI/RM中，不属于网络层相邻下层涉及的范畴是（ ）。
 
 A．物理地址
 B．封装成帧
 C．透明传输
 D．频分复用
 
-
-
-假设某信道中的信号功率为0.6W，噪声功率为0.0193W，信道的频带宽度为160MHz，信道的长度为1km，信号在该信道的传播速率为200,000km/s，则该信道的时延带宽积是（  ）。
+假设某信道中的信号功率为0.6W，噪声功率为0.0193W，信道的频带宽度为160MHz，信道的长度为1km，信号在该信道的传播速率为200,000km/s，则该信道的时延带宽积是（
+）。
 
 A．500b
 B．512b
 C．1024b
 D．4000b
 
-
-
 以下有关VLAN的叙述中，错误的有（ ）。
 
 I. VLAN是一种新型局域网
-II. VLAN使用的802.1Q帧的最大长度为1518B
-III. 连接在同一交换机上的多个站点可以属于不同的VLAN
-IV. 不同VLAN中的站点之间不能直接通信
+
+VLAN使用的802.1Q帧的最大长度为1518B
+连接在同一交换机上的多个站点可以属于不同的VLAN
+不同VLAN中的站点之间不能直接通信
+
 V. 属于同一VLAN的多个站点不能连接在不同的交换机上
 A．I、V
 B．II、IV
 C．I、II、V
 D．II、III、IV、V
 
-
-
-若主机A的IP地址是192.168.0.129/25，则主机A所 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/27/408%E7%9C%9F%E9%A2%98/" title="408真题">408真题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-27T10:23:20.000Z" title="发表于 2023-11-27 18:23:20">2023-11-27</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T09:29:49.071Z" title="更新于 2023-12-17 17:29:49">2023-12-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E7%9C%9F%E9%A2%98n%E5%88%B7/">真题n刷</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/408/">408</a></span></div><div class="content">边角知识
+若主机A的IP地址是192.168. ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/11/27/408%E7%9C%9F%E9%A2%98/" title="408真题">408真题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-11-27T10:23:20.000Z" title="发表于 2023-11-27 18:23:20">2023-11-27</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-17T09:29:49.071Z" title="更新于 2023-12-17 17:29:49">2023-12-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E7%9C%9F%E9%A2%98n%E5%88%B7/">真题n刷</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/408/">408</a></span></div><div class="content">边角知识
 海明码
 原理先不深究了，先记住校验位的计算，以及如何校验
 校验位确认
-校验位的个数k要满足2k−1≥n+k2^k-1 \ge n + k2k−1≥n+k，即k个二进制位要能够表示数据位加校验位错误位的情况以及没有错的情况。
-假如原数据从低到高为1010 110，则校验位需要4位，记为p0,p1,p2,p3p_0,p_1,p_2,p_3p0​,p1​,p2​,p3​，对应放在2i2^i2i处，即
+校验位的个数k要满足\(2^k-1 \ge n +
+k\)，即k个二进制位要能够表示数据位加校验位错误位的情况以及没有错的情况。
+假如原数据从低到高为1010 110，则校验位需要4位，记为\(p_0,p_1,p_2,p_3\)，对应放在\(2^i\)处，即
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -341,17 +343,17 @@ D．II、III、IV、V
 
 
 
-p0p_0p0​
-p1p_1p1​
-D1D_1D1​
-p2p_2p2​
-D2D_2D2​
-D3D_3D3​
-D4D_4D4​
-p3p_3p3​
-D5D_5D5​
-D6D_6D6​
-D7D_7D7​
+\(p_0\)
+\(p_1\)
+\(D_1\)
+\(p_2\)
+\(D_2\)
+\(D_3\)
+\(D_4\)
+\(p_3\)
+\(D_5\)
+\(D_6\)
+\(D_7\)
 
 
 待求
@@ -368,18 +370,12 @@ D7D_7D7​
 
 
 
-求pip_ipi​的方法是将位置二进制表示下i+1i+1i+1位为1的所有数异或结果为0，例如求p1p_1p1​，就是将所有二进制下2位为1的数据异或使其为0，就能得到所求的p1p_1p1​。
+求\(p_i\)的方法是将位置二进制表示下\(i+1\)位为1的所有数异或结果为0，例如求\(p_1\)，就是将所有二进制下2位为1的数据异或使其为0，就能得到所求的\(p_1\)。
 
 
 
-0001
-0010
-0011
-0100
-0101
-0110
-0111
- ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/09/15/%E8%AE%A1%E7%BD%91%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="计网每日一题">计网每日一题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-15T15:36:55.000Z" title="发表于 2023-09-15 23:36:55">2023-09-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-03T09:38:53.849Z" title="更新于 2023-12-03 17:38:53">2023-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%BD%91/">计网</a></span></div><div class="content">day1 9月6日
+
+ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/2023/09/15/%E8%AE%A1%E7%BD%91%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" title="计网每日一题">计网每日一题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-09-15T15:36:55.000Z" title="发表于 2023-09-15 23:36:55">2023-09-15</time><span class="article-meta-separator">|</span><i class="fas fa-history"></i><span class="article-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-12-03T09:38:53.849Z" title="更新于 2023-12-03 17:38:53">2023-12-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/">研究生入学考试</a><i class="fas fa-angle-right article-meta-link"></i><a class="article-meta__categories" href="/categories/%E7%A0%94%E7%A9%B6%E7%94%9F%E5%85%A5%E5%AD%A6%E8%80%83%E8%AF%95/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%A1%E7%BD%91/">计网</a></span></div><div class="content">day1 9月6日
 
 
 day2 9月7日
@@ -453,20 +449,7 @@ day29 10月10日
 day30 10月11日
 
 
-day31 10月12日
-
-day32 10月13日
-
-
-day33 10月14日
-
-
-day34 10月15日
-
-
-day35 10月16日
-
-d ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/3.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小牛马</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/up-to-star"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/up-to-star" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2200316527@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">MySQL学习</a><time datetime="2024-04-22T12:22:08.000Z" title="发表于 2024-04-22 20:22:08">2024-04-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="统计学习方法">统计学习方法</a><time datetime="2024-04-19T09:32:31.000Z" title="发表于 2024-04-19 17:32:31">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/Python%E8%A1%A5%E5%85%85/" title="Python补充">Python补充</a><time datetime="2024-04-18T14:12:56.000Z" title="发表于 2024-04-18 22:12:56">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="async异步编程">async异步编程</a><time datetime="2024-04-18T05:18:29.000Z" title="发表于 2024-04-18 13:18:29">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/17/%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="一些数学知识">一些数学知识</a><time datetime="2024-04-17T13:55:53.000Z" title="发表于 2024-04-17 21:55:53">2024-04-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+ ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/3.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">小牛马</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">10</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">13</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">14</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/up-to-star"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/up-to-star" target="_blank" title="Github"><i class="fab fa-github" style="color: #24292e;"></i></a><a class="social-icon" href="mailto:2200316527@qq.com" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/" title="MySQL学习">MySQL学习</a><time datetime="2024-04-22T12:22:08.000Z" title="发表于 2024-04-22 20:22:08">2024-04-22</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/19/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" title="统计学习方法">统计学习方法</a><time datetime="2024-04-19T09:32:31.000Z" title="发表于 2024-04-19 17:32:31">2024-04-19</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/Python%E8%A1%A5%E5%85%85/" title="Python补充">Python补充</a><time datetime="2024-04-18T14:12:56.000Z" title="发表于 2024-04-18 22:12:56">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" title="async异步编程">async异步编程</a><time datetime="2024-04-18T05:18:29.000Z" title="发表于 2024-04-18 13:18:29">2024-04-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/2024/04/17/%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" title="一些数学知识">一些数学知识</a><time datetime="2024-04-17T13:55:53.000Z" title="发表于 2024-04-17 21:55:53">2024-04-17</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             <a class="card-more-btn" href="/categories/" title="查看更多">
@@ -474,7 +457,7 @@ d ...</div></div></div><nav id="pagination"><div class="pagination"><span class=
             </div>
             <ul class="card-category-list" id="aside-cat-list">
             <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/Python/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/"><span class="card-category-list-name">异步编程</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91/"><span class="card-category-list-name">开发</span><span class="card-category-list-count">2</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91/MySQL/"><span class="card-category-list-name">MySQL</span><span class="card-category-list-count">1</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E5%BC%80%E5%8F%91/Python/"><span class="card-category-list-name">Python</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"><span class="card-category-list-name">机器学习</span><span class="card-category-list-count">1</span></a><ul class="card-category-list child"><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/"><span class="card-category-list-name">统计学习方法</span><span class="card-category-list-count">1</span></a></li></ul></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%9D%82%E8%B4%A7/"><span class="card-category-list-name">杂货</span><span class="card-category-list-count">1</span></a></li>
-            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/408/" style="font-size: 1.1em; color: #999">408</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 1.5em; color: #99a9bf">计网</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">机器学习</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.1em; color: #999">设计模式</a> <a href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" style="font-size: 1.1em; color: #999">魔术方法</a> <a href="/tags/%E8%80%83%E7%A0%94%E7%9A%84%E5%8F%A5%E5%8F%B7/" style="font-size: 1.1em; color: #999">考研的句号</a> <a href="/tags/asyncio/" style="font-size: 1.1em; color: #999">asyncio</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">数据库</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">异步编程</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" style="font-size: 1.1em; color: #999">数学知识</a> <a href="/tags/%E6%94%BF%E6%B2%BB/" style="font-size: 1.1em; color: #999">政治</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-07-22T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">49.8k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-04-28T14:00:17.730Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 小牛马</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/" style="font-size: 1.1em; color: #999">数据库</a> <a href="/tags/%E8%80%83%E7%A0%94%E7%9A%84%E5%8F%A5%E5%8F%B7/" style="font-size: 1.1em; color: #999">考研的句号</a> <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" style="font-size: 1.1em; color: #999">设计模式</a> <a href="/tags/%E8%AE%A1%E7%BD%91/" style="font-size: 1.5em; color: #99a9bf">计网</a> <a href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" style="font-size: 1.1em; color: #999">机器学习</a> <a href="/tags/%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/" style="font-size: 1.1em; color: #999">异步编程</a> <a href="/tags/Python/" style="font-size: 1.5em; color: #99a9bf">Python</a> <a href="/tags/MySQL/" style="font-size: 1.1em; color: #999">MySQL</a> <a href="/tags/%E9%AD%94%E6%9C%AF%E6%96%B9%E6%B3%95/" style="font-size: 1.1em; color: #999">魔术方法</a> <a href="/tags/%E6%94%BF%E6%B2%BB/" style="font-size: 1.1em; color: #999">政治</a> <a href="/tags/%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/" style="font-size: 1.1em; color: #999">数学知识</a> <a href="/tags/asyncio/" style="font-size: 1.1em; color: #999">asyncio</a> <a href="/tags/408/" style="font-size: 1.1em; color: #999">408</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">四月 2024</span><span class="card-archive-list-count">6</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/12/"><span class="card-archive-list-date">十二月 2023</span><span class="card-archive-list-count">2</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/11/"><span class="card-archive-list-date">十一月 2023</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">九月 2023</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">10</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2023-07-22T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">47k</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总访问量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-04-28T15:32:21.413Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2023 - 2024 By 小牛马</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="chat-btn" type="button" title="聊天"><i class="fas fa-sms"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox/fancybox.umd.min.js"></script><div class="js-pjax"><script>window.typedJSFn = {
   init: (str) => {
     window.typed = new Typed('#subtitle', Object.assign({
       strings: str,
