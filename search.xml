@@ -1799,61 +1799,6 @@ Cache行大小为64B，一个Cache可存放数组元素16个，程序A按行优�
       </tags>
   </entry>
   <entry>
-    <title>async异步编程</title>
-    <url>/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
-    <content><![CDATA[<h2 id="协程">协程</h2>
-<p>协程(Coroutine)，也称为微线程，是一种用户态内的上下文切换技术，就是通过一个线程实现代码块相互切换执行。</p>
-<p>Python实现协程的几种方法:</p>
-<ul>
-<li>greenlet, 早期的模块</li>
-<li>yield关键字</li>
-<li>asyncio装饰器(py3.4引入)</li>
-<li>async、await关键字(py3.5之后)</li>
-</ul>
-<h3 id="asyncio事件循环">asyncio事件循环</h3>
-<p>事件循环可以看做一个死循环，去检测并执行某些代码。</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">任务列表 = [任务<span class="number">1</span>, 任务<span class="number">2</span>, 任务<span class="number">3</span>, ...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将<span class="string">&#x27;可执行&#x27;</span>和<span class="string">&#x27;已完成&#x27;</span>的任务返回</span><br><span class="line">    <span class="keyword">for</span> 就绪任务 <span class="keyword">in</span> 已准备就绪的任务列表:</span><br><span class="line">        执行已就绪的任务</span><br><span class="line">    <span class="keyword">for</span> 已完成的任务 <span class="keyword">in</span> 已完成的任务列表:</span><br><span class="line">        在任务列表中移除 已完成的任务</span><br><span class="line">    如果 任务列表 中的任务都已完成，则终止循环</span><br></pre></td></tr></table></figure>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成或获取一个事件循环</span></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line"><span class="comment"># 将任务放到&quot;任务列表&quot;</span></span><br><span class="line">loop.run_until_complete(tasks)</span><br><span class="line">asyncio.run()</span><br></pre></td></tr></table></figure>
-<h3 id="await关键字">await关键字</h3>
-<p>用法: <code>await</code> +
-可等待的对象(协程对象、Future、Task对象)</p>
-<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;world&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;return x&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main&quot;</span>)</span><br><span class="line">    res = <span class="keyword">await</span> func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;func return&quot;</span>, res)</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">main</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">world</span></span><br><span class="line"><span class="string">func return return x</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
-<h3 id="task对象">task对象</h3>
-<p>实现在事件循环中添加多个任务</p>
-<p>创建 Task，意思就是把协程封装成 Task 实例，并追踪协程的 <strong>运行
-/ 完成状态</strong>，用于未来获取协程的结果。</p>
-<p>具体来说，是通过 <code>asyncio.create_task()</code> 创建
-Task，让协程对象加入时事件循环中，等待被调度执行。协程封装为 Task
-后不会立马启动，当某个代码 <code>await</code> 这个 Task
-的时候才会被执行。</p>
-<p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main start&quot;</span>)</span><br><span class="line"></span><br><span class="line">    task1 = asyncio.create_task(func(), name=<span class="string">&quot;n1&quot;</span>)</span><br><span class="line">    task2 = asyncio.create_task(func(), name=<span class="string">&#x27;n2&#x27;</span>)</span><br><span class="line">    task_list = [task1, task2]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main end&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># res1 = await task1</span></span><br><span class="line">    <span class="comment"># res2 = await task2</span></span><br><span class="line">    <span class="comment"># task列表等待</span></span><br><span class="line">    done, pending = <span class="keyword">await</span> asyncio.wait(task_list, timeout=<span class="literal">None</span>)</span><br><span class="line">    <span class="built_in">print</span>(done)</span><br><span class="line">    <span class="keyword">for</span> task_d <span class="keyword">in</span> done:</span><br><span class="line">        <span class="built_in">print</span>(task_d.get_name(),task_d.result())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure></p>
-<h3 id="future对象">Future对象</h3>
-<p>Future 相较于 Task 属于更底层的概念，在开发过程中用到的并不多。</p>
-<p>urture 对象内部封装了一个 <code>_state</code>，这个
-<code>_state</code>
-维护着四种状态：<strong>Pending</strong>、<strong>Running</strong>、<strong>Done</strong>，<strong>Cancelled</strong>，如果变成
-<code>Done</code>
-完成，就不再等待，而是往后执行，这四种状态的存在其实类似与进程的
-运行态、就绪态、阻塞态，事件循环凭借着四种状态对 Future进行调度。</p>
-<p>Task继承Future，task对象内部await结果的处理基于future对象</p>
-<h3 id="异步迭代器">异步迭代器</h3>
-<p><strong>迭代器：在其内部实现yield方法和next方法的对象。可迭代对象：在类内部实现一个iter方法，并返回一个迭代器。</strong></p>
-<p><strong>异步迭代器：实现了__aiter__()和__anext__()方法的对象，必须返回一个awaitable对象。sync_for支持处理异步迭代器的__anext__()方法返回的可等待对象，直到引发一个stopAsyncIteration异常</strong></p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Reader</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">readline</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># await asyncio.sleep(1)</span></span><br><span class="line">        self.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.count == <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> self.count</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__aiter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">__anext__</span>(<span class="params">self</span>):</span><br><span class="line">        val = <span class="keyword">await</span> self.readline()</span><br><span class="line">        <span class="keyword">if</span> val == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopAsyncIteration</span><br><span class="line">        <span class="keyword">return</span> val</span><br><span class="line">    </span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    obj = Reader()</span><br><span class="line">    <span class="comment"># async for 必须写在协程函数里边</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">for</span> item <span class="keyword">in</span> obj:</span><br><span class="line">        <span class="built_in">print</span>(item)</span><br><span class="line"></span><br><span class="line">asyncio.run(func())</span><br></pre></td></tr></table></figure>
-<h3 id="异步和非异步模块混合使用">异步和非异步模块混合使用</h3>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requets</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">download_image</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading......&quot;</span>)</span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    future = loop.run_in_executor(<span class="literal">None</span>,requets.get,url)</span><br><span class="line">    response = <span class="keyword">await</span> future</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line">    filename=</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">        file_object.write(response.content)</span><br><span class="line"></span><br><span class="line">url_list = []</span><br><span class="line">tasks = [download_image(url) <span class="keyword">for</span> url <span class="keyword">in</span> url_list]</span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line">loop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>Python</category>
-        <category>异步编程</category>
-      </categories>
-      <tags>
-        <tag>Python</tag>
-        <tag>asyncio</tag>
-        <tag>异步编程</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>MySQL学习</title>
     <url>/2024/04/22/MySQL%E5%AD%A6%E4%B9%A0/</url>
     <content><![CDATA[<h3 id="创建数据库">创建数据库</h3>
@@ -2135,19 +2080,6 @@ null，unique字段可以有多个null</p></li>
       </tags>
   </entry>
   <entry>
-    <title>一些数学知识</title>
-    <url>/2024/04/17/%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/</url>
-    <content><![CDATA[<h2 id="矩阵求导">矩阵求导</h2>
-]]></content>
-      <categories>
-        <category>杂货</category>
-        <category>数学知识</category>
-      </categories>
-      <tags>
-        <tag>数学知识</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Python补充</title>
     <url>/2024/04/18/Python%E8%A1%A5%E5%85%85/</url>
     <content><![CDATA[<h2 id="魔术方法">魔术方法</h2>
@@ -2263,17 +2195,71 @@ null，unique字段可以有多个null</p></li>
       </tags>
   </entry>
   <entry>
-    <title>经验贴</title>
-    <url>/2024/04/04/%E7%BB%8F%E9%AA%8C%E8%B4%B4/</url>
-    <content><![CDATA[<p>首先挂一个我拉的QQ考研交流群<strong>433955962</strong>，想接点答疑赚点零花钱。</p>
-<hr>
+    <title>async异步编程</title>
+    <url>/2024/04/18/async%E5%BC%82%E6%AD%A5%E7%BC%96%E7%A8%8B/</url>
+    <content><![CDATA[<h2 id="协程">协程</h2>
+<p>协程(Coroutine)，也称为微线程，是一种用户态内的上下文切换技术，就是通过一个线程实现代码块相互切换执行。</p>
+<p>Python实现协程的几种方法:</p>
+<ul>
+<li>greenlet, 早期的模块</li>
+<li>yield关键字</li>
+<li>asyncio装饰器(py3.4引入)</li>
+<li>async、await关键字(py3.5之后)</li>
+</ul>
+<h3 id="asyncio事件循环">asyncio事件循环</h3>
+<p>事件循环可以看做一个死循环，去检测并执行某些代码。</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">任务列表 = [任务<span class="number">1</span>, 任务<span class="number">2</span>, 任务<span class="number">3</span>, ...]</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">    可执行的任务列表, 已完成的任务列表 = 在任务列表中检查所有的任务， 将<span class="string">&#x27;可执行&#x27;</span>和<span class="string">&#x27;已完成&#x27;</span>的任务返回</span><br><span class="line">    <span class="keyword">for</span> 就绪任务 <span class="keyword">in</span> 已准备就绪的任务列表:</span><br><span class="line">        执行已就绪的任务</span><br><span class="line">    <span class="keyword">for</span> 已完成的任务 <span class="keyword">in</span> 已完成的任务列表:</span><br><span class="line">        在任务列表中移除 已完成的任务</span><br><span class="line">    如果 任务列表 中的任务都已完成，则终止循环</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="comment"># 生成或获取一个事件循环</span></span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line"><span class="comment"># 将任务放到&quot;任务列表&quot;</span></span><br><span class="line">loop.run_until_complete(tasks)</span><br><span class="line">asyncio.run()</span><br></pre></td></tr></table></figure>
+<h3 id="await关键字">await关键字</h3>
+<p>用法: <code>await</code> +
+可等待的对象(协程对象、Future、Task对象)</p>
+<figure class="highlight py"><table><tr><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;hello&quot;</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;world&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;return x&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main&quot;</span>)</span><br><span class="line">    res = <span class="keyword">await</span> func()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;func return&quot;</span>, res)</span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br><span class="line"></span><br><span class="line"><span class="comment"># 输出结果</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">main</span></span><br><span class="line"><span class="string">hello</span></span><br><span class="line"><span class="string">world</span></span><br><span class="line"><span class="string">func return return x</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br></pre></td></tr></table></figure>
+<h3 id="task对象">task对象</h3>
+<p>实现在事件循环中添加多个任务</p>
+<p>创建 Task，意思就是把协程封装成 Task 实例，并追踪协程的 <strong>运行
+/ 完成状态</strong>，用于未来获取协程的结果。</p>
+<p>具体来说，是通过 <code>asyncio.create_task()</code> 创建
+Task，让协程对象加入时事件循环中，等待被调度执行。协程封装为 Task
+后不会立马启动，当某个代码 <code>await</code> 这个 Task
+的时候才会被执行。</p>
+<p><figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">1</span>)</span><br><span class="line">    <span class="keyword">await</span> asyncio.sleep(<span class="number">2</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="number">2</span>)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">&quot;xxxx&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">main</span>():</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main start&quot;</span>)</span><br><span class="line"></span><br><span class="line">    task1 = asyncio.create_task(func(), name=<span class="string">&quot;n1&quot;</span>)</span><br><span class="line">    task2 = asyncio.create_task(func(), name=<span class="string">&#x27;n2&#x27;</span>)</span><br><span class="line">    task_list = [task1, task2]</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;main end&quot;</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># res1 = await task1</span></span><br><span class="line">    <span class="comment"># res2 = await task2</span></span><br><span class="line">    <span class="comment"># task列表等待</span></span><br><span class="line">    done, pending = <span class="keyword">await</span> asyncio.wait(task_list, timeout=<span class="literal">None</span>)</span><br><span class="line">    <span class="built_in">print</span>(done)</span><br><span class="line">    <span class="keyword">for</span> task_d <span class="keyword">in</span> done:</span><br><span class="line">        <span class="built_in">print</span>(task_d.get_name(),task_d.result())</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">asyncio.run(main())</span><br></pre></td></tr></table></figure></p>
+<h3 id="future对象">Future对象</h3>
+<p>Future 相较于 Task 属于更底层的概念，在开发过程中用到的并不多。</p>
+<p>urture 对象内部封装了一个 <code>_state</code>，这个
+<code>_state</code>
+维护着四种状态：<strong>Pending</strong>、<strong>Running</strong>、<strong>Done</strong>，<strong>Cancelled</strong>，如果变成
+<code>Done</code>
+完成，就不再等待，而是往后执行，这四种状态的存在其实类似与进程的
+运行态、就绪态、阻塞态，事件循环凭借着四种状态对 Future进行调度。</p>
+<p>Task继承Future，task对象内部await结果的处理基于future对象</p>
+<h3 id="异步迭代器">异步迭代器</h3>
+<p><strong>迭代器：在其内部实现yield方法和next方法的对象。可迭代对象：在类内部实现一个iter方法，并返回一个迭代器。</strong></p>
+<p><strong>异步迭代器：实现了__aiter__()和__anext__()方法的对象，必须返回一个awaitable对象。sync_for支持处理异步迭代器的__anext__()方法返回的可等待对象，直到引发一个stopAsyncIteration异常</strong></p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Reader</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self</span>) -&gt; <span class="literal">None</span>:</span><br><span class="line">        self.count = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">readline</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="comment"># await asyncio.sleep(1)</span></span><br><span class="line">        self.count += <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> self.count == <span class="number">100</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">        <span class="keyword">return</span> self.count</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__aiter__</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">__anext__</span>(<span class="params">self</span>):</span><br><span class="line">        val = <span class="keyword">await</span> self.readline()</span><br><span class="line">        <span class="keyword">if</span> val == <span class="literal">None</span>:</span><br><span class="line">            <span class="keyword">raise</span> StopAsyncIteration</span><br><span class="line">        <span class="keyword">return</span> val</span><br><span class="line">    </span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">func</span>():</span><br><span class="line">    obj = Reader()</span><br><span class="line">    <span class="comment"># async for 必须写在协程函数里边</span></span><br><span class="line">    <span class="keyword">async</span> <span class="keyword">for</span> item <span class="keyword">in</span> obj:</span><br><span class="line">        <span class="built_in">print</span>(item)</span><br><span class="line"></span><br><span class="line">asyncio.run(func())</span><br></pre></td></tr></table></figure>
+<h3 id="异步和非异步模块混合使用">异步和非异步模块混合使用</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> requets</span><br><span class="line"><span class="keyword">import</span> asyncio</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="keyword">def</span> <span class="title function_">download_image</span>(<span class="params">url</span>):</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Downloading......&quot;</span>)</span><br><span class="line">    loop = asyncio.get_event_loop()</span><br><span class="line">    future = loop.run_in_executor(<span class="literal">None</span>,requets.get,url)</span><br><span class="line">    response = <span class="keyword">await</span> future</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;OK!&quot;</span>)</span><br><span class="line">    filename=</span><br><span class="line">    <span class="keyword">with</span> <span class="built_in">open</span>(filename,<span class="string">&quot;wb&quot;</span>) <span class="keyword">as</span> file_object:</span><br><span class="line">        file_object.write(response.content)</span><br><span class="line"></span><br><span class="line">url_list = []</span><br><span class="line">tasks = [download_image(url) <span class="keyword">for</span> url <span class="keyword">in</span> url_list]</span><br><span class="line">loop = asyncio.get_event_loop()</span><br><span class="line">loop.run_until_complete(asyncio.wait(tasks))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
-        <category>研究生入学考试</category>
-        <category>记录贴</category>
+        <category>Python</category>
+        <category>异步编程</category>
       </categories>
       <tags>
-        <tag>考研的句号</tag>
+        <tag>Python</tag>
+        <tag>asyncio</tag>
+        <tag>异步编程</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一些数学知识</title>
+    <url>/2024/04/17/%E4%B8%80%E4%BA%9B%E6%95%B0%E5%AD%A6%E7%9F%A5%E8%AF%86/</url>
+    <content><![CDATA[<h2 id="矩阵求导">矩阵求导</h2>
+]]></content>
+      <categories>
+        <category>杂货</category>
+        <category>数学知识</category>
+      </categories>
+      <tags>
+        <tag>数学知识</tag>
       </tags>
   </entry>
   <entry>
@@ -2551,6 +2537,20 @@ null，unique字段可以有多个null</p></li>
       </categories>
       <tags>
         <tag>政治</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>经验贴</title>
+    <url>/2024/04/04/%E7%BB%8F%E9%AA%8C%E8%B4%B4/</url>
+    <content><![CDATA[<p>首先挂一个我拉的QQ考研交流群<strong>433955962</strong>，想接点答疑赚点零花钱。</p>
+<hr>
+]]></content>
+      <categories>
+        <category>研究生入学考试</category>
+        <category>记录贴</category>
+      </categories>
+      <tags>
+        <tag>考研的句号</tag>
       </tags>
   </entry>
   <entry>
@@ -3170,6 +3170,7 @@ w_0(1-\sum\limits_{y}P(y|x)) +
 L(P,w)\)</span>，结果是w的函数，记为：<span class="math inline">\(\Psi(w)=\underset{P\in
 \mathcal{C}}{min}L(P,w)=L(P_w, w)\)</span></p>
 <p>具体求解时，分别对<span class="math inline">\(P(y|x)\)</span>求导，得到关于<span class="math inline">\(w\)</span>的函数，再关于<span class="math inline">\(w\)</span>求导，令导数为0，待会原概率公式，求得概率。</p>
+<h3 id="优化算法">优化算法</h3>
 ]]></content>
       <categories>
         <category>机器学习</category>
